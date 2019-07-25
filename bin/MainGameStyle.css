@@ -1,0 +1,64 @@
+/**
+ * Author - Hasan
+ * Created - 04/06/2019
+ * Note - CSS style for MainGamePane via the GameScene
+ * 
+ * Changed - 04/10/2019 - Hasan and Cordelle
+ * Description - Hasan fixed font-family; then we added styles
+ * 
+ */
+
+@font-face {
+	font-family: 'IM FELL English';
+	url: src('Resources/Fonts/fontFellEnglishRegular.ttf');
+}
+
+.button {
+    -fx-background-color: rgb(224, 219, 219);
+    -fx-font-size: 20;
+    -fx-text-fill: black;
+    -fx-font-family: 'IM FELL English';
+}
+
+.button:hover {
+	-fx-background-color: rgb(175, 174, 174);
+}
+
+.button:pressed {
+	-fx-background-color: rgb(198, 196, 196);
+}
+
+.combo-box .list-cell {
+	-fx-font-family: 'IM FELL English';
+	-fx-font-size: 16;
+	-fx-background-color: white;
+}
+
+.combo-box  {
+	-fx-background-color: white;
+}
+
+.combo-box .list-cell:hover {
+	-fx-text-fill: red;
+	-fx-background-color: rgb(239, 239, 239);
+}
+
+.gridpane {
+	-fx-background-color: white;
+	-fx-padding: 15;
+	-fx-hgap: 10;
+	-fx-vgap: 5;
+	-fx-border-color: rgb(139, 69, 19);
+	-fx-border-width: 3;
+}
+
+.sheetNames {
+	-fx-font-family: 'IM FELL English';
+	-fx-font-size: 24;
+}
+
+.sheetCards {
+	-fx-font-family: 'IM FELL English Italic';
+	-fx-font-size: 20;
+	-fx-font-style: italic;
+}
