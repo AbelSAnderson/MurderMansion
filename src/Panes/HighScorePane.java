@@ -1,5 +1,6 @@
 package Panes;
 
+import Enums.BackgroundColors;
 import Scenes.MenuScene;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -102,9 +103,9 @@ public class HighScorePane extends VBox {
 		gridPane.setHgap(75);
 		gridPane.setMaxWidth(200);
 		gridPane.setPadding(new Insets(30));
-		gridPane.setBackground(BACKGROUND_WHITE);
+		gridPane.setBackground(BackgroundColors.BACKGROUND_WHITE.getBackground());
 		
-		setBackground(BACKGROUND_DARK);
+		setBackground(BackgroundColors.BACKGROUND_DARK.getBackground());
 		getChildren().addAll(highScoreText, gridPane, backButton);
 		setAlignment(Pos.CENTER);
 		setSpacing(30);

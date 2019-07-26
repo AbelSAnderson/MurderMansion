@@ -1,5 +1,7 @@
 package Panes;
 
+import Enums.BackgroundColors;
+import Enums.Fonts;
 import Scenes.MenuScene;
 import javafx.animation.*;
 import javafx.geometry.Insets;
@@ -59,7 +61,7 @@ public class IntroPane extends BorderPane {
 	public IntroPane() {
 		final int IMAGE_BOX_HEIGHT = 300;
 
-		setBackground(BACKGROUND_DARK);
+		setBackground(BackgroundColors.BACKGROUND_DARK.getBackground());
 
 		VBox centerBox = new VBox();
 		HBox firstWordBox = new HBox(8);
@@ -127,7 +129,7 @@ public class IntroPane extends BorderPane {
 
 		// Add letters to the HBox
 		for(Text elementLetter : letters) {
-			elementLetter.setFont(TITLE_FONT);
+			elementLetter.setFont(Fonts.TITLE_FONT.getFont());
 			elementLetter.setFill(Color.WHITE);
 			firstWordBox.getChildren().add(elementLetter);
 		}

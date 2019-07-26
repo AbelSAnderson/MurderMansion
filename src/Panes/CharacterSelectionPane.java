@@ -1,5 +1,6 @@
 package Panes;
 
+import Enums.BackgroundColors;
 import Logic.CreatePlayers;
 import Objects.Character;
 import Scenes.GameScene;
@@ -15,7 +16,6 @@ import javafx.scene.text.TextAlignment;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static Logic.Constants.BACKGROUND_DARK;
 import static Logic.Constants.CHARACTERS;
 import static Logic.Main.mainStage;
 import static Logic.Turn.displayTransition;
@@ -89,7 +89,7 @@ public class CharacterSelectionPane extends HBox{
 		});
 
 		// Style the background
-		setBackground(BACKGROUND_DARK);
+		setBackground(BackgroundColors.BACKGROUND_DARK.getBackground());
 
 		//Style the selectButton
 		selectButton.setPrefHeight(75);

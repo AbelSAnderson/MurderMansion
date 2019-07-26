@@ -1,10 +1,9 @@
 package Panes;
 
+import Enums.BackgroundColors;
 import Panes.GameBoardPanes.*;
 import javafx.geometry.Pos;
 import javafx.scene.layout.*;
-
-import static Logic.Constants.BACKGROUND_DARK;
 
 /**
  * Author - Hasan
@@ -35,6 +34,6 @@ public class MainGamePane extends BorderPane{
 		setLeft(leftContainer);
 		setRight(rightContainer);
 		
-		setBackground(BACKGROUND_DARK);
+		setBackground(BackgroundColors.BACKGROUND_DARK.getBackground());
 	}
 }

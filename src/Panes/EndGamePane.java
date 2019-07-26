@@ -1,7 +1,9 @@
 package Panes;
 
+import Enums.BackgroundColors;
 import Logic.Main;
 import Objects.Card;
+import Enums.Fonts;
 import Scenes.HighScoreScene;
 import javafx.animation.FadeTransition;
 import javafx.animation.ParallelTransition;
@@ -58,7 +60,7 @@ public class EndGamePane extends BorderPane {
 			resetGame();
 		});
 		
-		setBackground(BACKGROUND_DARK);
+		setBackground(BackgroundColors.BACKGROUND_DARK.getBackground());
 
 		//Create title: Congratulations
         HBox firstWordBox = new HBox(8);
@@ -107,7 +109,7 @@ public class EndGamePane extends BorderPane {
 
         // Add letters to the HBox
         for(Text elementLetter : letters) {
-            elementLetter.setFont(TITLE_FONT);
+            elementLetter.setFont(Fonts.TITLE_FONT.getFont());
             elementLetter.setFill(Color.WHITE);
             firstWordBox.getChildren().add(elementLetter);
         }
