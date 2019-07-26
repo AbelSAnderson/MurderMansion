@@ -3,8 +3,6 @@ package Logic;
 import Objects.*;
 import Panes.GameBoardPanes.GuessSheetPane;
 import Panes.GameBoardPanes.InventoryPane;
-import javafx.scene.media.AudioClip;
-
 
 import static Panes.GameBoardPanes.DialoguePane.pauseStage;
 import static Panes.GameBoardPanes.GuessesPane.comboBoxes;
@@ -42,10 +40,6 @@ import static Panes.MainGamePane.*;
  */
 
 public class Constants {
-
-	//Background Music
-    public static AudioClip BACKGROUND_MUSIC;
-
 	//Functions
     /**Resets all Game Variables after winning or returning to the main menu.*/
     public static void resetGame(GameState gameState) {
@@ -59,7 +53,7 @@ public class Constants {
 
         gameState.getPlayers().clear();
         comboBoxes.clear();
-        BACKGROUND_MUSIC.stop();
+        gameState.getBackgroundMusic().stop();
         pauseStage.close();
     }
 }

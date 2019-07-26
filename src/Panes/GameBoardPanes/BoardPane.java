@@ -14,7 +14,6 @@ import javafx.scene.shape.Rectangle;
 
 import java.io.File;
 
-import static Logic.Constants.*;
 import static Logic.Movement.placeInRoom;
 import static Panes.GameBoardPanes.MovementPane.setButtons;
 
@@ -56,11 +55,11 @@ public class BoardPane extends StackPane{
 		placePlayerStart(gameState, gridpane);
 		
 		//Start background music
-		if(BACKGROUND_MUSIC.isPlaying()) BACKGROUND_MUSIC.stop();
-		BACKGROUND_MUSIC = new AudioClip(new File("src/Resources/Audio/background.wav").toURI().toString());
-		BACKGROUND_MUSIC.setCycleCount(AudioClip.INDEFINITE);
-		BACKGROUND_MUSIC.setVolume(0.1);
-		BACKGROUND_MUSIC.play();
+		if(gameState.getBackgroundMusic().isPlaying()) gameState.getBackgroundMusic().stop();
+		gameState.setBackgroundMusic(new AudioClip(new File("src/Resources/Audio/background.wav").toURI().toString()));
+		gameState.getBackgroundMusic().setCycleCount(AudioClip.INDEFINITE);
+		gameState.getBackgroundMusic().setVolume(0.1);
+		gameState.getBackgroundMusic().play();
 
 	}
 

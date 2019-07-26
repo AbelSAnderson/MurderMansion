@@ -245,9 +245,9 @@ public class IntroPane extends BorderPane {
 		});
 
 		// Play background theme music
-		BACKGROUND_MUSIC = new AudioClip(new File("src/Resources/Audio/theme.wav").toURI().toString());
-		BACKGROUND_MUSIC.setCycleCount(1);
-		BACKGROUND_MUSIC.play();
+		gameState.setBackgroundMusic(new AudioClip(new File("src/Resources/Audio/theme.wav").toURI().toString()));
+		gameState.getBackgroundMusic().setCycleCount(1);
+		gameState.getBackgroundMusic().play();
 		
 		// Set up the Pane
 		setMargin(centerBox, new Insets(150));

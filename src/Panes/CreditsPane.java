@@ -20,8 +20,6 @@ import javafx.util.Duration;
 
 import java.io.File;
 
-import static Logic.Constants.*;
-
 /**
  * Author - Cordelle
  * Created - 04/04/2019
@@ -206,10 +204,10 @@ public class CreditsPane extends StackPane {
 		});
 
 		// Play background theme music
-		if(BACKGROUND_MUSIC.isPlaying()) BACKGROUND_MUSIC.stop();
-		BACKGROUND_MUSIC = new AudioClip(new File("src/Resources/Audio/theme.wav").toURI().toString());
-		BACKGROUND_MUSIC.setCycleCount(1);
-		BACKGROUND_MUSIC.play();
+		if(gameState.getBackgroundMusic().isPlaying()) gameState.getBackgroundMusic().stop();
+		gameState.setBackgroundMusic(new AudioClip(new File("src/Resources/Audio/theme.wav").toURI().toString()));
+		gameState.getBackgroundMusic().setCycleCount(1);
+		gameState.getBackgroundMusic().play();
 
 		// Set up the Pane
 		getChildren().addAll(secondWordBox, firstWordBox); // in StackPane last child has priority
