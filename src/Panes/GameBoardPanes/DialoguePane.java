@@ -1,5 +1,6 @@
 package Panes.GameBoardPanes;
 
+import Enums.Fonts;
 import Scenes.PauseScene;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -8,8 +9,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
-import static Logic.Constants.FellRegular;
 
 /**
  * Author - Hasan
@@ -37,7 +36,7 @@ public class DialoguePane extends VBox{
 				
 		dialogue = new TextArea();
 		
-		dialogue.setFont(FellRegular(getClass(), 16));
+		dialogue.setFont(Fonts.BLANK_FONT.FellRegular(getClass(), 16));
 		
 		dialogue.setEditable(false);
 		

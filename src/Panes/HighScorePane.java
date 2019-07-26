@@ -1,6 +1,7 @@
 package Panes;
 
 import Enums.BackgroundColors;
+import Enums.Fonts;
 import Scenes.MenuScene;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -14,7 +15,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 
-import static Logic.Constants.*;
 import static Logic.Main.mainStage;
 
 /**
@@ -42,7 +42,7 @@ public class HighScorePane extends VBox {
 		//Create a hash map for the high score's name and score pairs
 		HashMap<String, Integer> hashScore = new HashMap<>();
 
-		Font scoreFont = FellRegular(this.getClass(), 40);
+		Font scoreFont = Fonts.BLANK_FONT.FellRegular(getClass(), 40);
 
 		//Fill Arrays with default Values and Add to the GridPane
 		for (int i = 0; i < scorePos.length; i++) {
@@ -90,7 +90,7 @@ public class HighScorePane extends VBox {
 		
 		Text highScoreText = new Text("High Scores");
 		
-		highScoreText.setFont(FellCursive(this.getClass(), 60));
+		highScoreText.setFont(Fonts.BLANK_FONT.FellCursive(getClass(), 60));
 		highScoreText.setFill(Color.WHITE);
 				
 		Button backButton = new Button ("Back to Menu");

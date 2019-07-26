@@ -183,7 +183,7 @@ public class CreditsPane extends StackPane {
 		int[] whiteLines = {0,4,6,8,10,14,15,17,19,21,25,28,45,48,51};
 
 		for (Text text : creditText) {
-			text.setFont(FellRegular(getClass(), 50));
+			text.setFont(Fonts.BLANK_FONT.FellRegular(getClass(), 50));
 			text.setFill(Color.GREY);
 
 			TranslateTransition creditsAnimation = new TranslateTransition(Duration.millis(25000), text);

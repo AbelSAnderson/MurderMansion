@@ -1,5 +1,6 @@
 package Panes.GameBoardPanes;
 
+import Enums.Fonts;
 import Objects.Card;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -61,7 +62,7 @@ private int grid;
 				// add item names
 				Text itemName = new Text(((Card) categoryArray[indexList].get(indexItems)).getName());
 				itemName.getStyleClass().add("sheetCards");
-				itemName.setFont(FellCursive(getClass(), 20));
+				itemName.setFont(Fonts.BLANK_FONT.FellCursive(getClass(), 20));
 
 				guessGridPane[indexList].add(itemName, 0, indexItems + 1);
 

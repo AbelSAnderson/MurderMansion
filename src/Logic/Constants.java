@@ -8,7 +8,6 @@ import Objects.Weapons.*;
 import Panes.GameBoardPanes.GuessSheetPane;
 import Panes.GameBoardPanes.InventoryPane;
 import javafx.scene.media.AudioClip;
-import javafx.scene.text.Font;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -82,25 +81,6 @@ public class Constants {
 
     /**@return Tile that the Current Player is on.*/
     public static Tile CURRENT_LOCATION() {return GAMEBOARD_OBJECTS[Y()][X()];}
-
-
-    //Font Selection by Cordelle Neufeld 2019-03-01
-    // Second Font from Google Fonts: IM Fell English
-    // https://fonts.google.com/specimen/IM+Fell+English
-
-    /**
-     * @param paneClass Current class.
-     * @param size Font Size.
-     * @return Fell English Font with the size requested.
-     */
-    public static Font FellRegular(Class paneClass, int size) {return Font.loadFont(paneClass.getResource("/Resources/Fonts/fontFellEnglishRegular.ttf").toExternalForm(), size);}
-
-    /**
-     * @param paneClass Current class.
-     * @param size Font Size.
-     * @return Fell English Cursive Font with the size requested.
-     */
-    public static Font FellCursive(Class paneClass, int size) {return Font.loadFont(paneClass.getResource("/Resources/Fonts/fontFellEnglishCursive.ttf").toExternalForm(), size);}
 
     /**Resets all Game Variables after winning or returning to the main menu.*/
     public static void resetGame() {

@@ -46,7 +46,7 @@ public class MovementPane extends VBox{
 		HBox rollsLeftHBox = new HBox();
 		
 		Text rollsLeftText = new Text("Moves left: ");
-		rollsLeftText.setFont(FellCursive(getClass(), 40));
+		rollsLeftText.setFont(Fonts.BLANK_FONT.FellCursive(getClass(), 40));
 		rollsLeftText.setFill(Color.WHITE);
 		
 		rollsText = new Text("0");

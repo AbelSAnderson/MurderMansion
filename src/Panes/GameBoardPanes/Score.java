@@ -33,7 +33,7 @@ public class Score extends HBox{
 		Text scoreText = new Text("Score: ");
 		
 		
-		scoreText.setFont(FellCursive(getClass(), 50));
+		scoreText.setFont(Fonts.BLANK_FONT.FellCursive(getClass(), 50));
 		scoreText.setFill(Color.BROWN);
 		
 		HBox.setMargin(scoreText, new Insets(0, 0, 0, 25));

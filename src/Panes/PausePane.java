@@ -20,7 +20,7 @@ public class PausePane extends VBox {
 		HBox answersHBox = new HBox(50);
 		
 		Text askExitText = new Text("Are you sure you want to exit your current game session and go to the main menu?");
-		askExitText.setFont(FellRegular(getClass(), 35));
+		askExitText.setFont(Fonts.BLANK_FONT.FellRegular(getClass(), 35));
 		askExitText.setFill(Color.WHITE);
 		
 		Button yesButton = new Button("Yes");

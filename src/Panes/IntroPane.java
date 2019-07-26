@@ -140,7 +140,7 @@ public class IntroPane extends BorderPane {
 		SequentialTransition subTitleFade = new SequentialTransition();
 
 		for (Text subtitle: subtitleText) {
-			subtitle.setFont(FellRegular(getClass(), 60));
+			subtitle.setFont(Fonts.BLANK_FONT.FellRegular(getClass(), 60));
 			subtitle.setFill(Color.GREY);
 
 			FadeTransition fadeSubTitle = new FadeTransition(Duration.millis(4000), subtitle);

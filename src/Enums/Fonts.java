@@ -6,6 +6,7 @@ import javafx.scene.text.FontWeight;
 
 public enum Fonts {
 
+    BLANK_FONT(null),
     BUTTON_FONT (javafx.scene.text.Font.font("times new roman", FontWeight.BOLD, 25)),
     NUMBER_FONT (javafx.scene.text.Font.font("Arial", 40)),
 
@@ -23,4 +24,10 @@ public enum Fonts {
     public Font getFont() {
         return font;
     }
+
+    // Font Selection by Cordelle Neufeld 2019-03-01
+    // Second Font from Google Fonts: IM Fell English
+    // https://fonts.google.com/specimen/IM+Fell+English
+    public Font FellRegular(Class paneClass, int size) {return Font.loadFont(paneClass.getResource("/Resources/Fonts/fontFellEnglishRegular.ttf").toExternalForm(), size);}
+    public Font FellCursive(Class paneClass, int size) {return Font.loadFont(paneClass.getResource("/Resources/Fonts/fontFellEnglishCursive.ttf").toExternalForm(), size);}
 }

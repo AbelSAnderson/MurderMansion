@@ -1,6 +1,7 @@
 package Panes;
 
 import Enums.BackgroundColors;
+import Enums.Fonts;
 import Scenes.MenuScene;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -12,7 +13,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
-import static Logic.Constants.*;
 import static Logic.Main.mainStage;
 
 /**
@@ -31,7 +31,7 @@ public class InstructionsPane extends VBox {
     	
     	Text instructionsLabel = new Text("Instructions");
     	instructionsLabel.setFill(Color.WHITE);
-		instructionsLabel.setFont(FellRegular(getClass(), 60));
+		instructionsLabel.setFont(Fonts.BLANK_FONT.FellRegular(getClass(), 60));
     	
     	VBox instructionsVBox = new VBox();
     	HBox containerHBox = new HBox();
@@ -89,7 +89,7 @@ public class InstructionsPane extends VBox {
     	int[] redLines = {6, 11, 19};
 
 		for (Text text : instructionsText) {
-			text.setFont(FellRegular(getClass(), 18));
+			text.setFont(Fonts.BLANK_FONT.FellRegular(getClass(), 18));
 			text.setFill(Color.BLACK);
 
 			instructionsVBox.getChildren().add(text);

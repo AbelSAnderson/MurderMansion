@@ -33,7 +33,7 @@ public class EndGamePane extends BorderPane {
 		HBox winningCards = new HBox(20);
 				
 		Text playerName = new Text(CURRENT_PLAYER().getCharacter().getName());
-		playerName.setFont(FellCursive(getClass(), 65));
+		playerName.setFont(Fonts.BLANK_FONT.FellCursive(getClass(), 65));
 		playerName.setFill(Color.WHITE);
 		
 		ImageView playerImg = new ImageView(CURRENT_PLAYER().getCharacter().getImg());
@@ -41,7 +41,7 @@ public class EndGamePane extends BorderPane {
 		playerImg.setFitHeight(350);
 		
 		Text winningText = new Text("You're a rookie detective!");
-		winningText.setFont(FellCursive(getClass(), 40));
+		winningText.setFont(Fonts.BLANK_FONT.FellCursive(getClass(), 40));
 		winningText.setFill(Color.WHITE);
 		
 		if(CASE_FILE[0].getName().equals(CURRENT_PLAYER().getCharacter().getName())) winningText.setText("You got away with it!");
@@ -49,7 +49,7 @@ public class EndGamePane extends BorderPane {
 		realNameInput = new TextField("Please enter your name");
 		realNameInput.setAlignment(Pos.CENTER);
 		realNameInput.setPrefSize(300, 65);
-		realNameInput.setFont(FellRegular(getClass(), 24));
+		realNameInput.setFont(Fonts.BLANK_FONT.FellRegular(getClass(), 24));
 		
 		Button submitButton = new Button("Submit");
 		submitButton.getStyleClass().add("selectButton");
