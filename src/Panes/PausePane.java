@@ -1,5 +1,7 @@
 package Panes;
 
+import Enums.BackgroundColors;
+import Enums.Fonts;
 import Scenes.MenuScene;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -39,11 +41,11 @@ public class PausePane extends VBox {
 		
 		answersHBox.getChildren().addAll(yesButton, noButton);
 		
-		yesButton.setFont(BUTTON_FONT);
-		noButton.setFont(BUTTON_FONT);
+		yesButton.setFont(Fonts.BUTTON_FONT.getFont());
+		noButton.setFont(Fonts.BUTTON_FONT.getFont());
 		answersHBox.setAlignment(Pos.CENTER);
 		
-		setBackground(BACKGROUND_DARK_TRANSPARENT);
+		setBackground(BackgroundColors.BACKGROUND_DARK_TRANSPARENT.getBackground());
 		
 		getChildren().addAll(askExitText, answersHBox);
 		setSpacing(75);

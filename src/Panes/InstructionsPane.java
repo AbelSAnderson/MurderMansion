@@ -1,5 +1,6 @@
 package Panes;
 
+import Enums.BackgroundColors;
 import Scenes.MenuScene;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -105,14 +106,14 @@ public class InstructionsPane extends VBox {
     	instructionsVBox.setPadding(new Insets(25, 50, 25, 50));
     	setPadding(new Insets(25, 0, 0 ,0));
     	
-    	instructionsVBox.setBackground(BACKGROUND_WHITE);
+    	instructionsVBox.setBackground(BackgroundColors.BACKGROUND_WHITE.getBackground());
 
     	containerHBox.getChildren().addAll(leftImageView, instructionsVBox, rightImageView);
     	containerHBox.setAlignment(Pos.TOP_CENTER);
     	
     	getChildren().addAll(instructionsLabel, containerHBox, menuButton);
     	VBox.setMargin(menuButton, new Insets(15));
-		setBackground(BACKGROUND_DARK);
+		setBackground(BackgroundColors.BACKGROUND_DARK.getBackground());
     	setAlignment(Pos.TOP_CENTER);
     }
 }

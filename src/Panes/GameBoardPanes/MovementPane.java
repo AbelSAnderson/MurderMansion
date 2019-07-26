@@ -1,5 +1,6 @@
 package Panes.GameBoardPanes;
 
+import Enums.Fonts;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
@@ -50,7 +51,7 @@ public class MovementPane extends VBox{
 		
 		rollsText = new Text("0");
 		rollsText.setFill(Color.WHITE);
-		rollsText.setFont(NUMBER_FONT);
+		rollsText.setFont(Fonts.NUMBER_FONT.getFont());
 		
 		rollsLeftHBox.setAlignment(Pos.CENTER);
 		rollsLeftHBox.getChildren().addAll(rollsLeftText, rollsText);

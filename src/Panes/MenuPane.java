@@ -1,5 +1,7 @@
 package Panes;
 
+import Enums.BackgroundColors;
+import Enums.Fonts;
 import Scenes.CharacterSelectionScene;
 import Scenes.CreditsScene;
 import Scenes.HighScoreScene;
@@ -12,8 +14,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
-import static Logic.Constants.BACKGROUND_DARK;
-import static Logic.Constants.BUTTON_FONT;
 import static Logic.Main.mainStage;
 
 /**
@@ -42,11 +42,11 @@ public class MenuPane extends VBox {
         Button[] buttons = new Button[4];
         String[] buttonText = {"Play", "Instructions", "High Scores", "Credits"};
 
-        setBackground(BACKGROUND_DARK);
+        setBackground(BackgroundColors.BACKGROUND_DARK.getBackground());
 
         for(int i = 0; i < buttons.length; i++) {
             buttons[i] = new Button(buttonText[i]);
-            buttons[i].setFont(BUTTON_FONT);
+            buttons[i].setFont(Fonts.BUTTON_FONT.getFont());
             buttons[i].setPrefWidth(260);
             buttons[i].setPrefHeight(80);
 

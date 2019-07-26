@@ -31,12 +31,15 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
     	
-        //Set up Main Stage
+        //Set up GameState
         mainStage = primaryStage;
 
         mainStage.setTitle("Murder Mansion");
         mainStage.setScene(new IntroScene());
         mainStage.show();
+
+
+
     }
 
     public static void main(String[] args) {

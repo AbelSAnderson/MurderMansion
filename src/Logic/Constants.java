@@ -7,13 +7,8 @@ import Objects.Rooms.*;
 import Objects.Weapons.*;
 import Panes.GameBoardPanes.GuessSheetPane;
 import Panes.GameBoardPanes.InventoryPane;
-import Panes.IntroPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.media.AudioClip;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -70,21 +65,6 @@ public class Constants {
     //Default Screen Sizes
     public static final double SCREEN_WIDTH = Toolkit.getDefaultToolkit().getScreenSize().getWidth();
     public static final double SCREEN_HEIGHT = Toolkit.getDefaultToolkit().getScreenSize().getHeight() - 65;
-
-    //Fonts
-    public static final Font BUTTON_FONT = Font.font("times new roman", FontWeight.BOLD, 25);
-    public static final Font NUMBER_FONT = Font.font("Arial", 40);
-
-	// Font Selection by Cordelle Neufeld 2019-03-01
-	// First Font from Google Fonts: IM Fell English SC
-	// https://fonts.google.com/specimen/IM+Fell+English+SC
-	public static final Font TITLE_FONT = Font.loadFont(IntroPane.class.getResource("/Resources/Fonts/fontFellEnglishTitle.ttf").toExternalForm(), 80);
-
-	//Background Colors
-    public static final Background BACKGROUND_WHITE = new Background(new BackgroundFill(Color.rgb(255,255,255), null, null));
-    public static final Background BACKGROUND_WHITE_TRANSPARENT = new Background(new BackgroundFill(Color.rgb(255, 255, 255, 0.8), null, null));
-    public static final Background BACKGROUND_DARK = new Background(new BackgroundFill(Color.rgb(25, 25, 25), null, null));
-    public static final Background BACKGROUND_DARK_TRANSPARENT = new Background(new BackgroundFill(Color.rgb(25, 25, 25, 0.9), null, null));
 
 	//Background Music
     public static AudioClip BACKGROUND_MUSIC;

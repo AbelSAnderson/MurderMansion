@@ -1,5 +1,7 @@
 package Panes;
 
+import Enums.BackgroundColors;
+import Enums.Fonts;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
@@ -26,14 +28,14 @@ public class TransitionPane extends HBox {
         transitionButton.getStyleClass().add("selectButton");
         
         transitionMessage.setFont(FellRegular(getClass(), 35));
-        transitionButton.setFont(BUTTON_FONT);
+        transitionButton.setFont(Fonts.BUTTON_FONT.getFont());
 
         transitionButton.setOnMouseClicked(e -> startTurn());
         
         vbox.getChildren().addAll(transitionMessage, transitionButton);
         vbox.setAlignment(Pos.CENTER);
         
-        setBackground(BACKGROUND_WHITE_TRANSPARENT);
+        setBackground(BackgroundColors.BACKGROUND_WHITE_TRANSPARENT.getBackground());
 
         getChildren().addAll(characterImg, vbox);
         setAlignment(Pos.CENTER);

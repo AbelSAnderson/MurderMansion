@@ -1,5 +1,7 @@
 package Panes;
 
+import Enums.BackgroundColors;
+import Enums.Fonts;
 import Scenes.MenuScene;
 import javafx.animation.FadeTransition;
 import javafx.animation.ParallelTransition;
@@ -40,7 +42,7 @@ public class CreditsPane extends StackPane {
 	
 	public CreditsPane() {
 
-		setBackground(BACKGROUND_DARK);
+		setBackground(BackgroundColors.BACKGROUND_DARK.getBackground());
 
 		HBox firstWordBox = new HBox(8);
 		VBox secondWordBox = new VBox();
@@ -48,7 +50,7 @@ public class CreditsPane extends StackPane {
 		firstWordBox.setAlignment(Pos.TOP_CENTER);
 		secondWordBox.setAlignment(Pos.CENTER);
 
-		firstWordBox.setBackground(BACKGROUND_DARK_TRANSPARENT);
+		firstWordBox.setBackground(BackgroundColors.BACKGROUND_DARK_TRANSPARENT.getBackground());
 		firstWordBox.setMaxHeight(30);
 		firstWordBox.setPadding(new Insets(50));
 
@@ -95,7 +97,7 @@ public class CreditsPane extends StackPane {
 
 		// Add letters to the HBox
 		for(Text elementLetter : letters) {
-			elementLetter.setFont(TITLE_FONT);
+			elementLetter.setFont(Fonts.TITLE_FONT.getFont());
 			elementLetter.setFill(Color.WHITE);
 			firstWordBox.getChildren().add(elementLetter);
 		}

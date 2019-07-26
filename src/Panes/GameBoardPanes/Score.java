@@ -1,5 +1,6 @@
 package Panes.GameBoardPanes;
 
+import Enums.Fonts;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
@@ -26,7 +27,7 @@ public class Score extends HBox{
 	public Score() {
 	
 		scoreNumber = new Text("1044");
-		scoreNumber.setFont(NUMBER_FONT);
+		scoreNumber.setFont(Fonts.NUMBER_FONT.getFont());
 		scoreNumber.setFill(Color.WHITE);
 		
 		Text scoreText = new Text("Score: ");

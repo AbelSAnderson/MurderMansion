@@ -12,7 +12,6 @@ import javafx.scene.Scene;
  */
 
 public class CharacterSelectionScene extends Scene{
-
 	public CharacterSelectionScene() {
 		super(new CharacterSelectionPane(), Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
 		getStylesheets().add("CharacterSelectionStyle.css");
