@@ -1,7 +1,7 @@
 package Panes;
 
 import Enums.BackgroundColors;
-import Logic.CreatePlayers;
+import Main.CreatePlayers;
 import Objects.Character;
 import Objects.GameState;
 import Scenes.GameScene;
@@ -17,7 +17,7 @@ import javafx.scene.text.TextAlignment;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static Logic.Turn.displayTransition;
+import static Main.Turn.displayTransition;
 
 /**
  * Author - Hasan

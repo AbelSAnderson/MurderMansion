@@ -1,4 +1,4 @@
-package Logic;
+package Main;
 
 import Objects.GameState;
 import Panes.GameBoardPanes.GuessSheetPane;
@@ -8,7 +8,6 @@ import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import static Logic.Constants.*;
 import static Panes.GameBoardPanes.DialoguePane.dialogue;
 import static Panes.GameBoardPanes.GuessesPane.*;
 import static Panes.GameBoardPanes.MovementPane.*;

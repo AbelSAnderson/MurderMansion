@@ -1,11 +1,11 @@
-package Logic;
+package Main;
 
 import Objects.GameState;
 import Objects.Tile;
 import javafx.scene.layout.GridPane;
 import javafx.scene.media.MediaPlayer;
 
-import static Logic.Turn.disableGuessClicks;
+import static Main.Turn.disableGuessClicks;
 import static Panes.GameBoardPanes.DialoguePane.dialogue;
 import static Panes.GameBoardPanes.MovementPane.setButtons;
 

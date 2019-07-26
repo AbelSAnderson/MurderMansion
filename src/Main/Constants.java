@@ -1,4 +1,4 @@
-package Logic;
+package Main;
 
 import Objects.*;
 import Panes.GameBoardPanes.GuessSheetPane;
@@ -40,7 +40,7 @@ import static Panes.MainGamePane.*;
  */
 
 public class Constants {
-	//Functions
+
     /**Resets all Game Variables after winning or returning to the main menu.*/
     public static void resetGame(GameState gameState) {
         leftContainer.getChildren().remove(guessSheet);

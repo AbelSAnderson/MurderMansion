@@ -14,7 +14,7 @@ import javafx.scene.shape.Rectangle;
 
 import java.io.File;
 
-import static Logic.Movement.placeInRoom;
+import static Main.Movement.placeInRoom;
 import static Panes.GameBoardPanes.MovementPane.setButtons;
 
 /**

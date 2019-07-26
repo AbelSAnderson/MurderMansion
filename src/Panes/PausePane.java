@@ -11,7 +11,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
-import static Logic.Constants.*;
+import static Main.Constants.*;
 import static Panes.GameBoardPanes.DialoguePane.pauseStage;
 
 public class PausePane extends VBox {

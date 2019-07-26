@@ -1,6 +1,6 @@
 package Panes.GameBoardPanes;
 
-import Logic.Turn;
+import Main.Turn;
 import Objects.GameState;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -11,7 +11,7 @@ import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
 
-import static Logic.Guesses.*;
+import static Main.Guesses.*;
 
 /**
  * Author - Hasan

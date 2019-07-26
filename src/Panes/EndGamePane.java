@@ -19,7 +19,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
-import static Logic.Constants.*;
+import static Main.Constants.*;
 import static Panes.GameBoardPanes.Score.saveScore;
 
 public class EndGamePane extends BorderPane {

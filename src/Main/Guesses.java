@@ -1,4 +1,4 @@
-package Logic;
+package Main;
 
 import Objects.Card;
 import Objects.GameState;

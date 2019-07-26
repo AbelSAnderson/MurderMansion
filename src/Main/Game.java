@@ -1,4 +1,4 @@
-package Logic;
+package Main;
 
 import Objects.GameState;
 import Scenes.IntroScene;
@@ -24,7 +24,7 @@ import javafx.stage.Stage;
 
 // IMPORTANT: FOR TESTING MODE GO TO MovementPane AND CHANGE 1 LINE OF CODE                             
 
-public class Main extends Application {
+public class Game extends Application {
     @Override
     public void start(Stage primaryStage) {
 

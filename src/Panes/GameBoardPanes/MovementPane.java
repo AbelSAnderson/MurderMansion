@@ -15,7 +15,7 @@ import javafx.scene.text.Text;
 import java.io.File;
 import java.util.Random;
 
-import static Logic.Turn.endTurn;
+import static Main.Turn.endTurn;
 import static Panes.GameBoardPanes.BoardPane.movement;
 
 /**

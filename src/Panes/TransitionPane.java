@@ -10,7 +10,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-import static Logic.Turn.startTurn;
+import static Main.Turn.startTurn;
 
 public class TransitionPane extends HBox {
 
