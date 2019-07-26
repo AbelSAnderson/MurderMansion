@@ -61,10 +61,6 @@ public class Constants {
     public static final Card[] WEAPONS = {new Arrow(), new Axe(), new Candlestick(), new Knife(), new Poison(), new Revolver()};
     public static final Room[] ROOMS = {new Ballroom(), new Conservatory(), new BilliardRoom(), new Library(), new Laboratory(), new Lounge(), new Pool(), new DiningRoom(), new Kitchen()};
 
-    //Default Screen Sizes
-    public static final double SCREEN_WIDTH = Toolkit.getDefaultToolkit().getScreenSize().getWidth();
-    public static final double SCREEN_HEIGHT = Toolkit.getDefaultToolkit().getScreenSize().getHeight() - 65;
-
 	//Background Music
     public static AudioClip BACKGROUND_MUSIC;
 

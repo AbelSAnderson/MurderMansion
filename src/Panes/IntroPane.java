@@ -186,7 +186,7 @@ public class IntroPane extends BorderPane {
 				case 3: // Poison
 					cardTranslate.setFromX(-cardImagesViews[i].getFitWidth()*15);
 			}
-			if(i == 2) cardTranslate.setToX(SCREEN_WIDTH +  cardImagesViews[i-1].getFitWidth()*10); else cardTranslate.setToX(SCREEN_WIDTH +  cardImagesViews[i].getFitWidth()*2);
+			if(i == 2) cardTranslate.setToX(gameState.getScreenWidth() + cardImagesViews[i-1].getFitWidth()*10); else cardTranslate.setToX(gameState.getScreenWidth() +  cardImagesViews[i].getFitWidth()*2);
 			cardTranslate.setCycleCount(1);
 			cardTranslate.setAutoReverse(false);
 			cardTranslate.play();

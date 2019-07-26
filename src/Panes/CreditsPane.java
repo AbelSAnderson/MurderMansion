@@ -187,8 +187,8 @@ public class CreditsPane extends StackPane {
 			text.setFill(Color.GREY);
 
 			TranslateTransition creditsAnimation = new TranslateTransition(Duration.millis(25000), text);
-			creditsAnimation.setFromY(SCREEN_HEIGHT * 2 + 500);    // scroll up into the screen
-			creditsAnimation.setByY(-SCREEN_HEIGHT * 5 - 100);  // scroll up offscreen
+			creditsAnimation.setFromY(gameState.getScreenHeight() * 2 + 500);    // scroll up into the screen
+			creditsAnimation.setByY(-gameState.getScreenHeight() * 5 - 100);  // scroll up offscreen
 			creditsAnimation.setByZ(1);
 			creditsAnimation.setCycleCount(1);
 			creditsAnimation.setAutoReverse(false);

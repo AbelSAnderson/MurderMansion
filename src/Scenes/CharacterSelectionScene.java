@@ -1,6 +1,5 @@
 package Scenes;
 
-import Logic.Constants;
 import Objects.GameState;
 import Panes.CharacterSelectionPane;
 import javafx.scene.Scene;
@@ -14,7 +13,7 @@ import javafx.scene.Scene;
 
 public class CharacterSelectionScene extends Scene{
 	public CharacterSelectionScene(GameState gameState) {
-		super(new CharacterSelectionPane(gameState), Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+		super(new CharacterSelectionPane(gameState), gameState.getScreenWidth(), gameState.getScreenHeight());
 		getStylesheets().add("CharacterSelectionStyle.css");
 	}
 }

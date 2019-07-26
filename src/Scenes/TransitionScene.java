@@ -5,12 +5,9 @@ import Panes.TransitionPane;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 
-import static Logic.Constants.SCREEN_HEIGHT;
-import static Logic.Constants.SCREEN_WIDTH;
-
 public class TransitionScene extends Scene {
     public TransitionScene(GameState gameState) {
-        super(new TransitionPane(gameState), SCREEN_WIDTH/3 + 50, SCREEN_HEIGHT/3 + 50);
+        super(new TransitionPane(gameState), gameState.getScreenWidth()/3 + 50, gameState.getScreenHeight()/3 + 50);
         getStylesheets().add("CharacterSelectionStyle.css");
         setFill(Color.TRANSPARENT);
     }
