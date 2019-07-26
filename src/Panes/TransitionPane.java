@@ -27,7 +27,7 @@ public class TransitionPane extends HBox {
         Button transitionButton = new Button("Start Turn");
         transitionButton.getStyleClass().add("selectButton");
         
-        transitionMessage.setFont(FellRegular(getClass(), 35));
+        transitionMessage.setFont(Fonts.BLANK_FONT.FellRegular(getClass(), 35));
         transitionButton.setFont(Fonts.BUTTON_FONT.getFont());
 
         transitionButton.setOnMouseClicked(e -> startTurn());
