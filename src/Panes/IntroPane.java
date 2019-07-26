@@ -2,6 +2,7 @@ package Panes;
 
 import Enums.BackgroundColors;
 import Enums.Fonts;
+import Objects.GameState;
 import Scenes.MenuScene;
 import javafx.animation.*;
 import javafx.geometry.Insets;
@@ -23,7 +24,6 @@ import javafx.util.Duration;
 import java.io.File;
 
 import static Logic.Constants.*;
-import static Logic.Main.mainStage;
 
 /**
  * Author - Cordelle
@@ -58,7 +58,7 @@ public class IntroPane extends BorderPane {
 	private int indexCardRotationAngle = 0;
 	private boolean isSkipped = false;
 
-	public IntroPane() {
+	public IntroPane(GameState gameState) {
 		final int IMAGE_BOX_HEIGHT = 300;
 
 		setBackground(BackgroundColors.BACKGROUND_DARK.getBackground());
@@ -121,7 +121,7 @@ public class IntroPane extends BorderPane {
 				letterFade2c.play();
 
 				if(!isSkipped) {
-					letterFade2c.setOnFinished(event3 -> mainStage.setScene(new MenuScene()));
+					letterFade2c.setOnFinished(event3 -> gameState.getMainStage().setScene(new MenuScene(gameState)));
 				}
 
 			});
@@ -241,7 +241,7 @@ public class IntroPane extends BorderPane {
 		
 		setOnMouseClicked(event -> {
 			isSkipped = true;
-			mainStage.setScene(new MenuScene());
+			gameState.getMainStage().setScene(new MenuScene(gameState));
 		});
 
 		// Play background theme music

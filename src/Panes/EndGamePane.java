@@ -1,9 +1,9 @@
 package Panes;
 
 import Enums.BackgroundColors;
-import Logic.Main;
 import Objects.Card;
 import Enums.Fonts;
+import Objects.GameState;
 import Scenes.HighScoreScene;
 import javafx.animation.FadeTransition;
 import javafx.animation.ParallelTransition;
@@ -26,7 +26,7 @@ public class EndGamePane extends BorderPane {
 	
 	public static TextField realNameInput;
 	
-	public EndGamePane() {
+	public EndGamePane(GameState gameState) {
 		
 		VBox textsVBox = new VBox(20);
         HBox centerHBox = new HBox(50);
@@ -56,8 +56,8 @@ public class EndGamePane extends BorderPane {
 		
 		submitButton.setOnAction(e -> {
 			saveScore();
-			Main.mainStage.setScene(new HighScoreScene());
-			resetGame();
+			gameState.getMainStage().setScene(new HighScoreScene(gameState));
+			resetGame(gameState);
 		});
 		
 		setBackground(BackgroundColors.BACKGROUND_DARK.getBackground());

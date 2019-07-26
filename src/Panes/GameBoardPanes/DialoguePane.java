@@ -1,6 +1,7 @@
 package Panes.GameBoardPanes;
 
 import Enums.Fonts;
+import Objects.GameState;
 import Scenes.PauseScene;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -21,7 +22,7 @@ public class DialoguePane extends VBox{
 	public static TextArea dialogue;
 	public static Stage pauseStage;
 	
-	public DialoguePane() {
+	public DialoguePane(GameState gameState) {
 		Button pauseButton = new Button("Exit To Main Menu");
 		
 		pauseButton.setTranslateX(130);
@@ -30,7 +31,7 @@ public class DialoguePane extends VBox{
 			pauseStage = new Stage();
 			pauseStage.initStyle(StageStyle.TRANSPARENT);
 			pauseStage.isAlwaysOnTop();
-			pauseStage.setScene(new PauseScene());
+			pauseStage.setScene(new PauseScene(gameState));
 			pauseStage.show();
 		});
 				

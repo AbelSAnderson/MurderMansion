@@ -1,5 +1,6 @@
 package Logic;
 
+import Objects.GameState;
 import Scenes.IntroScene;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -24,22 +25,14 @@ import javafx.stage.Stage;
 // IMPORTANT: FOR TESTING MODE GO TO MovementPane AND CHANGE 1 LINE OF CODE                             
 
 public class Main extends Application {
-
-    //Create Publicly Accessible Main Stage
-    public static Stage mainStage;
-
     @Override
     public void start(Stage primaryStage) {
-    	
-        //Set up GameState
-        mainStage = primaryStage;
 
-        mainStage.setTitle("Murder Mansion");
-        mainStage.setScene(new IntroScene());
-        mainStage.show();
+        GameState gameState = new GameState(primaryStage);
 
-
-
+        primaryStage.setScene(new IntroScene(gameState));
+        primaryStage.setTitle("Murder Mansion");
+        primaryStage.show();
     }
 
     public static void main(String[] args) {

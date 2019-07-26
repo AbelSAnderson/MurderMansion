@@ -2,6 +2,7 @@ package Panes;
 
 import Enums.BackgroundColors;
 import Enums.Fonts;
+import Objects.GameState;
 import Scenes.MenuScene;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -15,8 +16,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 
-import static Logic.Main.mainStage;
-
 /**
  * Author - Hasan
  * Created - 14/03/2019
@@ -29,7 +28,7 @@ import static Logic.Main.mainStage;
 
 public class HighScorePane extends VBox {
 
-	public HighScorePane() {
+	public HighScorePane(GameState gameState) {
 		
 		File highScoreFile = new File("highScores.txt");
 
@@ -96,7 +95,7 @@ public class HighScorePane extends VBox {
 		Button backButton = new Button ("Back to Menu");
 		backButton.getStyleClass().add("selectButton");
 		
-		backButton.setOnAction(e -> mainStage.setScene(new MenuScene()));
+		backButton.setOnAction(e -> gameState.getMainStage().setScene(new MenuScene(gameState)));
 		
 		gridPane.setAlignment(Pos.CENTER);
 		gridPane.setVgap(5);

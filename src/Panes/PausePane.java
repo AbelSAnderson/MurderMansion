@@ -2,6 +2,7 @@ package Panes;
 
 import Enums.BackgroundColors;
 import Enums.Fonts;
+import Objects.GameState;
 import Scenes.MenuScene;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -11,12 +12,11 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 import static Logic.Constants.*;
-import static Logic.Main.mainStage;
 import static Panes.GameBoardPanes.DialoguePane.pauseStage;
 
 public class PausePane extends VBox {
 	
-	public PausePane() {
+	public PausePane(GameState gameState) {
 		HBox answersHBox = new HBox(50);
 		
 		Text askExitText = new Text("Are you sure you want to exit your current game session and go to the main menu?");
@@ -33,8 +33,8 @@ public class PausePane extends VBox {
 		noButton.getStyleClass().add("selectButton");
 		
 		yesButton.setOnAction(e -> {
-			mainStage.setScene(new MenuScene());
-			resetGame();
+			gameState.getMainStage().setScene(new MenuScene(gameState));
+			resetGame(gameState);
 		});
 		
 		noButton.setOnAction(e -> pauseStage.close());

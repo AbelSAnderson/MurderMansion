@@ -1,6 +1,7 @@
 package Scenes;
 
 import Logic.Constants;
+import Objects.GameState;
 import Panes.IntroPane;
 import javafx.scene.Scene;
 
@@ -12,7 +13,7 @@ import javafx.scene.Scene;
  */
 
 public class IntroScene extends Scene {
-    public IntroScene() {
-    	super(new IntroPane(), Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+    public IntroScene(GameState gameState) {
+    	super(new IntroPane(gameState), Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
     }
 }

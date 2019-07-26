@@ -2,6 +2,7 @@ package Panes;
 
 import Enums.BackgroundColors;
 import Enums.Fonts;
+import Objects.GameState;
 import Scenes.MenuScene;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -12,8 +13,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-
-import static Logic.Main.mainStage;
 
 /**
  * Author - Hasan
@@ -27,7 +26,7 @@ import static Logic.Main.mainStage;
 
 public class InstructionsPane extends VBox {
 
-    public InstructionsPane() {
+    public InstructionsPane(GameState gameState) {
     	
     	Text instructionsLabel = new Text("Instructions");
     	instructionsLabel.setFill(Color.WHITE);
@@ -42,7 +41,7 @@ public class InstructionsPane extends VBox {
     	Button menuButton = new Button("Back to Main Menu");
     	menuButton.getStyleClass().add("selectButton");
     	
-    	menuButton.setOnAction(e -> mainStage.setScene(new MenuScene()));
+    	menuButton.setOnAction(e -> gameState.getMainStage().setScene(new MenuScene(gameState)));
     	
     	Text[] instructionsText = {
     			new Text("It's a dark and stormy night."),

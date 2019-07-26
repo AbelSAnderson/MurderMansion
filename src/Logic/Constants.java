@@ -83,12 +83,12 @@ public class Constants {
     public static Tile CURRENT_LOCATION() {return GAMEBOARD_OBJECTS[Y()][X()];}
 
     /**Resets all Game Variables after winning or returning to the main menu.*/
-    public static void resetGame() {
+    public static void resetGame(GameState gameState) {
         leftContainer.getChildren().remove(guessSheet);
-        guessSheet = new GuessSheetPane(true);
+        guessSheet = new GuessSheetPane(gameState, true);
 
         leftContainer.getChildren().remove(inventory);
-        inventory = new InventoryPane(true);
+        inventory = new InventoryPane(gameState, true);
 
         leftContainer.getChildren().addAll(guessSheet,inventory);
 

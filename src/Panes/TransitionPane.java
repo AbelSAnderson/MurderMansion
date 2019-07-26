@@ -2,6 +2,7 @@ package Panes;
 
 import Enums.BackgroundColors;
 import Enums.Fonts;
+import Objects.GameState;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
@@ -14,7 +15,7 @@ import static Logic.Turn.startTurn;
 
 public class TransitionPane extends HBox {
 
-    public TransitionPane() {
+    public TransitionPane(GameState gameState) {
     	
     	ImageView characterImg = new ImageView(CURRENT_PLAYER().getCharacter().getImg());
     	characterImg.setFitWidth(178);
@@ -30,7 +31,7 @@ public class TransitionPane extends HBox {
         transitionMessage.setFont(Fonts.BLANK_FONT.FellRegular(getClass(), 35));
         transitionButton.setFont(Fonts.BUTTON_FONT.getFont());
 
-        transitionButton.setOnMouseClicked(e -> startTurn());
+        transitionButton.setOnMouseClicked(e -> startTurn(gameState));
         
         vbox.getChildren().addAll(transitionMessage, transitionButton);
         vbox.setAlignment(Pos.CENTER);

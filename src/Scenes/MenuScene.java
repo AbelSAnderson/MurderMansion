@@ -1,6 +1,7 @@
 package Scenes;
 
 import Logic.Constants;
+import Objects.GameState;
 import Panes.MenuPane;
 import javafx.scene.Scene;
 
@@ -13,8 +14,8 @@ import javafx.scene.Scene;
 
 public class MenuScene extends Scene {
 
-    public MenuScene() {
-        super(new MenuPane(), Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+    public MenuScene(GameState gameState) {
+        super(new MenuPane(gameState), Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
         getStylesheets().add("MenuStyle.css");
     }
 }

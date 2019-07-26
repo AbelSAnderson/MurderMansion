@@ -1,5 +1,6 @@
 package Panes.GameBoardPanes;
 
+import Objects.GameState;
 import Objects.Player;
 import Objects.Tile;
 import javafx.geometry.Pos;
@@ -33,7 +34,7 @@ import static Panes.GameBoardPanes.MovementPane.setButtons;
 
 public class BoardPane extends StackPane{
 		
-	public BoardPane() {
+	public BoardPane(GameState gameState) {
 		GridPane gridpane = new GridPane();
 		gridpane.setAlignment(Pos.CENTER);
 		

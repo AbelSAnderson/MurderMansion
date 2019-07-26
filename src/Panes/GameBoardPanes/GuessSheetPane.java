@@ -2,6 +2,7 @@ package Panes.GameBoardPanes;
 
 import Enums.Fonts;
 import Objects.Card;
+import Objects.GameState;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -35,7 +36,7 @@ public class GuessSheetPane extends HBox{
 	
 private int grid;
 
-	public GuessSheetPane(boolean isTransition) {
+	public GuessSheetPane(GameState gameState, boolean isTransition) {
 		
 		// create array for type of category (same code as CreatePlayers)
 		List[] categoryArray = {new ArrayList<>(Arrays.asList(CHARACTERS)), new ArrayList<>(Arrays.asList(WEAPONS)), new ArrayList<>(Arrays.asList(ROOMS))};

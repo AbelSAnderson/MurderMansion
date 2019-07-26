@@ -1,6 +1,7 @@
 package Scenes;
 
 import Logic.Constants;
+import Objects.GameState;
 import Panes.MainGamePane;
 import javafx.scene.Scene;
 
@@ -13,8 +14,8 @@ import javafx.scene.Scene;
 
 public class GameScene extends Scene{
 	
-	public GameScene() {
-		super(new MainGamePane(), Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+	public GameScene(GameState gameState) {
+		super(new MainGamePane(gameState), Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
 		getStylesheets().add("MainGameStyle.css");
 	}
 }

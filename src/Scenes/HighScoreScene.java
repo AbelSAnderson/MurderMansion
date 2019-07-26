@@ -1,6 +1,7 @@
 package Scenes;
 
 import Logic.Constants;
+import Objects.GameState;
 import Panes.HighScorePane;
 import javafx.scene.Scene;
 
@@ -11,8 +12,8 @@ import javafx.scene.Scene;
  */
 
 public class HighScoreScene extends Scene{
-	public HighScoreScene() {
-		super(new HighScorePane(), Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+	public HighScoreScene(GameState gameState) {
+		super(new HighScorePane(gameState), Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
 		this.getStylesheets().add("CharacterSelectionStyle.css");
 	}
 }

@@ -1,5 +1,6 @@
 package Logic;
 
+import Objects.GameState;
 import Panes.GameBoardPanes.GuessSheetPane;
 import Panes.GameBoardPanes.InventoryPane;
 import Scenes.TransitionScene;
@@ -32,7 +33,7 @@ public class Turn {
 	}
 
 	/**Ends Player's Turn*/
-	public static void endTurn() {
+	public static void endTurn(GameState gameState) {
 		CURRENT_PLAYER().setScore(CURRENT_PLAYER().getScore() - 18);
 		
 		Constants.GAMEBOARD_OBJECTS[Movement.blockedY][Movement.blockedX].setTraversable(true);
@@ -46,43 +47,43 @@ public class Turn {
 		scoreNumber.setText("" + CURRENT_PLAYER().getScore());
 		rollsText.setText("0");
 
-		switchPlayerUI();
-		displayTransition();
+		switchPlayerUI(gameState);
+		displayTransition(gameState);
 	}
 
 	/**Switches the Player's UI when Changing Players.*/
-	private static void switchPlayerUI() {
+	private static void switchPlayerUI(GameState gameState) {
 		leftContainer.getChildren().remove(guessSheet);
-		guessSheet = new GuessSheetPane(true);
-		
+		guessSheet = new GuessSheetPane(gameState, true);
+
 		leftContainer.getChildren().remove(inventory);
-		inventory = new InventoryPane(true);
-		
+		inventory = new InventoryPane(gameState, true);
+
 		leftContainer.getChildren().addAll(guessSheet, inventory);
 	}
 
 	/**Displays the Transition Stage When Changing Players.*/
-	public static void displayTransition() {
+	public static void displayTransition(GameState gameState) {
 		dialogue.clear();
 		disableButtons(true);
 
 		transitionStage = new Stage();
 		transitionStage.initStyle(StageStyle.TRANSPARENT);
 		transitionStage.setAlwaysOnTop(true);
-		transitionStage.setScene(new TransitionScene());
+		transitionStage.setScene(new TransitionScene(gameState));
 		transitionStage.show();
 
-		transitionStage.setOnCloseRequest(e -> startTurn());
+		transitionStage.setOnCloseRequest(e -> startTurn(gameState));
 	}
 
 	/**Starts the Next Player's Turn.*/
-	public static void startTurn() {
+	public static void startTurn(GameState gameState) {
 		leftContainer.getChildren().remove(guessSheet);
-		guessSheet = new GuessSheetPane(false);
+		guessSheet = new GuessSheetPane(gameState, false);
 
 		leftContainer.getChildren().remove(inventory);
-		inventory = new InventoryPane(false);
-		
+		inventory = new InventoryPane(gameState, false);
+
 		leftContainer.getChildren().addAll(guessSheet,inventory);
 
 		//Place the piece at the room entrance if the players current moveX and moveY's room number is not -1 (anything not -1 is a room)

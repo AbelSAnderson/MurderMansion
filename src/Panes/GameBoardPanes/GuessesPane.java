@@ -2,6 +2,7 @@ package Panes.GameBoardPanes;
 
 import Logic.Constants;
 import Logic.Turn;
+import Objects.GameState;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -25,7 +26,7 @@ public class GuessesPane extends VBox{
 	public static Button accusation;
 	public static ArrayList<ComboBox<String>> comboBoxes = new ArrayList<>();
 	
-	public GuessesPane() {
+	public GuessesPane(GameState gameState) {
 		HBox cardListBoxes = new HBox(15);
 		HBox buttonsHBox = new HBox(30);
 
@@ -42,7 +43,7 @@ public class GuessesPane extends VBox{
 		Turn.disableGuessClicks(true);
 		
 		accusation.setOnAction(e -> {
-			correctAccusation();
+			correctAccusation(gameState);
 			Turn.disableGuessClicks(true);
 		});
 		

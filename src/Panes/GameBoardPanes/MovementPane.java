@@ -1,6 +1,7 @@
 package Panes.GameBoardPanes;
 
 import Enums.Fonts;
+import Objects.GameState;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
@@ -37,7 +38,7 @@ public class MovementPane extends VBox{
 	private static Button rollDice;
 	public static Text rollsText;
 	
-	public MovementPane() {
+	public MovementPane(GameState gameState) {
 	
 		GridPane gridpane = new GridPane();
 		
@@ -105,7 +106,7 @@ public class MovementPane extends VBox{
 		
 		moveRight.setOnAction(e -> movement(3));
 		
-		endTurn.setOnAction(e -> endTurn());
+		endTurn.setOnAction(e -> endTurn(gameState));
 		
 		gridpane.setVgap(7);
 		gridpane.setHgap(7);

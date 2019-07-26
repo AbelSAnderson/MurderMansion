@@ -2,6 +2,7 @@ package Panes;
 
 import Enums.BackgroundColors;
 import Enums.Fonts;
+import Objects.GameState;
 import Scenes.CharacterSelectionScene;
 import Scenes.CreditsScene;
 import Scenes.HighScoreScene;
@@ -13,8 +14,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-
-import static Logic.Main.mainStage;
 
 /**
  * Author - Abel
@@ -34,7 +33,7 @@ import static Logic.Main.mainStage;
 
 public class MenuPane extends VBox {
 
-    public MenuPane() {
+    public MenuPane(GameState gameState) {
 
         StackPane stackPane = new StackPane();
         VBox buttonContainer = new VBox(40);
@@ -59,10 +58,10 @@ public class MenuPane extends VBox {
             buttonContainer.getChildren().add(buttons[i]);
         }
 
-        buttons[0].setOnAction(e -> mainStage.setScene(new CharacterSelectionScene()));
-        buttons[1].setOnAction(e -> mainStage.setScene(new InstructionsScene()));
-        buttons[2].setOnAction(e -> mainStage.setScene(new HighScoreScene()));
-        buttons[3].setOnAction(e -> mainStage.setScene(new CreditsScene()));
+        buttons[0].setOnAction(e -> gameState.getMainStage().setScene(new CharacterSelectionScene(gameState)));
+        buttons[1].setOnAction(e -> gameState.getMainStage().setScene(new InstructionsScene(gameState)));
+        buttons[2].setOnAction(e -> gameState.getMainStage().setScene(new HighScoreScene(gameState)));
+        buttons[3].setOnAction(e -> gameState.getMainStage().setScene(new CreditsScene(gameState)));
 
         // add image to the StackPane
         stackPane.getChildren().addAll(new ImageView(new Image("/Resources/Images/menuBackground.png")), buttonContainer);

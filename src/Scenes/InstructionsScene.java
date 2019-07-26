@@ -1,5 +1,6 @@
 package Scenes;
 
+import Objects.GameState;
 import Panes.InstructionsPane;
 import javafx.scene.Scene;
 
@@ -7,8 +8,8 @@ import static Logic.Constants.SCREEN_HEIGHT;
 import static Logic.Constants.SCREEN_WIDTH;
 
 public class InstructionsScene extends Scene {
-    public InstructionsScene() {
-        super(new InstructionsPane(), SCREEN_WIDTH, SCREEN_HEIGHT);
+    public InstructionsScene(GameState gameState) {
+        super(new InstructionsPane(gameState), SCREEN_WIDTH, SCREEN_HEIGHT);
         this.getStylesheets().add("CharacterSelectionStyle.css");
     }
 }

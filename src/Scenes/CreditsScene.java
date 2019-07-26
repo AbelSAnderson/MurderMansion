@@ -1,6 +1,7 @@
 package Scenes;
 
 import Logic.Constants;
+import Objects.GameState;
 import Panes.CreditsPane;
 import javafx.scene.Scene;
 
@@ -12,7 +13,7 @@ import javafx.scene.Scene;
  */
 
 public class CreditsScene extends Scene {
-    public CreditsScene() {
-    	super(new CreditsPane(), Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+    public CreditsScene(GameState gameState) {
+    	super(new CreditsPane(gameState), Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
     }
 }

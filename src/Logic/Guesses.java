@@ -1,6 +1,7 @@
 package Logic;
 
 import Objects.Card;
+import Objects.GameState;
 import Objects.Player;
 import Scenes.EndGameScene;
 
@@ -26,7 +27,7 @@ public class Guesses {
 	}
 
 	/**Checks if an Accusation is Correct.*/
-	public static void correctAccusation() {
+	public static void correctAccusation(GameState gameState) {
 
 		boolean correct = false;
 
@@ -43,7 +44,7 @@ public class Guesses {
 			}
 		}	
 		if(correct)  {
-			Main.mainStage.setScene(new EndGameScene());
+			gameState.getMainStage().setScene(new EndGameScene(gameState));
 		}
 	}
 

@@ -2,6 +2,7 @@ package Panes;
 
 import Enums.BackgroundColors;
 import Enums.Fonts;
+import Objects.GameState;
 import Scenes.MenuScene;
 import javafx.animation.FadeTransition;
 import javafx.animation.ParallelTransition;
@@ -20,7 +21,6 @@ import javafx.util.Duration;
 import java.io.File;
 
 import static Logic.Constants.*;
-import static Logic.Main.mainStage;
 
 /**
  * Author - Cordelle
@@ -40,7 +40,7 @@ public class CreditsPane extends StackPane {
 
 	private boolean isSkipped = false;
 	
-	public CreditsPane() {
+	public CreditsPane(GameState gameState) {
 
 		setBackground(BackgroundColors.BACKGROUND_DARK.getBackground());
 
@@ -91,7 +91,7 @@ public class CreditsPane extends StackPane {
 				letterFade2c.setCycleCount(1);
 				letterFade2c.play();
 
-				if(!isSkipped) letterFade2c.setOnFinished(event3 -> mainStage.setScene(new MenuScene()));
+				if(!isSkipped) letterFade2c.setOnFinished(event3 -> gameState.getMainStage().setScene(new MenuScene(gameState)));
 			});
 		});
 
@@ -202,7 +202,7 @@ public class CreditsPane extends StackPane {
 	
 		setOnMouseClicked(event -> {
 			isSkipped = true;
-			mainStage.setScene(new MenuScene());
+			gameState.getMainStage().setScene(new MenuScene(gameState));
 		});
 
 		// Play background theme music

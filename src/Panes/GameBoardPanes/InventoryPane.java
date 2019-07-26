@@ -1,5 +1,6 @@
 package Panes.GameBoardPanes;
 
+import Objects.GameState;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
@@ -24,7 +25,7 @@ import static Logic.Constants.CURRENT_PLAYER;
 
 public class InventoryPane extends VBox{
 	
-	public InventoryPane(boolean isTransition) {
+	public InventoryPane(GameState gameState, boolean isTransition) {
 
 		ImageView cardImg;
 
