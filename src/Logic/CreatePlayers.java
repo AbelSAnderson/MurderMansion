@@ -2,14 +2,13 @@ package Logic;
 
 import Objects.Card;
 import Objects.Character;
+import Objects.GameState;
 import Objects.Player;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-
-import static Logic.Constants.*;
 
 /**
  * Author - Hasan
@@ -26,29 +25,29 @@ public class CreatePlayers {
 	 * Creates and Stores the Player's Characters
 	 * @param playerSelection Three Characters that were Selected by the Players
 	 */
-	public CreatePlayers(Character[] playerSelection) {
+	public CreatePlayers(GameState gameState, Character[] playerSelection) {
 		
 		//ArrayList for all the characters
-		ArrayList<Character> characterList = new ArrayList<>(Arrays.asList(CHARACTERS));
+		ArrayList<Character> characterList = new ArrayList<>(Arrays.asList(gameState.getCharacters()));
 
 		for (Character character : playerSelection) {
 			characterList.remove(character);
 		}
 
 		//Create New List with only the Selections
-		ArrayList<Character> playerList = new ArrayList<>(Arrays.asList(CHARACTERS));
+		ArrayList<Character> playerList = new ArrayList<>(Arrays.asList(gameState.getCharacters()));
 		playerList.removeAll(characterList);
 		
 		//Get Random Cards for Players
-		Card[][] cardChoices = DetermineCards();
+		Card[][] cardChoices = DetermineCards(gameState);
 
 		//Create and Set Players
 		for (int i = 0; i < playerList.size(); i++) {
-			PLAYERS.add(new Player(cardChoices[i], playerList.get(i)));
-			PLAYERS.get(i).setCurrentCoordX(PLAYERS.get(i).getCharacter().getStartX());
-			PLAYERS.get(i).setCurrentCoordY(PLAYERS.get(i).getCharacter().getStartY());
+			gameState.getPlayers().add(new Player(cardChoices[i], playerList.get(i)));
+			gameState.getPlayers().get(i).setCurrentCoordX(gameState.getPlayers().get(i).getCharacter().getStartX());
+			gameState.getPlayers().get(i).setCurrentCoordY(gameState.getPlayers().get(i).getCharacter().getStartY());
 			if(playerList.get(i).getClass() == playerSelection[i].getClass()) {
-				PLAYERS.get(i).setHuman(true);
+				gameState.getPlayers().get(i).setHuman(true);
 			}
 		}
 	}
@@ -58,19 +57,19 @@ public class CreatePlayers {
 	 * @since 16/03/2019
 	 * @return 2-D array that holds three sets of six cards for each Player.
 	 */
-	private static Card[][] DetermineCards() {
+	private static Card[][] DetermineCards(GameState gameState) {
 
 		//Declare the ArrayList to hold all the cards
 		ArrayList<Card> masterList = new ArrayList<>();
 
 		//Declare Array holding the ArrayLists of Characters, Weapons, and Rooms
-		List[] cardsArray = {new ArrayList<>(Arrays.asList(CHARACTERS)), new ArrayList<>(Arrays.asList(WEAPONS)), new ArrayList<>(Arrays.asList(ROOMS))};
+		List[] cardsArray = {new ArrayList<>(Arrays.asList(gameState.getCharacters())), new ArrayList<>(Arrays.asList(gameState.getWeapons())), new ArrayList<>(Arrays.asList(gameState.getRooms()))};
 
 		//Loop through cardsArray, Shuffling each ArrayList, Setting the Case File with unique cards, and adding the ArrayList to masterList
 		for (int i = 0; i < cardsArray.length; i++) {
 			Collections.shuffle(cardsArray[i]);
 
-			CASE_FILE[i] = (Card) cardsArray[i].get(0);
+			gameState.getCaseFile()[i] = (Card) cardsArray[i].get(0);
 			System.out.println(cardsArray[i].get(0));
 			cardsArray[i].remove(0);
 

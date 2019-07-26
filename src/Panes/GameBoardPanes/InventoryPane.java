@@ -8,8 +8,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-import static Logic.Constants.CURRENT_PLAYER;
-
 /**
  * Author - Hasan
  * Created - 12/03/2019
@@ -32,11 +30,11 @@ public class InventoryPane extends VBox{
 		for (int i = 0; i < 2; i++) {
 			HBox cardBox = new HBox(10);
 
-			for(int z = i * 3; z < CURRENT_PLAYER().getCards().length; z++) {
+			for(int z = i * 3; z < gameState.currentPlayer().getCards().length; z++) {
 				if(isTransition) {
 					cardImg = new ImageView(new Image("/Resources/Images/CardBack.jpg"));
 				} else {
-					cardImg = new ImageView(CURRENT_PLAYER().getCards()[z].getImg());
+					cardImg = new ImageView(gameState.currentPlayer().getCards()[z].getImg());
 				}
 				cardImg.setFitHeight(168 * 1.2);
 				cardImg.setFitWidth(120 * 1.2);

@@ -32,11 +32,11 @@ public class EndGamePane extends BorderPane {
         HBox centerHBox = new HBox(50);
 		HBox winningCards = new HBox(20);
 				
-		Text playerName = new Text(CURRENT_PLAYER().getCharacter().getName());
+		Text playerName = new Text(gameState.currentPlayer().getCharacter().getName());
 		playerName.setFont(Fonts.BLANK_FONT.FellCursive(getClass(), 65));
 		playerName.setFill(Color.WHITE);
 		
-		ImageView playerImg = new ImageView(CURRENT_PLAYER().getCharacter().getImg());
+		ImageView playerImg = new ImageView(gameState.currentPlayer().getCharacter().getImg());
 		playerImg.setFitWidth(250);
 		playerImg.setFitHeight(350);
 		
@@ -44,7 +44,7 @@ public class EndGamePane extends BorderPane {
 		winningText.setFont(Fonts.BLANK_FONT.FellCursive(getClass(), 40));
 		winningText.setFill(Color.WHITE);
 		
-		if(CASE_FILE[0].getName().equals(CURRENT_PLAYER().getCharacter().getName())) winningText.setText("You got away with it!");
+		if(gameState.getCaseFile()[0].getName().equals(gameState.currentPlayer().getCharacter().getName())) winningText.setText("You got away with it!");
 
 		realNameInput = new TextField("Please enter your name");
 		realNameInput.setAlignment(Pos.CENTER);
@@ -55,7 +55,7 @@ public class EndGamePane extends BorderPane {
 		submitButton.getStyleClass().add("selectButton");
 		
 		submitButton.setOnAction(e -> {
-			saveScore();
+			saveScore(gameState);
 			gameState.getMainStage().setScene(new HighScoreScene(gameState));
 			resetGame(gameState);
 		});
@@ -114,7 +114,7 @@ public class EndGamePane extends BorderPane {
             firstWordBox.getChildren().add(elementLetter);
         }
 
-        for (Card card : CASE_FILE) {
+        for (Card card : gameState.getCaseFile()) {
             ImageView fileCard = new ImageView(card.getImg());
 
             fileCard.setFitHeight(168 * 1.2);

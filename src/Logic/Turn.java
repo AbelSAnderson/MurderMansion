@@ -34,17 +34,17 @@ public class Turn {
 
 	/**Ends Player's Turn*/
 	public static void endTurn(GameState gameState) {
-		CURRENT_PLAYER().setScore(CURRENT_PLAYER().getScore() - 18);
+		gameState.currentPlayer().setScore(gameState.currentPlayer().getScore() - 18);
+
+		gameState.getGameBoard()[Movement.blockedY][Movement.blockedX].setTraversable(true);
 		
-		Constants.GAMEBOARD_OBJECTS[Movement.blockedY][Movement.blockedX].setTraversable(true);
+		gameState.currentPlayer().setRollsLeft(0);
 		
-		CURRENT_PLAYER().setRollsLeft(0);
-		
-		PLAYERS.add(PLAYERS.remove(0));
+		gameState.getPlayers().add(gameState.getPlayers().remove(0));
 
 		disableGuessClicks(true);
 		
-		scoreNumber.setText("" + CURRENT_PLAYER().getScore());
+		scoreNumber.setText("" + gameState.currentPlayer().getScore());
 		rollsText.setText("0");
 
 		switchPlayerUI(gameState);
@@ -87,12 +87,12 @@ public class Turn {
 		leftContainer.getChildren().addAll(guessSheet,inventory);
 
 		//Place the piece at the room entrance if the players current moveX and moveY's room number is not -1 (anything not -1 is a room)
-		if(GAMEBOARD_OBJECTS[CURRENT_LOCATION().getMoveCharacterY()][CURRENT_LOCATION().getMoveCharacterX()].getRoomNum() != -1) {
-			Movement.placeEntranceRoom();
+		if(gameState.getGameBoard()[gameState.currentLocation().getMoveCharacterY()][gameState.currentLocation().getMoveCharacterX()].getRoomNum() != -1) {
+			Movement.placeEntranceRoom(gameState);
 		}
 
 		transitionStage.close();
 		disableButtons(false);
-		setButtons();
+		setButtons(gameState);
 	}
 }

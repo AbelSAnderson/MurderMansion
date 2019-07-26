@@ -12,7 +12,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import static Logic.Constants.*;
 import static Panes.EndGamePane.realNameInput;
 
 /**
@@ -25,7 +24,7 @@ public class Score extends HBox{
 	
 	public static Text scoreNumber;
 	
-	public Score(GameState gameState) {
+	public Score() {
 	
 		scoreNumber = new Text("1044");
 		scoreNumber.setFont(Fonts.NUMBER_FONT.getFont());
@@ -44,7 +43,7 @@ public class Score extends HBox{
 	}
 
 	/**Saves score to the text file*/
-	public static void saveScore() {
+	public static void saveScore(GameState gameState) {
 		
 		File file = new File("highScores.txt");
 		
@@ -52,7 +51,7 @@ public class Score extends HBox{
 			FileWriter fileWriter = new FileWriter(file, true);
 			
 			fileWriter.append(realNameInput.getText()).append(" ");
-			fileWriter.append(String.valueOf(CURRENT_PLAYER().getScore())).append(" ");
+			fileWriter.append(String.valueOf(gameState.currentPlayer().getScore())).append(" ");
 			
 			fileWriter.close();
 			

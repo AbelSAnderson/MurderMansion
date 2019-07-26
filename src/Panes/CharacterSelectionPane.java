@@ -17,7 +17,6 @@ import javafx.scene.text.TextAlignment;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static Logic.Constants.CHARACTERS;
 import static Logic.Turn.displayTransition;
 
 /**
@@ -42,7 +41,7 @@ public class CharacterSelectionPane extends HBox{
 		VBox vbox = new VBox(30);
 		HBox imgHBox = new HBox();
 				
-		ArrayList<Character> characters = new ArrayList<>(Arrays.asList(CHARACTERS));
+		ArrayList<Character> characters = new ArrayList<>(Arrays.asList(gameState.getCharacters()));
 
 		//Create a ListView, add the characters to it, and select a default value
 		ListView<String> characterList = new ListView<>();
@@ -77,7 +76,7 @@ public class CharacterSelectionPane extends HBox{
 							
 			if(playerNum > 3) {
 				//Call for the CreatePlayers method and give it the value for the players selected character
-				new CreatePlayers(playerChar);
+				new CreatePlayers(gameState, playerChar);
 				
 				gameState.getMainStage().setScene(new GameScene(gameState));
 

@@ -5,7 +5,6 @@ import Objects.GameState;
 import Objects.Player;
 import Scenes.EndGameScene;
 
-import static Logic.Constants.*;
 import static Panes.GameBoardPanes.DialoguePane.dialogue;
 import static Panes.GameBoardPanes.GuessesPane.comboBoxes;
 import static Panes.GameBoardPanes.Score.scoreNumber;
@@ -13,9 +12,9 @@ import static Panes.GameBoardPanes.Score.scoreNumber;
 public class Guesses {
 
 	/**Fills the Three ComboBoxes that are used to Accuse or Suggest.*/
-	public static void guessesBox() {
+	public static void guessesBox(GameState gameState) {
 
-		Card[][] cardLists = {CHARACTERS, WEAPONS, ROOMS};
+		Card[][] cardLists = {gameState.getCharacters(), gameState.getWeapons(), gameState.getRooms()};
 		String[] text = {"Select a character", "Select a weapon", "Select a room"};
 
 		for(int i = 0; i < cardLists.length; i++) {
@@ -32,13 +31,13 @@ public class Guesses {
 		boolean correct = false;
 
 		for(int i = 0; i < comboBoxes.size(); i++) {
-			if(comboBoxes.get(i).getSelectionModel().getSelectedItem().equals(CASE_FILE[i].getName())) {
+			if(comboBoxes.get(i).getSelectionModel().getSelectedItem().equals(gameState.getCaseFile()[i].getName())) {
 				correct = true;
 			}
 			else {
 				correct = false;
-				CURRENT_PLAYER().setScore(CURRENT_PLAYER().getScore() - 144);
-				scoreNumber.setText(CURRENT_PLAYER().getScore() + "");
+				gameState.currentPlayer().setScore(gameState.currentPlayer().getScore() - 144);
+				scoreNumber.setText(gameState.currentPlayer().getScore() + "");
 				dialogue.appendText("Your accusation was incorrect. Shame on you!\n");
 				break;
 			}
@@ -49,10 +48,10 @@ public class Guesses {
 	}
 
 	/**Checks whether players have any of the cards suggested.*/
-	public static void checkCards() {
+	public static void checkCards(GameState gameState) {
 		
-		CURRENT_PLAYER().setScore(CURRENT_PLAYER().getScore() - 36);
-		scoreNumber.setText(CURRENT_PLAYER().getScore() + "");
+		gameState.currentPlayer().setScore(gameState.currentPlayer().getScore() - 36);
+		scoreNumber.setText(gameState.currentPlayer().getScore() + "");
 
 		String[] cardsSelected = new String[3];
 
@@ -63,9 +62,9 @@ public class Guesses {
 		int z = 1;
 
 		outerLoop:
-		while(z < PLAYERS.size()) {
+		while(z < gameState.getPlayers().size()) {
 
-			Player player = PLAYERS.get(z);
+			Player player = gameState.getPlayers().get(z);
 
 			for(int i = 0; i < player.getCards().length; i++) {
 

@@ -1,6 +1,5 @@
 package Panes.GameBoardPanes;
 
-import Logic.Constants;
 import Logic.Turn;
 import Objects.GameState;
 import javafx.geometry.Insets;
@@ -35,7 +34,7 @@ public class GuessesPane extends VBox{
 			cardListBoxes.getChildren().add(comboBoxes.get(i));
 		}
 		
-		guessesBox();
+		guessesBox(gameState);
 		
 		suggestion = new Button("Suggest");
 		accusation = new Button("Accuse");
@@ -48,8 +47,8 @@ public class GuessesPane extends VBox{
 		});
 		
 		suggestion.setOnAction(e -> {
-			if(comboBoxes.get(2).getSelectionModel().getSelectedIndex() == Constants.CURRENT_LOCATION().getRoomNum() - 2) {
-				checkCards();
+			if(comboBoxes.get(2).getSelectionModel().getSelectedIndex() == gameState.currentLocation().getRoomNum() - 2) {
+				checkCards(gameState);
 				Turn.disableGuessClicks(true);
 			}
 			else {

@@ -10,20 +10,19 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-import static Logic.Constants.*;
 import static Logic.Turn.startTurn;
 
 public class TransitionPane extends HBox {
 
     public TransitionPane(GameState gameState) {
     	
-    	ImageView characterImg = new ImageView(CURRENT_PLAYER().getCharacter().getImg());
+    	ImageView characterImg = new ImageView(gameState.currentPlayer().getCharacter().getImg());
     	characterImg.setFitWidth(178);
     	characterImg.setFitHeight(250);
     	
     	VBox vbox = new VBox(40);
 
-        Text transitionMessage = new Text(CURRENT_PLAYER().getCharacter().getName() + "'s Turn"); 
+        Text transitionMessage = new Text(gameState.currentPlayer().getCharacter().getName() + "'s Turn");
         
         Button transitionButton = new Button("Start Turn");
         transitionButton.getStyleClass().add("selectButton");

@@ -28,7 +28,7 @@ public class MainGamePane extends BorderPane{
 		board.setAlignment(Pos.CENTER);
 		
 		leftContainer = new VBox(60);
-		leftContainer.getChildren().addAll(new Score(gameState), guessSheet, inventory);
+		leftContainer.getChildren().addAll(new Score(), guessSheet, inventory);
 		leftContainer.setAlignment(Pos.CENTER);
 		
 		VBox rightContainer = new VBox(30);

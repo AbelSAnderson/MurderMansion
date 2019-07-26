@@ -15,7 +15,6 @@ import javafx.scene.text.Text;
 import java.io.File;
 import java.util.Random;
 
-import static Logic.Constants.*;
 import static Logic.Turn.endTurn;
 import static Panes.GameBoardPanes.BoardPane.movement;
 
@@ -83,10 +82,10 @@ public class MovementPane extends VBox{
 			
 			int roll = rollDice();
 			
-			CURRENT_PLAYER().setRollsLeft(roll);
-			DialoguePane.dialogue.appendText("You rolled a " + CURRENT_PLAYER().getRollsLeft() + "\n");
+			gameState.currentPlayer().setRollsLeft(roll);
+			DialoguePane.dialogue.appendText("You rolled a " + gameState.currentPlayer().getRollsLeft() + "\n");
 			
-			rollsText.setText("" + CURRENT_PLAYER().getRollsLeft());
+			rollsText.setText("" + gameState.currentPlayer().getRollsLeft());
 			rollDice.setDisable(true);
 		});
 		
@@ -98,13 +97,13 @@ public class MovementPane extends VBox{
 		moveLeft.setMinSize(80, 40);
 		moveRight.setMinSize(80, 40);
 		
-		moveUp.setOnAction(e -> movement(0));
+		moveUp.setOnAction(e -> movement(gameState, 0));
+
+		moveDown.setOnAction(e -> movement(gameState, 1));
 		
-		moveDown.setOnAction(e -> movement(1));
+		moveLeft.setOnAction(e -> movement(gameState, 2));
 		
-		moveLeft.setOnAction(e -> movement(2));
-		
-		moveRight.setOnAction(e -> movement(3));
+		moveRight.setOnAction(e -> movement(gameState, 3));
 		
 		endTurn.setOnAction(e -> endTurn(gameState));
 		
@@ -121,11 +120,11 @@ public class MovementPane extends VBox{
 	}
 
 	/**Checks whether you can move and disables and enables the movement buttons accordingly.*/
-	public static void setButtons() {
-		moveUp.setDisable(!GAMEBOARD_OBJECTS[Y() - 1][X()].isTraversable());
-		moveDown.setDisable(!GAMEBOARD_OBJECTS[Y() + 1][X()].isTraversable());
-		moveLeft.setDisable(!GAMEBOARD_OBJECTS[Y()][X() - 1].isTraversable());
-		moveRight.setDisable(!GAMEBOARD_OBJECTS[Y()][X() + 1].isTraversable());
+	public static void setButtons(GameState gameState) {
+		moveUp.setDisable(!gameState.getGameBoard()[gameState.playerY() - 1][gameState.playerX()].isTraversable());
+		moveDown.setDisable(!gameState.getGameBoard()[gameState.playerY() + 1][gameState.playerX()].isTraversable());
+		moveLeft.setDisable(!gameState.getGameBoard()[gameState.playerY()][gameState.playerX() - 1].isTraversable());
+		moveRight.setDisable(!gameState.getGameBoard()[gameState.playerY()][gameState.playerX() + 1].isTraversable());
 	}
 
 	/**
