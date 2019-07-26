@@ -42,7 +42,7 @@ public class BoardPane extends StackPane{
 		boardImg.setFitWidth(780);
 		boardImg.setFitHeight(810);
 		
-		this.getChildren().addAll(boardImg, gridpane);
+		getChildren().addAll(boardImg, gridpane);
 		
 		for(int rows = 0; rows < 27; rows++) {
 			for(int columns = 0; columns < 26; columns++) {

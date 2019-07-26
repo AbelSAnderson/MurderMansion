@@ -51,8 +51,8 @@ public class MenuPane extends VBox {
 
             buttons[i].getStyleClass().add("menuButtons");
 
-            buttons[i].setOnMouseEntered(mouseOverEvent -> this.setCursor(Cursor.HAND));
-            buttons[i].setOnMouseExited(mouseOverEvent -> this.setCursor(Cursor.CROSSHAIR));
+            buttons[i].setOnMouseEntered(mouseOverEvent -> setCursor(Cursor.HAND));
+            buttons[i].setOnMouseExited(mouseOverEvent -> setCursor(Cursor.CROSSHAIR));
 
 
             buttonContainer.getChildren().add(buttons[i]);

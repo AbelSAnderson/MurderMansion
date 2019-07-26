@@ -113,7 +113,7 @@ private int grid;
 					});
 				}
 			}
-			this.setAlignment(Pos.TOP_CENTER);
+			setAlignment(Pos.TOP_CENTER);
 		}
 		HBox.setMargin(guessGridPane[0], new Insets(0, 0, 0, 22));
 	}

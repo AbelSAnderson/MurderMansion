@@ -2,36 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/Enums/Fonts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Enums/Fonts.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Logic/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logic/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Logic/Guesses.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logic/Guesses.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Logic/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logic/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Logic/Turn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logic/Turn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Panes/CharacterSelectionPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Panes/CharacterSelectionPane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Panes/CreditsPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Panes/CreditsPane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Panes/EndGamePane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Panes/EndGamePane.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Panes/GameBoardPanes/BoardPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Panes/GameBoardPanes/BoardPane.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Panes/GameBoardPanes/DialoguePane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Panes/GameBoardPanes/DialoguePane.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Panes/GameBoardPanes/GuessSheetPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Panes/GameBoardPanes/GuessSheetPane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Panes/GameBoardPanes/GuessesPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Panes/GameBoardPanes/GuessesPane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Panes/GameBoardPanes/InventoryPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Panes/GameBoardPanes/InventoryPane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Panes/GameBoardPanes/MovementPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Panes/GameBoardPanes/MovementPane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Panes/GameBoardPanes/Score.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Panes/GameBoardPanes/Score.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Panes/HighScorePane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Panes/HighScorePane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Panes/InstructionsPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Panes/InstructionsPane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Panes/IntroPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Panes/IntroPane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Panes/MainGamePane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Panes/MainGamePane.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Panes/MenuPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Panes/MenuPane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Panes/PausePane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Panes/PausePane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Panes/TransitionPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Panes/TransitionPane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Scenes/CharacterSelectionScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scenes/CharacterSelectionScene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Scenes/CreditsScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scenes/CreditsScene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Scenes/EndGameScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scenes/EndGameScene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Scenes/GameScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scenes/GameScene.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Scenes/HighScoreScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scenes/HighScoreScene.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Scenes/InstructionsScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scenes/InstructionsScene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Scenes/IntroScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scenes/IntroScene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Scenes/MenuScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scenes/MenuScene.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Scenes/PauseScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scenes/PauseScene.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Scenes/TransitionScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scenes/TransitionScene.java" afterDir="false" />
     </list>
@@ -94,30 +70,6 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Panes/GameBoardPanes/BoardPane.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="36" column="40" selection-start-line="36" selection-start-column="40" selection-end-line="36" selection-end-column="40" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Panes/GameBoardPanes/GuessesPane.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="48" column="8" selection-start-line="48" selection-start-column="8" selection-end-line="48" selection-end-column="8" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Panes/GameBoardPanes/GuessSheetPane.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="570">
@@ -144,8 +96,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Logic/Constants.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="672">
-              <caret line="93" lean-forward="true" selection-start-line="93" selection-end-line="93" />
+            <state relative-caret-position="91">
+              <caret line="97" column="18" selection-start-line="97" selection-start-column="8" selection-end-line="97" selection-end-column="18" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -154,6 +106,30 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Panes/GameBoardPanes/DialoguePane.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="575">
+              <caret line="40" column="8" lean-forward="true" selection-start-line="40" selection-start-column="8" selection-end-line="40" selection-end-column="8" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Panes/EndGamePane.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="99">
+              <caret line="59" column="12" selection-start-line="59" selection-start-column="12" selection-end-line="59" selection-end-column="12" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Logic/CreatePlayers.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="784">
@@ -246,6 +222,7 @@
       <find>System.out.println</find>
       <find>Font</find>
       <find>mainStage</find>
+      <find>this.</find>
     </findStrings>
     <replaceStrings>
       <replace>gameState.getMainStage()</replace>
@@ -288,19 +265,11 @@
         <option value="$PROJECT_DIR$/src/Scenes/CreditsScene.java" />
         <option value="$PROJECT_DIR$/src/Scenes/EndGameScene.java" />
         <option value="$PROJECT_DIR$/src/Scenes/GameScene.java" />
-        <option value="$PROJECT_DIR$/src/Scenes/HighScoreScene.java" />
-        <option value="$PROJECT_DIR$/src/Scenes/InstructionsScene.java" />
         <option value="$PROJECT_DIR$/src/Scenes/MenuScene.java" />
-        <option value="$PROJECT_DIR$/src/Scenes/PauseScene.java" />
-        <option value="$PROJECT_DIR$/src/Scenes/TransitionScene.java" />
         <option value="$PROJECT_DIR$/src/Panes/CreditsPane.java" />
         <option value="$PROJECT_DIR$/src/Panes/HighScorePane.java" />
         <option value="$PROJECT_DIR$/src/Panes/InstructionsPane.java" />
         <option value="$PROJECT_DIR$/src/Panes/IntroPane.java" />
-        <option value="$PROJECT_DIR$/src/Panes/MenuPane.java" />
-        <option value="$PROJECT_DIR$/src/Panes/GameBoardPanes/BoardPane.java" />
-        <option value="$PROJECT_DIR$/src/Panes/GameBoardPanes/DialoguePane.java" />
-        <option value="$PROJECT_DIR$/src/Panes/GameBoardPanes/GuessSheetPane.java" />
         <option value="$PROJECT_DIR$/src/Panes/GameBoardPanes/InventoryPane.java" />
         <option value="$PROJECT_DIR$/src/Panes/GameBoardPanes/Score.java" />
         <option value="$PROJECT_DIR$/src/Panes/MainGamePane.java" />
@@ -313,6 +282,14 @@
         <option value="$PROJECT_DIR$/src/Panes/EndGamePane.java" />
         <option value="$PROJECT_DIR$/src/Panes/PausePane.java" />
         <option value="$PROJECT_DIR$/src/Panes/TransitionPane.java" />
+        <option value="$PROJECT_DIR$/src/Panes/MenuPane.java" />
+        <option value="$PROJECT_DIR$/src/Panes/GameBoardPanes/GuessSheetPane.java" />
+        <option value="$PROJECT_DIR$/src/Scenes/TransitionScene.java" />
+        <option value="$PROJECT_DIR$/src/Panes/GameBoardPanes/DialoguePane.java" />
+        <option value="$PROJECT_DIR$/src/Scenes/PauseScene.java" />
+        <option value="$PROJECT_DIR$/src/Panes/GameBoardPanes/BoardPane.java" />
+        <option value="$PROJECT_DIR$/src/Scenes/HighScoreScene.java" />
+        <option value="$PROJECT_DIR$/src/Scenes/InstructionsScene.java" />
       </list>
     </option>
   </component>
@@ -343,12 +320,6 @@
               <item name="MurderMansion" type="b2602c69:ProjectViewProjectNode" />
               <item name="MurderMansion" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MurderMansion" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MurderMansion" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Enums" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="MurderMansion" type="b2602c69:ProjectViewProjectNode" />
@@ -536,7 +507,7 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.17110874" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.17110874" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" />
       <window_info id="Designer" order="3" />
@@ -547,7 +518,7 @@
       <window_info anchor="bottom" id="Educational.CheckDetails" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.11484291" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.21235102" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.248104" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.68472373" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -804,16 +775,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Panes/GameBoardPanes/DialoguePane.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="24" column="24" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="43" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Panes/GameBoardPanes/MovementPane.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="474">
@@ -848,16 +809,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="324">
           <caret line="122" column="61" selection-start-line="122" selection-start-column="61" selection-end-line="122" selection-end-column="61" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Panes/EndGamePane.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="489">
-          <caret line="59" column="31" selection-start-line="59" selection-start-column="31" selection-end-line="59" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -974,16 +925,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Logic/Constants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="672">
-          <caret line="93" lean-forward="true" selection-start-line="93" selection-end-line="93" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Logic/Movement.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="234">
@@ -1028,6 +969,36 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="784">
           <caret line="77" column="9" lean-forward="true" selection-start-line="77" selection-start-column="9" selection-end-line="77" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Panes/EndGamePane.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="99">
+          <caret line="59" column="12" selection-start-line="59" selection-start-column="12" selection-end-line="59" selection-end-column="12" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Logic/Constants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="91">
+          <caret line="97" column="18" selection-start-line="97" selection-start-column="8" selection-end-line="97" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Panes/GameBoardPanes/DialoguePane.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="575">
+          <caret line="40" column="8" lean-forward="true" selection-start-line="40" selection-start-column="8" selection-end-line="40" selection-end-column="8" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

@@ -45,11 +45,11 @@ public class DialoguePane extends VBox{
 		dialogue.setMinHeight(250);
 		dialogue.setMaxHeight(250);
 		
-		this.setSpacing(30);
-		this.setAlignment(Pos.CENTER);
+		setSpacing(30);
+		setAlignment(Pos.CENTER);
 		VBox.setMargin(dialogue, new Insets(0, 25, 0, 25));
 		VBox.setMargin(pauseButton, new Insets(30, 0, 20, 0));
 		
-		this.getChildren().addAll(pauseButton, dialogue);
+		getChildren().addAll(pauseButton, dialogue);
 	}
 }

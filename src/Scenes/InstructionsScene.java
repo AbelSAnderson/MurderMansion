@@ -10,6 +10,6 @@ import static Logic.Constants.SCREEN_WIDTH;
 public class InstructionsScene extends Scene {
     public InstructionsScene(GameState gameState) {
         super(new InstructionsPane(gameState), SCREEN_WIDTH, SCREEN_HEIGHT);
-        this.getStylesheets().add("CharacterSelectionStyle.css");
+        getStylesheets().add("CharacterSelectionStyle.css");
     }
 }

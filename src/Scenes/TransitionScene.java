@@ -11,7 +11,7 @@ import static Logic.Constants.SCREEN_WIDTH;
 public class TransitionScene extends Scene {
     public TransitionScene(GameState gameState) {
         super(new TransitionPane(gameState), SCREEN_WIDTH/3 + 50, SCREEN_HEIGHT/3 + 50);
-        this.getStylesheets().add("CharacterSelectionStyle.css");
-        this.setFill(Color.TRANSPARENT);
+        getStylesheets().add("CharacterSelectionStyle.css");
+        setFill(Color.TRANSPARENT);
     }
 }
