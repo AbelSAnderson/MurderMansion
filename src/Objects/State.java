@@ -210,7 +210,6 @@ public class State {
         return tempGameBoard;
     }
 
-
     //Getters and Setters
     public Stage getMainStage() {
         return mainStage;

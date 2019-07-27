@@ -20,7 +20,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
-import static Main.Constants.*;
 import static Panes.GameBoardPanes.Score.saveScore;
 
 public class EndGamePane extends BorderPane {
@@ -60,7 +59,6 @@ public class EndGamePane extends BorderPane {
 		submitButton.setOnAction(e -> {
 			saveScore(gameState);
 			state.getMainStage().setScene(new HighScoreScene(state));
-			resetGame(state);
 		});
 		
 		setBackground(BackgroundColors.BACKGROUND_DARK.getBackground());

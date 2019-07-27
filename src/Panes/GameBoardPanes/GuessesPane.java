@@ -34,7 +34,7 @@ public class GuessesPane extends VBox{
 			cardListBoxes.getChildren().add(comboBoxes.get(i));
 		}
 		
-		guessesBox(state);
+		guessesBox();
 		
 		suggestion = new Button("Suggest");
 		accusation = new Button("Accuse");

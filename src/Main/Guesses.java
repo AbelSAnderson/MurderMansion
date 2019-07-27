@@ -14,7 +14,7 @@ import static Panes.GameBoardPanes.Score.scoreNumber;
 public class Guesses {
 
 	/**Fills the Three ComboBoxes that are used to Accuse or Suggest.*/
-	public static void guessesBox(State state) {
+	public static void guessesBox() {
 
 		Card[][] cardLists = {Cards.CHARACTERS.getCards(), Cards.WEAPONS.getCards(), Cards.ROOMS.getCards()};
 		String[] text = {"Select a character", "Select a weapon", "Select a room"};

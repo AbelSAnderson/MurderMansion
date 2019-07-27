@@ -11,7 +11,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
-import static Main.Constants.*;
 import static Panes.GameBoardPanes.DialoguePane.pauseStage;
 
 public class PausePane extends VBox {
@@ -34,7 +33,7 @@ public class PausePane extends VBox {
 		
 		yesButton.setOnAction(e -> {
 			state.getMainStage().setScene(new MenuScene(state));
-			resetGame(state);
+			//resetGame(state);
 		});
 		
 		noButton.setOnAction(e -> pauseStage.close());
