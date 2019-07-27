@@ -47,11 +47,11 @@ public class Constants {
         guessSheet = new GuessSheetPane(state, true);
 
         leftContainer.getChildren().remove(inventory);
-        inventory = new InventoryPane(state, true);
+        inventory = new InventoryPane(state.getCurrentGame(), true);
 
         leftContainer.getChildren().addAll(guessSheet,inventory);
 
-        state.getPlayers().clear();
+        state.getCurrentGame().setPlayers(null);
         comboBoxes.clear();
         state.getBackgroundMusic().stop();
         pauseStage.close();

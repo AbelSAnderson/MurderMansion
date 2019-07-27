@@ -2,6 +2,7 @@ package Panes;
 
 import Enums.BackgroundColors;
 import Enums.Fonts;
+import Objects.GameState;
 import Objects.State;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -15,14 +16,16 @@ import static Main.Turn.startTurn;
 public class TransitionPane extends HBox {
 
     public TransitionPane(State state) {
+
+        GameState gameState = state.getCurrentGame();
     	
-    	ImageView characterImg = new ImageView(state.currentPlayer().getCharacter().getImg());
+    	ImageView characterImg = new ImageView(gameState.currentPlayer().getCharacter().getImg());
     	characterImg.setFitWidth(178);
     	characterImg.setFitHeight(250);
     	
     	VBox vbox = new VBox(40);
 
-        Text transitionMessage = new Text(state.currentPlayer().getCharacter().getName() + "'s Turn");
+        Text transitionMessage = new Text(gameState.currentPlayer().getCharacter().getName() + "'s Turn");
         
         Button transitionButton = new Button("Start Turn");
         transitionButton.getStyleClass().add("selectButton");

@@ -1,7 +1,7 @@
 package Panes.GameBoardPanes;
 
 import Enums.Fonts;
-import Objects.State;
+import Objects.GameState;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
@@ -43,7 +43,7 @@ public class Score extends HBox{
 	}
 
 	/**Saves score to the text file*/
-	public static void saveScore(State state) {
+	public static void saveScore(GameState gameState) {
 		
 		File file = new File("highScores.txt");
 		
@@ -51,7 +51,7 @@ public class Score extends HBox{
 			FileWriter fileWriter = new FileWriter(file, true);
 			
 			fileWriter.append(realNameInput.getText()).append(" ");
-			fileWriter.append(String.valueOf(state.currentPlayer().getScore())).append(" ");
+			fileWriter.append(String.valueOf(gameState.currentPlayer().getScore())).append(" ");
 			
 			fileWriter.close();
 			

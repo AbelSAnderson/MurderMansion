@@ -1,5 +1,6 @@
 package Panes.GameBoardPanes;
 
+import Objects.GameState;
 import Objects.State;
 import Objects.Player;
 import Objects.Tile;
@@ -52,7 +53,7 @@ public class BoardPane extends StackPane{
 				gridpane.add(rect, columns, rows);	
 			}
 		}
-		placePlayerStart(state, gridpane);
+		placePlayerStart(state.getCurrentGame(), gridpane);
 		
 		//Start background music
 		if(state.getBackgroundMusic().isPlaying()) state.getBackgroundMusic().stop();
@@ -67,8 +68,8 @@ public class BoardPane extends StackPane{
 	 * Places each Player's token on the Gameboard.
 	 * @param gridPane The Gameboard where the Player's tokens are positioned.
 	 */
-	private void placePlayerStart(State state, GridPane gridPane) {
-		for ( Player player : state.getPlayers()) {
+	private void placePlayerStart(GameState gameState, GridPane gridPane) {
+		for ( Player player : gameState.getPlayers()) {
 			gridPane.add(player.getPiece(), player.getCharacter().getStartX(), player.getCharacter().getStartY());
 		}
 	}
@@ -78,36 +79,39 @@ public class BoardPane extends StackPane{
 	 * @param direction The direction the token is moving.
 	 */
 	static void movement(State state, int direction) {
+
+		GameState gameState = state.getCurrentGame();
+
 		Tile newBoardPosition;
 		
-		if(state.currentPlayer().getRollsLeft() > 0) {
-			if(state.currentLocation().getRoomNum() == -1) {
-				state.currentLocation().setTraversable(true);
+		if(gameState.currentPlayer().getRollsLeft() > 0) {
+			if(gameState.currentLocation().getRoomNum() == -1) {
+				gameState.currentLocation().setTraversable(true);
 			}
 			switch(direction) {
 				case 0:
-					newBoardPosition = state.getGameBoard()[state.playerY() - 1][state.playerX()];
-					state.currentPlayer().setCurrentCoordY(state.playerY() - 1);
+					newBoardPosition = gameState.getGameBoard()[gameState.playerY() - 1][gameState.playerX()];
+					gameState.currentPlayer().setCurrentCoordY(gameState.playerY() - 1);
 					newBoardPosition.setTraversable(false);
-					GridPane.setRowIndex(state.currentPlayer().getPiece(), GridPane.getRowIndex(state.currentPlayer().getPiece()) - 1);
+					GridPane.setRowIndex(gameState.currentPlayer().getPiece(), GridPane.getRowIndex(gameState.currentPlayer().getPiece()) - 1);
 				break;
 				case 1:
-					newBoardPosition = state.getGameBoard()[state.playerY() + 1][state.playerX()];
-					state.currentPlayer().setCurrentCoordY(state.playerY() + 1);
+					newBoardPosition = gameState.getGameBoard()[gameState.playerY() + 1][gameState.playerX()];
+					gameState.currentPlayer().setCurrentCoordY(gameState.playerY() + 1);
 					newBoardPosition.setTraversable(false);
-					GridPane.setRowIndex(state.currentPlayer().getPiece(), GridPane.getRowIndex(state.currentPlayer().getPiece()) + 1);
+					GridPane.setRowIndex(gameState.currentPlayer().getPiece(), GridPane.getRowIndex(gameState.currentPlayer().getPiece()) + 1);
 				break;
 				case 2:
-					newBoardPosition = state.getGameBoard()[state.playerY()][state.playerX() - 1];
-					state.currentPlayer().setCurrentCoordX(state.playerX() - 1);
+					newBoardPosition = gameState.getGameBoard()[gameState.playerY()][gameState.playerX() - 1];
+					gameState.currentPlayer().setCurrentCoordX(gameState.playerX() - 1);
 					newBoardPosition.setTraversable(false);
-					GridPane.setColumnIndex(state.currentPlayer().getPiece(), GridPane.getColumnIndex(state.currentPlayer().getPiece()) - 1);
+					GridPane.setColumnIndex(gameState.currentPlayer().getPiece(), GridPane.getColumnIndex(gameState.currentPlayer().getPiece()) - 1);
 				break;
 				case 3:
-					newBoardPosition = state.getGameBoard()[state.playerY()][state.playerX() + 1];
-					state.currentPlayer().setCurrentCoordX(state.playerX() + 1);
+					newBoardPosition = gameState.getGameBoard()[gameState.playerY()][gameState.playerX() + 1];
+					gameState.currentPlayer().setCurrentCoordX(gameState.playerX() + 1);
 					newBoardPosition.setTraversable(false);
-					GridPane.setColumnIndex(state.currentPlayer().getPiece(), GridPane.getColumnIndex(state.currentPlayer().getPiece()) + 1);
+					GridPane.setColumnIndex(gameState.currentPlayer().getPiece(), GridPane.getColumnIndex(gameState.currentPlayer().getPiece()) + 1);
 				break;
 			}
 
@@ -117,21 +121,24 @@ public class BoardPane extends StackPane{
 
 	/**Sets the Current Player's Moves left.*/
 	private static void setMoves(State state) {
-		state.currentPlayer().setRollsLeft(state.currentPlayer().getRollsLeft() - 1);
 
-		if(state.currentLocation().getRoomNum() != -1) {
+		GameState gameState = state.getCurrentGame();
+
+		gameState.currentPlayer().setRollsLeft(gameState.currentPlayer().getRollsLeft() - 1);
+
+		if(gameState.currentLocation().getRoomNum() != -1) {
 			placeInRoom(state);
 			MovementPane.rollsText.setText("0");
 		} else {
-			if(state.currentPlayer().getRollsLeft() > 0) {
-				DialoguePane.dialogue.appendText("You have " + state.currentPlayer().getRollsLeft() + " moves left\n");
-				MovementPane.rollsText.setText("" + state.currentPlayer().getRollsLeft());
+			if(gameState.currentPlayer().getRollsLeft() > 0) {
+				DialoguePane.dialogue.appendText("You have " + gameState.currentPlayer().getRollsLeft() + " moves left\n");
+				MovementPane.rollsText.setText("" + gameState.currentPlayer().getRollsLeft());
 			}
 			else {
 				DialoguePane.dialogue.appendText("You are out of moves\n");
-				MovementPane.rollsText.setText("" + state.currentPlayer().getRollsLeft());
+				MovementPane.rollsText.setText("" + gameState.currentPlayer().getRollsLeft());
 			}
 		}
-		setButtons(state);
+		setButtons(gameState);
 	}
 }

@@ -1,5 +1,6 @@
 package Main;
 
+import Objects.GameState;
 import Objects.State;
 import Panes.GameBoardPanes.GuessSheetPane;
 import Panes.GameBoardPanes.InventoryPane;
@@ -33,17 +34,21 @@ public class Turn {
 
 	/**Ends Player's Turn*/
 	public static void endTurn(State state) {
-		state.currentPlayer().setScore(state.currentPlayer().getScore() - 18);
 
-		state.getGameBoard()[Movement.blockedY][Movement.blockedX].setTraversable(true);
-		
-		state.currentPlayer().setRollsLeft(0);
-		
-		state.getPlayers().add(state.getPlayers().remove(0));
+		GameState gameState = state.getCurrentGame();
+
+		gameState.currentPlayer().setScore(gameState.currentPlayer().getScore() - 18);
+
+		gameState.getGameBoard()[Movement.blockedY][Movement.blockedX].setTraversable(true);
+
+		gameState.currentPlayer().setRollsLeft(0);
+
+		gameState.setCurrentPlayer(gameState.getCurrentPlayer() + 1);
+		if(gameState.getPlayers().length == gameState.getCurrentPlayer()) gameState.setCurrentPlayer(0);
 
 		disableGuessClicks(true);
 		
-		scoreNumber.setText("" + state.currentPlayer().getScore());
+		scoreNumber.setText("" + gameState.currentPlayer().getScore());
 		rollsText.setText("0");
 
 		switchPlayerUI(state);
@@ -56,7 +61,7 @@ public class Turn {
 		guessSheet = new GuessSheetPane(state, true);
 
 		leftContainer.getChildren().remove(inventory);
-		inventory = new InventoryPane(state, true);
+		inventory = new InventoryPane(state.getCurrentGame(), true);
 
 		leftContainer.getChildren().addAll(guessSheet, inventory);
 	}
@@ -78,21 +83,24 @@ public class Turn {
 
 	/**Starts the Next Player's Turn.*/
 	public static void startTurn(State state) {
+
+		GameState gameState = state.getCurrentGame();
+
 		leftContainer.getChildren().remove(guessSheet);
 		guessSheet = new GuessSheetPane(state, false);
 
 		leftContainer.getChildren().remove(inventory);
-		inventory = new InventoryPane(state, false);
+		inventory = new InventoryPane(gameState, false);
 
 		leftContainer.getChildren().addAll(guessSheet,inventory);
 
 		//Place the piece at the room entrance if the players current moveX and moveY's room number is not -1 (anything not -1 is a room)
-		if(state.getGameBoard()[state.currentLocation().getMoveCharacterY()][state.currentLocation().getMoveCharacterX()].getRoomNum() != -1) {
-			Movement.placeEntranceRoom(state);
+		if(gameState.getGameBoard()[gameState.currentLocation().getMoveCharacterY()][gameState.currentLocation().getMoveCharacterX()].getRoomNum() != -1) {
+			Movement.placeEntranceRoom(gameState);
 		}
 
 		transitionStage.close();
 		disableButtons(false);
-		setButtons(state);
+		setButtons(gameState);
 	}
 }

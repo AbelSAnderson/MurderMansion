@@ -1,6 +1,7 @@
 package Main;
 
 import Objects.Card;
+import Objects.GameState;
 import Objects.State;
 import Objects.Player;
 import Scenes.EndGameScene;
@@ -28,16 +29,18 @@ public class Guesses {
 	/**Checks if an Accusation is Correct.*/
 	public static void correctAccusation(State state) {
 
+		GameState gameState = state.getCurrentGame();
+
 		boolean correct = false;
 
 		for(int i = 0; i < comboBoxes.size(); i++) {
-			if(comboBoxes.get(i).getSelectionModel().getSelectedItem().equals(state.getCaseFile()[i].getName())) {
+			if(comboBoxes.get(i).getSelectionModel().getSelectedItem().equals(gameState.getCaseFile()[i].getName())) {
 				correct = true;
 			}
 			else {
 				correct = false;
-				state.currentPlayer().setScore(state.currentPlayer().getScore() - 144);
-				scoreNumber.setText(state.currentPlayer().getScore() + "");
+				gameState.currentPlayer().setScore(gameState.currentPlayer().getScore() - 144);
+				scoreNumber.setText(gameState.currentPlayer().getScore() + "");
 				dialogue.appendText("Your accusation was incorrect. Shame on you!\n");
 				break;
 			}
@@ -48,10 +51,10 @@ public class Guesses {
 	}
 
 	/**Checks whether players have any of the cards suggested.*/
-	public static void checkCards(State state) {
+	public static void checkCards(GameState gameState) {
 		
-		state.currentPlayer().setScore(state.currentPlayer().getScore() - 36);
-		scoreNumber.setText(state.currentPlayer().getScore() + "");
+		gameState.currentPlayer().setScore(gameState.currentPlayer().getScore() - 36);
+		scoreNumber.setText(gameState.currentPlayer().getScore() + "");
 
 		String[] cardsSelected = new String[3];
 
@@ -62,9 +65,9 @@ public class Guesses {
 		int z = 1;
 
 		outerLoop:
-		while(z < state.getPlayers().size()) {
+		while(z < gameState.getPlayers().length) {
 
-			Player player = state.getPlayers().get(z);
+			Player player = gameState.getPlayers()[z];
 
 			for(int i = 0; i < player.getCards().length; i++) {
 

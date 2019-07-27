@@ -21,7 +21,7 @@ public class MainGamePane extends BorderPane{
 	public MainGamePane(State state) {
 
 		guessSheet = new GuessSheetPane(state,true);
-		inventory = new InventoryPane(state, true);
+		inventory = new InventoryPane(state.getCurrentGame(), true);
 
 		HBox board = new HBox();
 		board.getChildren().add(new BoardPane(state));

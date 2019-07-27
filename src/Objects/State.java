@@ -3,6 +3,7 @@ package Objects;
 import Objects.Characters.*;
 import Objects.Rooms.*;
 import Objects.Weapons.*;
+import Panes.MainGamePane;
 import Scenes.GameScene;
 import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
@@ -51,6 +52,9 @@ public class State {
         Player[] players = createPlayers(characters, masterList);
 
         currentGame = new GameState(originalGameBoard.clone(), players, caseFile);
+
+        currentGameScene = new GameScene(this);
+        mainStage.setScene(currentGameScene);
     }
 
     private Player[] createPlayers(Character[] playerSelection, ArrayList<Card> masterList) {

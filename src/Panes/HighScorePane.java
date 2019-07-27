@@ -2,7 +2,7 @@ package Panes;
 
 import Enums.BackgroundColors;
 import Enums.Fonts;
-import State;
+import Objects.State;
 import Scenes.MenuScene;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;

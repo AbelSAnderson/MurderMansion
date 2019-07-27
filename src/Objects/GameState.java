@@ -6,17 +6,19 @@ public class GameState {
     private Tile[][] gameBoard;
     private Player[] players;
     private Card[] caseFile;
+    private int currentPlayer;
 
     //Constructor
     public GameState(Tile[][] gameBoard, Player[] players, Card[] caseFile) {
         this.gameBoard = gameBoard;
         this.players = players;
         this.caseFile = caseFile;
+        currentPlayer = 0;
     }
 
     //Methods
     /**@return The Current Player.*/
-    public Player currentPlayer() {return players[0];}
+    public Player currentPlayer() {return players[currentPlayer];}
 
     /**@return Current Player's X Position.*/
     public int playerX() {return  currentPlayer().getCurrentCoordX();}
@@ -51,5 +53,13 @@ public class GameState {
 
     public void setCaseFile(Card[] caseFile) {
         this.caseFile = caseFile;
+    }
+
+    public int getCurrentPlayer() {
+        return currentPlayer;
+    }
+
+    public void setCurrentPlayer(int currentPlayer) {
+        this.currentPlayer = currentPlayer;
     }
 }
