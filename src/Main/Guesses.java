@@ -1,5 +1,6 @@
 package Main;
 
+import Enums.Cards;
 import Objects.Card;
 import Objects.GameState;
 import Objects.State;
@@ -15,7 +16,7 @@ public class Guesses {
 	/**Fills the Three ComboBoxes that are used to Accuse or Suggest.*/
 	public static void guessesBox(State state) {
 
-		Card[][] cardLists = {state.getCharacters(), state.getWeapons(), state.getRooms()};
+		Card[][] cardLists = {Cards.CHARACTERS.getCards(), Cards.WEAPONS.getCards(), Cards.ROOMS.getCards()};
 		String[] text = {"Select a character", "Select a weapon", "Select a room"};
 
 		for(int i = 0; i < cardLists.length; i++) {

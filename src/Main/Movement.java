@@ -1,8 +1,7 @@
 package Main;
 
-import Objects.GameState;
-import Objects.State;
-import Objects.Tile;
+import Enums.Cards;
+import Objects.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.media.MediaPlayer;
 
@@ -45,7 +44,7 @@ public class Movement {
 		disableGuessClicks(false);
 
 		gameState.currentLocation().setTraversable(true);
-		gameState.currentPlayer().setRoom(state.getRooms()[gameState.currentLocation().getRoomNum()-2]);
+		gameState.currentPlayer().setRoom((Room) Cards.ROOMS.getCards()[gameState.currentLocation().getRoomNum()-2]);
 
 		dialogue.appendText(gameState.currentPlayer().getCharacter().getName() + " entered the " + gameState.currentPlayer().getRoom().getName() + "\n");
 

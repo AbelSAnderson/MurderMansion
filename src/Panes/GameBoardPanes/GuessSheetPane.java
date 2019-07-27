@@ -1,5 +1,6 @@
 package Panes.GameBoardPanes;
 
+import Enums.Cards;
 import Enums.Fonts;
 import Objects.Card;
 import Objects.GameState;
@@ -40,7 +41,7 @@ private int grid;
 		GameState gameState = state.getCurrentGame();
 		
 		// create array for type of category (same code as CreatePlayers)
-		List[] categoryArray = {new ArrayList<>(Arrays.asList(state.getCharacters())), new ArrayList<>(Arrays.asList(state.getWeapons())), new ArrayList<>(Arrays.asList(state.getRooms()))};
+		List[] categoryArray = {new ArrayList<>(Arrays.asList(Cards.CHARACTERS.getCards())), new ArrayList<>(Arrays.asList(Cards.WEAPONS.getCards())), new ArrayList<>(Arrays.asList(Cards.ROOMS.getCards()))};
 		String[] categoryNames = {"Suspects", "Weapons", "Rooms"};
 				
 		GridPane[] guessGridPane = new GridPane[3];

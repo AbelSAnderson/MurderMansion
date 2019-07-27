@@ -1,6 +1,8 @@
 package Panes;
 
 import Enums.BackgroundColors;
+import Enums.Cards;
+import Objects.Card;
 import Objects.Character;
 import Objects.State;
 import Scenes.GameScene;
@@ -40,7 +42,7 @@ public class CharacterSelectionPane extends HBox{
 		VBox vbox = new VBox(30);
 		HBox imgHBox = new HBox();
 				
-		ArrayList<Character> characters = new ArrayList<>(Arrays.asList(state.getCharacters()));
+		ArrayList<Card> characters = new ArrayList<>(Arrays.asList(Cards.CHARACTERS.getCards()));
 
 		//Create a ListView, add the characters to it, and select a default value
 		ListView<String> characterList = new ListView<>();
@@ -48,7 +50,7 @@ public class CharacterSelectionPane extends HBox{
 		characterList.setMinWidth(300);
 		characterList.setMinHeight(284);
 
-		for (Character character: characters) {
+		for (Card character: characters) {
 			characterList.getItems().add(character.getName());
 		}
 		characterList.getSelectionModel().selectFirst();
@@ -68,7 +70,7 @@ public class CharacterSelectionPane extends HBox{
 		//Move to the GameScene on Button Click
 		selectButton.setOnAction(e -> { 
 			playerNum++;
-			playerChar[playerNum - 2] = characters.get(characterList.getSelectionModel().getSelectedIndex());
+			playerChar[playerNum - 2] = (Character) characters.get(characterList.getSelectionModel().getSelectedIndex());
 			
 			characters.remove(characterList.getSelectionModel().getSelectedIndex());
 			characterList.getItems().remove(characterList.getSelectionModel().getSelectedIndex());

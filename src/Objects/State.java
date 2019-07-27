@@ -1,9 +1,6 @@
 package Objects;
 
-import Objects.Characters.*;
-import Objects.Rooms.*;
-import Objects.Weapons.*;
-import Panes.MainGamePane;
+import Enums.Cards;
 import Scenes.GameScene;
 import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
@@ -26,18 +23,9 @@ public class State {
     private GameState currentGame;
     private GameScene currentGameScene;
 
-    //Arrays for all the Character, Weapon, and Room Objects
-    private Character[] characters;
-    private Card[] weapons;
-    private Room[] rooms;
-
     //Constructor
     public State(Stage mainStage) {
         this.mainStage = mainStage;
-
-        characters = new Character[] {new Yellow(), new Brown(), new Black(), new Orange(), new Blue(), new Red()};
-        weapons = new Card[] {new Arrow(), new Axe(), new Candlestick(), new Knife(), new Poison(), new Revolver()};
-        rooms = new Room[] {new Ballroom(), new Conservatory(), new BilliardRoom(), new Library(), new Laboratory(), new Lounge(), new Pool(), new DiningRoom(), new Kitchen()};
 
         screenWidth = Toolkit.getDefaultToolkit().getScreenSize().getWidth();
         screenHeight = Toolkit.getDefaultToolkit().getScreenSize().getHeight() - 65;
@@ -62,14 +50,14 @@ public class State {
         int playerNumber = 3; //Change this to the desired number of players
 
         //ArrayList for all the characters
-        ArrayList<Character> characterList = new ArrayList<>(Arrays.asList(getCharacters()));
+        ArrayList<Card> characterList = new ArrayList<>(Arrays.asList(Cards.CHARACTERS.getCards()));
 
         for (Character character : playerSelection) {
             characterList.remove(character);
         }
 
         //Create New List with only the Selections
-        ArrayList<Character> playerList = new ArrayList<>(Arrays.asList(getCharacters()));
+        ArrayList<Card> playerList = new ArrayList<>(Arrays.asList(Cards.CHARACTERS.getCards()));
         playerList.removeAll(characterList);
 
         //Get Random Cards for Players
@@ -79,7 +67,7 @@ public class State {
 
         //Create and Set Players
         for (int i = 0; i < playerList.size(); i++) {
-            players[i] = new Player(playerCards[i], playerList.get(i));
+            players[i] = new Player(playerCards[i], (Character) playerList.get(i));
             players[i].setCurrentCoordX(players[i].getCharacter().getStartX());
             players[i].setCurrentCoordY(players[i].getCharacter().getStartY());
         }
@@ -93,7 +81,7 @@ public class State {
         Card[] caseFile = new Card[3];
 
         //Declare Array holding the ArrayLists of Characters, Weapons, and Rooms
-        List[] cardsArray = {new ArrayList<>(Arrays.asList(getCharacters())), new ArrayList<>(Arrays.asList(getWeapons())), new ArrayList<>(Arrays.asList(getRooms()))};
+        List[] cardsArray = {new ArrayList<>(Arrays.asList(Cards.CHARACTERS.getCards())), new ArrayList<>(Arrays.asList(Cards.WEAPONS.getCards())), new ArrayList<>(Arrays.asList(Cards.ROOMS.getCards()))};
 
         //Loop through cardsArray, Shuffling each ArrayList, Setting the Case File with unique cards, and adding the ArrayList to masterList
         for (int i = 0; i < cardsArray.length; i++) {
@@ -254,30 +242,6 @@ public class State {
 
     public void setScreenHeight(double screenHeight) {
         this.screenHeight = screenHeight;
-    }
-
-    public Character[] getCharacters() {
-        return characters;
-    }
-
-    public void setCharacters(Character[] characters) {
-        this.characters = characters;
-    }
-
-    public Card[] getWeapons() {
-        return weapons;
-    }
-
-    public void setWeapons(Card[] weapons) {
-        this.weapons = weapons;
-    }
-
-    public Room[] getRooms() {
-        return rooms;
-    }
-
-    public void setRooms(Room[] rooms) {
-        this.rooms = rooms;
     }
 
     public GameState getCurrentGame() {
