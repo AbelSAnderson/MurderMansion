@@ -3,11 +3,15 @@ package Objects;
 import Objects.Characters.*;
 import Objects.Rooms.*;
 import Objects.Weapons.*;
-import Panes.MainGamePane;
+import Scenes.GameScene;
 import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class State {
 
@@ -16,10 +20,10 @@ public class State {
     private AudioClip backgroundMusic;
     private double screenWidth;
     private double screenHeight;
-    private Tile[][] originalGameBoard; //DO NOT touch this property while the users are playing the game.
+    private Tile[][] originalGameBoard; //DO NOT modify this gameboard.
 
     private GameState currentGame;
-    private MainGamePane currentGamePane;
+    private GameScene currentGameScene;
 
     //Arrays for all the Character, Weapon, and Room Objects
     private Character[] characters;
@@ -40,6 +44,96 @@ public class State {
     }
 
     //Methods
+    public void createGameState(Character[] characters) {
+        ArrayList<Card> masterList = new ArrayList<>();
+        Card[] caseFile = createCaseFile(masterList);
+
+        Player[] players = createPlayers(characters, masterList);
+
+        currentGame = new GameState(originalGameBoard.clone(), players, caseFile);
+    }
+
+    private Player[] createPlayers(Character[] playerSelection, ArrayList<Card> masterList) {
+
+        int playerNumber = 3; //Change this to the desired number of players
+
+        //ArrayList for all the characters
+        ArrayList<Character> characterList = new ArrayList<>(Arrays.asList(getCharacters()));
+
+        for (Character character : playerSelection) {
+            characterList.remove(character);
+        }
+
+        //Create New List with only the Selections
+        ArrayList<Character> playerList = new ArrayList<>(Arrays.asList(getCharacters()));
+        playerList.removeAll(characterList);
+
+        //Get Random Cards for Players
+        Card[][] playerCards = createPlayerCards(masterList, playerNumber);
+
+        Player[] players = new Player[playerNumber];
+
+        //Create and Set Players
+        for (int i = 0; i < playerList.size(); i++) {
+            players[i] = new Player(playerCards[i], playerList.get(i));
+            players[i].setCurrentCoordX(players[i].getCharacter().getStartX());
+            players[i].setCurrentCoordY(players[i].getCharacter().getStartY());
+        }
+
+        return players;
+    }
+
+    private Card[] createCaseFile(ArrayList<Card> masterList) {
+
+        //Declare the ArrayList to hold all the cards
+        Card[] caseFile = new Card[3];
+
+        //Declare Array holding the ArrayLists of Characters, Weapons, and Rooms
+        List[] cardsArray = {new ArrayList<>(Arrays.asList(getCharacters())), new ArrayList<>(Arrays.asList(getWeapons())), new ArrayList<>(Arrays.asList(getRooms()))};
+
+        //Loop through cardsArray, Shuffling each ArrayList, Setting the Case File with unique cards, and adding the ArrayList to masterList
+        for (int i = 0; i < cardsArray.length; i++) {
+            Collections.shuffle(cardsArray[i]);
+
+            caseFile[i] = (Card) cardsArray[i].get(0);
+
+            System.out.println(((Card) cardsArray[i].get(0)).getName()); //TESTING ONLY
+
+            cardsArray[i].remove(0);
+
+            masterList.addAll(cardsArray[i]);
+        }
+
+        return caseFile;
+    }
+
+    /**
+     * @author Hasan
+     * @since 16/03/2019
+     * @return 2-D array that holds three sets of six cards for each Player.
+     */
+    private Card[][] createPlayerCards(ArrayList<Card> masterList, int playerNumber) {
+
+        //Shuffle masterList
+        Collections.shuffle(masterList);
+
+        //Calculate the amount of cards for each player
+        int cardAmount = (int) Math.floor(masterList.size() / playerNumber);
+
+        //Create 2D-Array for the Player's Cards
+        Card[][] playersCards = new Card[playerNumber][];
+
+        //Give each player a different set of cards
+        for (int i = 0; i < playersCards.length; i++) {
+            playersCards[i] = new Card[cardAmount];
+            for(int j = 0; j < playersCards[i].length; j++) {
+                playersCards[i][j] = masterList.get(j + cardAmount*i);
+            }
+        }
+
+        return playersCards;
+    }
+
     //Create the GameBoard
     private Tile[][] createGameBoard() {
 
@@ -190,12 +284,12 @@ public class State {
         this.currentGame = currentGame;
     }
 
-    public MainGamePane getCurrentGamePane() {
-        return currentGamePane;
+    public GameScene getCurrentGameScene() {
+        return currentGameScene;
     }
 
-    public void setCurrentGamePane(MainGamePane currentGamePane) {
-        this.currentGamePane = currentGamePane;
+    public void setCurrentGameScene(GameScene currentGameScene) {
+        this.currentGameScene = currentGameScene;
     }
 
     public Tile[][] getOriginalGameBoard() {

@@ -1,6 +1,5 @@
 package Objects;
 
-
 import java.io.File;
 
 import javafx.scene.media.Media;
@@ -22,7 +21,6 @@ import javafx.scene.shape.Circle;
  * Description - added tokenSound property (creaking floor sound for player movement)
  */
 
-
 public class Player {
 	
 	//Properties
@@ -31,7 +29,6 @@ public class Player {
 	private Card[] cards;
 	private Character character;
 	private GuessSheet guessSheet;
-	private Boolean isHuman;
 	private Circle piece;
 	private int rollsLeft;
 	private Media tokenSound;
@@ -44,13 +41,13 @@ public class Player {
 		this.guessSheet = new GuessSheet();
 		this.cards = cards;
 		this.character = character;
-		this.isHuman = false;
 		this.piece = new Circle(10, this.getCharacter().getColor());
 		this.getPiece().setTranslateX(4);
 		this.rollsLeft = 0;
 		this.tokenSound = new Media (new File("src/Resources/Audio/token.mp3").toURI().toString());
 	}
 
+	//Getters and Setters
 	public Media getTokenSound() {
 		return tokenSound;
 	}
@@ -108,13 +105,6 @@ public class Player {
 		this.guessSheet = guessSheet;
 	}
 
-	public Boolean getHuman() {
-		return isHuman;
-	}
-
-	public void setHuman(Boolean human) {
-		isHuman = human;
-	}
 	public Circle getPiece() {
 		return piece;
 	}
@@ -138,5 +128,4 @@ public class Player {
 	public void setScore(int score) {
 		this.score = score;
 	}
-
 }

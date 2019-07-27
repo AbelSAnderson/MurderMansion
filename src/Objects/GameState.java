@@ -1,16 +1,14 @@
 package Objects;
 
-import java.util.ArrayList;
-
 public class GameState {
 
     //Properties
     private Tile[][] gameBoard;
-    private ArrayList<Player> players;
+    private Player[] players;
     private Card[] caseFile;
 
     //Constructor
-    public GameState(Tile[][] gameBoard, ArrayList<Player> players, Card[] caseFile) {
+    public GameState(Tile[][] gameBoard, Player[] players, Card[] caseFile) {
         this.gameBoard = gameBoard;
         this.players = players;
         this.caseFile = caseFile;
@@ -18,7 +16,7 @@ public class GameState {
 
     //Methods
     /**@return The Current Player.*/
-    public Player currentPlayer() {return players.get(0);}
+    public Player currentPlayer() {return players[0];}
 
     /**@return Current Player's X Position.*/
     public int playerX() {return  currentPlayer().getCurrentCoordX();}
@@ -39,11 +37,11 @@ public class GameState {
         this.gameBoard = gameBoard;
     }
 
-    public ArrayList<Player> getPlayers() {
+    public Player[] getPlayers() {
         return players;
     }
 
-    public void setPlayers(ArrayList<Player> players) {
+    public void setPlayers(Player[] players) {
         this.players = players;
     }
 

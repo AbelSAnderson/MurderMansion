@@ -1,7 +1,6 @@
 package Panes;
 
 import Enums.BackgroundColors;
-import Main.CreatePlayers;
 import Objects.Character;
 import Objects.State;
 import Scenes.GameScene;
@@ -75,13 +74,13 @@ public class CharacterSelectionPane extends HBox{
 			characterList.getItems().remove(characterList.getSelectionModel().getSelectedIndex());
 							
 			if(playerNum > 3) {
-				//Call for the CreatePlayers method and give it the value for the players selected character
-				new CreatePlayers(state, playerChar);
+				state.createGameState(playerChar);
 				
 				state.getMainStage().setScene(new GameScene(state));
 
 				displayTransition(state);
 			}
+
 			characterList.getSelectionModel().selectFirst();
 			characterImg.setImage(characters.get(characterList.getSelectionModel().getSelectedIndex()).getImg());
 			playerNumText.setText("Player " + playerNum);

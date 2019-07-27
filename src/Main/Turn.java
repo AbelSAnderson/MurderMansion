@@ -72,6 +72,7 @@ public class Turn {
 		transitionStage.setScene(new TransitionScene(state));
 		transitionStage.show();
 
+		state.getMainStage().setOnCloseRequest(e -> transitionStage.close());
 		transitionStage.setOnCloseRequest(e -> startTurn(state));
 	}
 
