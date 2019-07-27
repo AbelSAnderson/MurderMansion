@@ -1,6 +1,6 @@
 package Scenes;
 
-import Objects.GameState;
+import Objects.State;
 import Panes.IntroPane;
 import javafx.scene.Scene;
 
@@ -12,7 +12,7 @@ import javafx.scene.Scene;
  */
 
 public class IntroScene extends Scene {
-    public IntroScene(GameState gameState) {
-    	super(new IntroPane(gameState), gameState.getScreenWidth(), gameState.getScreenHeight());
+    public IntroScene(State state) {
+    	super(new IntroPane(state), state.getScreenWidth(), state.getScreenHeight());
     }
 }

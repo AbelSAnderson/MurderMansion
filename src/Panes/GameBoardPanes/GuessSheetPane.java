@@ -2,7 +2,7 @@ package Panes.GameBoardPanes;
 
 import Enums.Fonts;
 import Objects.Card;
-import Objects.GameState;
+import Objects.State;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -34,10 +34,10 @@ public class GuessSheetPane extends HBox{
 	
 private int grid;
 
-	public GuessSheetPane(GameState gameState, boolean isTransition) {
+	public GuessSheetPane(State state, boolean isTransition) {
 		
 		// create array for type of category (same code as CreatePlayers)
-		List[] categoryArray = {new ArrayList<>(Arrays.asList(gameState.getCharacters())), new ArrayList<>(Arrays.asList(gameState.getWeapons())), new ArrayList<>(Arrays.asList(gameState.getRooms()))};
+		List[] categoryArray = {new ArrayList<>(Arrays.asList(state.getCharacters())), new ArrayList<>(Arrays.asList(state.getWeapons())), new ArrayList<>(Arrays.asList(state.getRooms()))};
 		String[] categoryNames = {"Suspects", "Weapons", "Rooms"};
 				
 		GridPane[] guessGridPane = new GridPane[3];
@@ -67,7 +67,7 @@ private int grid;
 
 				// add item images for the checkboxes
 				ImageView temp;
-				if(isTransition || gameState.currentPlayer().getGuessSheet().getCheckedBox()[indexList][indexItems] == 0) {
+				if(isTransition || state.currentPlayer().getGuessSheet().getCheckedBox()[indexList][indexItems] == 0) {
 					temp=new ImageView(new Image("/Resources/Images/checkUnmark.jpg"));
 				}
 				else {
@@ -93,16 +93,16 @@ private int grid;
 							} else if (node.getParent() == guessGridPane[2]) {
 								grid = 2;
 							}
-							if (gameState.currentPlayer().getGuessSheet().getCheckedBox()[grid][GridPane.getRowIndex(node) - 1] == 1) {
+							if (state.currentPlayer().getGuessSheet().getCheckedBox()[grid][GridPane.getRowIndex(node) - 1] == 1) {
 
 								((ImageView) node).setImage(new Image("/Resources/Images/checkUnmark.jpg"));
-								int[][] temp = gameState.currentPlayer().getGuessSheet().getCheckedBox();
+								int[][] temp = state.currentPlayer().getGuessSheet().getCheckedBox();
 								temp[grid][GridPane.getRowIndex(node) - 1] = 0;
-								gameState.currentPlayer().getGuessSheet().setCheckedBox(temp);
+								state.currentPlayer().getGuessSheet().setCheckedBox(temp);
 							} else {
-								int[][] temp = gameState.currentPlayer().getGuessSheet().getCheckedBox();
+								int[][] temp = state.currentPlayer().getGuessSheet().getCheckedBox();
 								temp[grid][GridPane.getRowIndex(node) - 1] = 1;
-								gameState.currentPlayer().getGuessSheet().setCheckedBox(temp);
+								state.currentPlayer().getGuessSheet().setCheckedBox(temp);
 								((ImageView) node).setImage(new Image("/Resources/Images/checkMark.jpg"));
 							}
 						} catch (ClassCastException e1) {

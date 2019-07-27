@@ -1,6 +1,6 @@
 package Scenes;
 
-import Objects.GameState;
+import Objects.State;
 import Panes.CreditsPane;
 import javafx.scene.Scene;
 
@@ -12,7 +12,7 @@ import javafx.scene.Scene;
  */
 
 public class CreditsScene extends Scene {
-    public CreditsScene(GameState gameState) {
-    	super(new CreditsPane(gameState), gameState.getScreenWidth(), gameState.getScreenHeight());
+    public CreditsScene(State state) {
+    	super(new CreditsPane(state), state.getScreenWidth(), state.getScreenHeight());
     }
 }

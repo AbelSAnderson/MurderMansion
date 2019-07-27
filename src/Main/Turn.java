@@ -1,6 +1,6 @@
 package Main;
 
-import Objects.GameState;
+import Objects.State;
 import Panes.GameBoardPanes.GuessSheetPane;
 import Panes.GameBoardPanes.InventoryPane;
 import Scenes.TransitionScene;
@@ -32,66 +32,66 @@ public class Turn {
 	}
 
 	/**Ends Player's Turn*/
-	public static void endTurn(GameState gameState) {
-		gameState.currentPlayer().setScore(gameState.currentPlayer().getScore() - 18);
+	public static void endTurn(State state) {
+		state.currentPlayer().setScore(state.currentPlayer().getScore() - 18);
 
-		gameState.getGameBoard()[Movement.blockedY][Movement.blockedX].setTraversable(true);
+		state.getGameBoard()[Movement.blockedY][Movement.blockedX].setTraversable(true);
 		
-		gameState.currentPlayer().setRollsLeft(0);
+		state.currentPlayer().setRollsLeft(0);
 		
-		gameState.getPlayers().add(gameState.getPlayers().remove(0));
+		state.getPlayers().add(state.getPlayers().remove(0));
 
 		disableGuessClicks(true);
 		
-		scoreNumber.setText("" + gameState.currentPlayer().getScore());
+		scoreNumber.setText("" + state.currentPlayer().getScore());
 		rollsText.setText("0");
 
-		switchPlayerUI(gameState);
-		displayTransition(gameState);
+		switchPlayerUI(state);
+		displayTransition(state);
 	}
 
 	/**Switches the Player's UI when Changing Players.*/
-	private static void switchPlayerUI(GameState gameState) {
+	private static void switchPlayerUI(State state) {
 		leftContainer.getChildren().remove(guessSheet);
-		guessSheet = new GuessSheetPane(gameState, true);
+		guessSheet = new GuessSheetPane(state, true);
 
 		leftContainer.getChildren().remove(inventory);
-		inventory = new InventoryPane(gameState, true);
+		inventory = new InventoryPane(state, true);
 
 		leftContainer.getChildren().addAll(guessSheet, inventory);
 	}
 
 	/**Displays the Transition Stage When Changing Players.*/
-	public static void displayTransition(GameState gameState) {
+	public static void displayTransition(State state) {
 		dialogue.clear();
 		disableButtons(true);
 
 		transitionStage = new Stage();
 		transitionStage.initStyle(StageStyle.TRANSPARENT);
 		transitionStage.setAlwaysOnTop(true);
-		transitionStage.setScene(new TransitionScene(gameState));
+		transitionStage.setScene(new TransitionScene(state));
 		transitionStage.show();
 
-		transitionStage.setOnCloseRequest(e -> startTurn(gameState));
+		transitionStage.setOnCloseRequest(e -> startTurn(state));
 	}
 
 	/**Starts the Next Player's Turn.*/
-	public static void startTurn(GameState gameState) {
+	public static void startTurn(State state) {
 		leftContainer.getChildren().remove(guessSheet);
-		guessSheet = new GuessSheetPane(gameState, false);
+		guessSheet = new GuessSheetPane(state, false);
 
 		leftContainer.getChildren().remove(inventory);
-		inventory = new InventoryPane(gameState, false);
+		inventory = new InventoryPane(state, false);
 
 		leftContainer.getChildren().addAll(guessSheet,inventory);
 
 		//Place the piece at the room entrance if the players current moveX and moveY's room number is not -1 (anything not -1 is a room)
-		if(gameState.getGameBoard()[gameState.currentLocation().getMoveCharacterY()][gameState.currentLocation().getMoveCharacterX()].getRoomNum() != -1) {
-			Movement.placeEntranceRoom(gameState);
+		if(state.getGameBoard()[state.currentLocation().getMoveCharacterY()][state.currentLocation().getMoveCharacterX()].getRoomNum() != -1) {
+			Movement.placeEntranceRoom(state);
 		}
 
 		transitionStage.close();
 		disableButtons(false);
-		setButtons(gameState);
+		setButtons(state);
 	}
 }

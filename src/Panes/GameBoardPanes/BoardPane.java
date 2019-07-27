@@ -1,6 +1,6 @@
 package Panes.GameBoardPanes;
 
-import Objects.GameState;
+import Objects.State;
 import Objects.Player;
 import Objects.Tile;
 import javafx.geometry.Pos;
@@ -33,7 +33,7 @@ import static Panes.GameBoardPanes.MovementPane.setButtons;
 
 public class BoardPane extends StackPane{
 		
-	public BoardPane(GameState gameState) {
+	public BoardPane(State state) {
 		GridPane gridpane = new GridPane();
 		gridpane.setAlignment(Pos.CENTER);
 		
@@ -52,14 +52,14 @@ public class BoardPane extends StackPane{
 				gridpane.add(rect, columns, rows);	
 			}
 		}
-		placePlayerStart(gameState, gridpane);
+		placePlayerStart(state, gridpane);
 		
 		//Start background music
-		if(gameState.getBackgroundMusic().isPlaying()) gameState.getBackgroundMusic().stop();
-		gameState.setBackgroundMusic(new AudioClip(new File("src/Resources/Audio/background.wav").toURI().toString()));
-		gameState.getBackgroundMusic().setCycleCount(AudioClip.INDEFINITE);
-		gameState.getBackgroundMusic().setVolume(0.1);
-		gameState.getBackgroundMusic().play();
+		if(state.getBackgroundMusic().isPlaying()) state.getBackgroundMusic().stop();
+		state.setBackgroundMusic(new AudioClip(new File("src/Resources/Audio/background.wav").toURI().toString()));
+		state.getBackgroundMusic().setCycleCount(AudioClip.INDEFINITE);
+		state.getBackgroundMusic().setVolume(0.1);
+		state.getBackgroundMusic().play();
 
 	}
 
@@ -67,8 +67,8 @@ public class BoardPane extends StackPane{
 	 * Places each Player's token on the Gameboard.
 	 * @param gridPane The Gameboard where the Player's tokens are positioned.
 	 */
-	private void placePlayerStart(GameState gameState, GridPane gridPane) {
-		for ( Player player : gameState.getPlayers()) {
+	private void placePlayerStart(State state, GridPane gridPane) {
+		for ( Player player : state.getPlayers()) {
 			gridPane.add(player.getPiece(), player.getCharacter().getStartX(), player.getCharacter().getStartY());
 		}
 	}
@@ -77,61 +77,61 @@ public class BoardPane extends StackPane{
 	 * Moves the Player's token on the Gameboard.
 	 * @param direction The direction the token is moving.
 	 */
-	static void movement(GameState gameState, int direction) {
+	static void movement(State state, int direction) {
 		Tile newBoardPosition;
 		
-		if(gameState.currentPlayer().getRollsLeft() > 0) {
-			if(gameState.currentLocation().getRoomNum() == -1) {
-				gameState.currentLocation().setTraversable(true);
+		if(state.currentPlayer().getRollsLeft() > 0) {
+			if(state.currentLocation().getRoomNum() == -1) {
+				state.currentLocation().setTraversable(true);
 			}
 			switch(direction) {
 				case 0:
-					newBoardPosition = gameState.getGameBoard()[gameState.playerY() - 1][gameState.playerX()];
-					gameState.currentPlayer().setCurrentCoordY(gameState.playerY() - 1);
+					newBoardPosition = state.getGameBoard()[state.playerY() - 1][state.playerX()];
+					state.currentPlayer().setCurrentCoordY(state.playerY() - 1);
 					newBoardPosition.setTraversable(false);
-					GridPane.setRowIndex(gameState.currentPlayer().getPiece(), GridPane.getRowIndex(gameState.currentPlayer().getPiece()) - 1);
+					GridPane.setRowIndex(state.currentPlayer().getPiece(), GridPane.getRowIndex(state.currentPlayer().getPiece()) - 1);
 				break;
 				case 1:
-					newBoardPosition = gameState.getGameBoard()[gameState.playerY() + 1][gameState.playerX()];
-					gameState.currentPlayer().setCurrentCoordY(gameState.playerY() + 1);
+					newBoardPosition = state.getGameBoard()[state.playerY() + 1][state.playerX()];
+					state.currentPlayer().setCurrentCoordY(state.playerY() + 1);
 					newBoardPosition.setTraversable(false);
-					GridPane.setRowIndex(gameState.currentPlayer().getPiece(), GridPane.getRowIndex(gameState.currentPlayer().getPiece()) + 1);
+					GridPane.setRowIndex(state.currentPlayer().getPiece(), GridPane.getRowIndex(state.currentPlayer().getPiece()) + 1);
 				break;
 				case 2:
-					newBoardPosition = gameState.getGameBoard()[gameState.playerY()][gameState.playerX() - 1];
-					gameState.currentPlayer().setCurrentCoordX(gameState.playerX() - 1);
+					newBoardPosition = state.getGameBoard()[state.playerY()][state.playerX() - 1];
+					state.currentPlayer().setCurrentCoordX(state.playerX() - 1);
 					newBoardPosition.setTraversable(false);
-					GridPane.setColumnIndex(gameState.currentPlayer().getPiece(), GridPane.getColumnIndex(gameState.currentPlayer().getPiece()) - 1);
+					GridPane.setColumnIndex(state.currentPlayer().getPiece(), GridPane.getColumnIndex(state.currentPlayer().getPiece()) - 1);
 				break;
 				case 3:
-					newBoardPosition = gameState.getGameBoard()[gameState.playerY()][gameState.playerX() + 1];
-					gameState.currentPlayer().setCurrentCoordX(gameState.playerX() + 1);
+					newBoardPosition = state.getGameBoard()[state.playerY()][state.playerX() + 1];
+					state.currentPlayer().setCurrentCoordX(state.playerX() + 1);
 					newBoardPosition.setTraversable(false);
-					GridPane.setColumnIndex(gameState.currentPlayer().getPiece(), GridPane.getColumnIndex(gameState.currentPlayer().getPiece()) + 1);
+					GridPane.setColumnIndex(state.currentPlayer().getPiece(), GridPane.getColumnIndex(state.currentPlayer().getPiece()) + 1);
 				break;
 			}
 
-			setMoves(gameState);
+			setMoves(state);
 		}
 	}
 
 	/**Sets the Current Player's Moves left.*/
-	private static void setMoves(GameState gameState) {
-		gameState.currentPlayer().setRollsLeft(gameState.currentPlayer().getRollsLeft() - 1);
+	private static void setMoves(State state) {
+		state.currentPlayer().setRollsLeft(state.currentPlayer().getRollsLeft() - 1);
 
-		if(gameState.currentLocation().getRoomNum() != -1) {
-			placeInRoom(gameState);
+		if(state.currentLocation().getRoomNum() != -1) {
+			placeInRoom(state);
 			MovementPane.rollsText.setText("0");
 		} else {
-			if(gameState.currentPlayer().getRollsLeft() > 0) {
-				DialoguePane.dialogue.appendText("You have " + gameState.currentPlayer().getRollsLeft() + " moves left\n");
-				MovementPane.rollsText.setText("" + gameState.currentPlayer().getRollsLeft());
+			if(state.currentPlayer().getRollsLeft() > 0) {
+				DialoguePane.dialogue.appendText("You have " + state.currentPlayer().getRollsLeft() + " moves left\n");
+				MovementPane.rollsText.setText("" + state.currentPlayer().getRollsLeft());
 			}
 			else {
 				DialoguePane.dialogue.appendText("You are out of moves\n");
-				MovementPane.rollsText.setText("" + gameState.currentPlayer().getRollsLeft());
+				MovementPane.rollsText.setText("" + state.currentPlayer().getRollsLeft());
 			}
 		}
-		setButtons(gameState);
+		setButtons(state);
 	}
 }

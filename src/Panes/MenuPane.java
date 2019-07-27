@@ -2,7 +2,7 @@ package Panes;
 
 import Enums.BackgroundColors;
 import Enums.Fonts;
-import Objects.GameState;
+import Objects.State;
 import Scenes.CharacterSelectionScene;
 import Scenes.CreditsScene;
 import Scenes.HighScoreScene;
@@ -33,7 +33,7 @@ import javafx.scene.layout.VBox;
 
 public class MenuPane extends VBox {
 
-    public MenuPane(GameState gameState) {
+    public MenuPane(State state) {
 
         StackPane stackPane = new StackPane();
         VBox buttonContainer = new VBox(40);
@@ -58,10 +58,10 @@ public class MenuPane extends VBox {
             buttonContainer.getChildren().add(buttons[i]);
         }
 
-        buttons[0].setOnAction(e -> gameState.getMainStage().setScene(new CharacterSelectionScene(gameState)));
-        buttons[1].setOnAction(e -> gameState.getMainStage().setScene(new InstructionsScene(gameState)));
-        buttons[2].setOnAction(e -> gameState.getMainStage().setScene(new HighScoreScene(gameState)));
-        buttons[3].setOnAction(e -> gameState.getMainStage().setScene(new CreditsScene(gameState)));
+        buttons[0].setOnAction(e -> state.getMainStage().setScene(new CharacterSelectionScene(state)));
+        buttons[1].setOnAction(e -> state.getMainStage().setScene(new InstructionsScene(state)));
+        buttons[2].setOnAction(e -> state.getMainStage().setScene(new HighScoreScene(state)));
+        buttons[3].setOnAction(e -> state.getMainStage().setScene(new CreditsScene(state)));
 
         // add image to the StackPane
         stackPane.getChildren().addAll(new ImageView(new Image("/Resources/Images/menuBackground.png")), buttonContainer);

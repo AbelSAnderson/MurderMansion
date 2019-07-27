@@ -1,12 +1,12 @@
 package Scenes;
 
-import Objects.GameState;
+import Objects.State;
 import Panes.EndGamePane;
 import javafx.scene.Scene;
 
 public class EndGameScene extends Scene {
-	public EndGameScene(GameState gameState) {
-		super(new EndGamePane(gameState), gameState.getScreenWidth(), gameState.getScreenHeight());
+	public EndGameScene(State state) {
+		super(new EndGamePane(state), state.getScreenWidth(), state.getScreenHeight());
 		getStylesheets().add("CharacterSelectionStyle.css");
 	}
 }

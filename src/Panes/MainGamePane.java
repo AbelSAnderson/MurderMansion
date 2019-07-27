@@ -1,7 +1,7 @@
 package Panes;
 
 import Enums.BackgroundColors;
-import Objects.GameState;
+import Objects.State;
 import Panes.GameBoardPanes.*;
 import javafx.geometry.Pos;
 import javafx.scene.layout.*;
@@ -18,13 +18,13 @@ public class MainGamePane extends BorderPane{
 	public static GuessSheetPane guessSheet;
 	public static InventoryPane inventory;
 
-	public MainGamePane(GameState gameState) {
+	public MainGamePane(State state) {
 
-		guessSheet = new GuessSheetPane(gameState,true);
-		inventory = new InventoryPane(gameState, true);
+		guessSheet = new GuessSheetPane(state,true);
+		inventory = new InventoryPane(state, true);
 
 		HBox board = new HBox();
-		board.getChildren().add(new BoardPane(gameState));
+		board.getChildren().add(new BoardPane(state));
 		board.setAlignment(Pos.CENTER);
 		
 		leftContainer = new VBox(60);
@@ -32,7 +32,7 @@ public class MainGamePane extends BorderPane{
 		leftContainer.setAlignment(Pos.CENTER);
 		
 		VBox rightContainer = new VBox(30);
-		rightContainer.getChildren().addAll(new DialoguePane(gameState), new GuessesPane(gameState), new MovementPane(gameState));
+		rightContainer.getChildren().addAll(new DialoguePane(state), new GuessesPane(state), new MovementPane(state));
 		
 		setCenter(board);
 		setLeft(leftContainer);

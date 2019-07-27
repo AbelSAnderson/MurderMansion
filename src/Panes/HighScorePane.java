@@ -2,7 +2,7 @@ package Panes;
 
 import Enums.BackgroundColors;
 import Enums.Fonts;
-import Objects.GameState;
+import State;
 import Scenes.MenuScene;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -28,7 +28,7 @@ import java.util.*;
 
 public class HighScorePane extends VBox {
 
-	public HighScorePane(GameState gameState) {
+	public HighScorePane(State state) {
 		
 		File highScoreFile = new File("highScores.txt");
 
@@ -95,7 +95,7 @@ public class HighScorePane extends VBox {
 		Button backButton = new Button ("Back to Menu");
 		backButton.getStyleClass().add("selectButton");
 		
-		backButton.setOnAction(e -> gameState.getMainStage().setScene(new MenuScene(gameState)));
+		backButton.setOnAction(e -> state.getMainStage().setScene(new MenuScene(state)));
 		
 		gridPane.setAlignment(Pos.CENTER);
 		gridPane.setVgap(5);

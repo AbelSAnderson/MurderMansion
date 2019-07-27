@@ -2,7 +2,7 @@ package Panes;
 
 import Enums.BackgroundColors;
 import Enums.Fonts;
-import Objects.GameState;
+import Objects.State;
 import Scenes.MenuScene;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -26,7 +26,7 @@ import javafx.scene.text.Text;
 
 public class InstructionsPane extends VBox {
 
-    public InstructionsPane(GameState gameState) {
+    public InstructionsPane(State state) {
     	
     	Text instructionsLabel = new Text("Instructions");
     	instructionsLabel.setFill(Color.WHITE);
@@ -41,7 +41,7 @@ public class InstructionsPane extends VBox {
     	Button menuButton = new Button("Back to Main Menu");
     	menuButton.getStyleClass().add("selectButton");
     	
-    	menuButton.setOnAction(e -> gameState.getMainStage().setScene(new MenuScene(gameState)));
+    	menuButton.setOnAction(e -> state.getMainStage().setScene(new MenuScene(state)));
     	
     	Text[] instructionsText = {
     			new Text("It's a dark and stormy night."),

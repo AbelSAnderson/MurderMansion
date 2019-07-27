@@ -1,6 +1,6 @@
 package Main;
 
-import Objects.GameState;
+import Objects.State;
 import Scenes.IntroScene;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -28,9 +28,9 @@ public class Game extends Application {
     @Override
     public void start(Stage primaryStage) {
 
-        GameState gameState = new GameState(primaryStage);
+        State state = new State(primaryStage);
 
-        primaryStage.setScene(new IntroScene(gameState));
+        primaryStage.setScene(new IntroScene(state));
         primaryStage.setTitle("Murder Mansion");
         primaryStage.show();
     }

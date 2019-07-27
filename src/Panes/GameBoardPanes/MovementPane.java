@@ -1,7 +1,7 @@
 package Panes.GameBoardPanes;
 
 import Enums.Fonts;
-import Objects.GameState;
+import Objects.State;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
@@ -37,7 +37,7 @@ public class MovementPane extends VBox{
 	private static Button rollDice;
 	public static Text rollsText;
 	
-	public MovementPane(GameState gameState) {
+	public MovementPane(State state) {
 	
 		GridPane gridpane = new GridPane();
 		
@@ -82,10 +82,10 @@ public class MovementPane extends VBox{
 			
 			int roll = rollDice();
 			
-			gameState.currentPlayer().setRollsLeft(roll);
-			DialoguePane.dialogue.appendText("You rolled a " + gameState.currentPlayer().getRollsLeft() + "\n");
+			state.currentPlayer().setRollsLeft(roll);
+			DialoguePane.dialogue.appendText("You rolled a " + state.currentPlayer().getRollsLeft() + "\n");
 			
-			rollsText.setText("" + gameState.currentPlayer().getRollsLeft());
+			rollsText.setText("" + state.currentPlayer().getRollsLeft());
 			rollDice.setDisable(true);
 		});
 		
@@ -97,15 +97,15 @@ public class MovementPane extends VBox{
 		moveLeft.setMinSize(80, 40);
 		moveRight.setMinSize(80, 40);
 		
-		moveUp.setOnAction(e -> movement(gameState, 0));
+		moveUp.setOnAction(e -> movement(state, 0));
 
-		moveDown.setOnAction(e -> movement(gameState, 1));
+		moveDown.setOnAction(e -> movement(state, 1));
 		
-		moveLeft.setOnAction(e -> movement(gameState, 2));
+		moveLeft.setOnAction(e -> movement(state, 2));
 		
-		moveRight.setOnAction(e -> movement(gameState, 3));
+		moveRight.setOnAction(e -> movement(state, 3));
 		
-		endTurn.setOnAction(e -> endTurn(gameState));
+		endTurn.setOnAction(e -> endTurn(state));
 		
 		gridpane.setVgap(7);
 		gridpane.setHgap(7);
@@ -120,11 +120,11 @@ public class MovementPane extends VBox{
 	}
 
 	/**Checks whether you can move and disables and enables the movement buttons accordingly.*/
-	public static void setButtons(GameState gameState) {
-		moveUp.setDisable(!gameState.getGameBoard()[gameState.playerY() - 1][gameState.playerX()].isTraversable());
-		moveDown.setDisable(!gameState.getGameBoard()[gameState.playerY() + 1][gameState.playerX()].isTraversable());
-		moveLeft.setDisable(!gameState.getGameBoard()[gameState.playerY()][gameState.playerX() - 1].isTraversable());
-		moveRight.setDisable(!gameState.getGameBoard()[gameState.playerY()][gameState.playerX() + 1].isTraversable());
+	public static void setButtons(State state) {
+		moveUp.setDisable(!state.getGameBoard()[state.playerY() - 1][state.playerX()].isTraversable());
+		moveDown.setDisable(!state.getGameBoard()[state.playerY() + 1][state.playerX()].isTraversable());
+		moveLeft.setDisable(!state.getGameBoard()[state.playerY()][state.playerX() - 1].isTraversable());
+		moveRight.setDisable(!state.getGameBoard()[state.playerY()][state.playerX() + 1].isTraversable());
 	}
 
 	/**

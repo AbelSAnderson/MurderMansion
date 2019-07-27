@@ -3,7 +3,7 @@ package Panes;
 import Enums.BackgroundColors;
 import Main.CreatePlayers;
 import Objects.Character;
-import Objects.GameState;
+import Objects.State;
 import Scenes.GameScene;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -33,7 +33,7 @@ public class CharacterSelectionPane extends HBox{
 	
 	private int playerNum = 1;	
 	
-	public CharacterSelectionPane(GameState gameState) {
+	public CharacterSelectionPane(State state) {
 				
 		Character[] playerChar = new Character[3];
 		
@@ -41,7 +41,7 @@ public class CharacterSelectionPane extends HBox{
 		VBox vbox = new VBox(30);
 		HBox imgHBox = new HBox();
 				
-		ArrayList<Character> characters = new ArrayList<>(Arrays.asList(gameState.getCharacters()));
+		ArrayList<Character> characters = new ArrayList<>(Arrays.asList(state.getCharacters()));
 
 		//Create a ListView, add the characters to it, and select a default value
 		ListView<String> characterList = new ListView<>();
@@ -76,11 +76,11 @@ public class CharacterSelectionPane extends HBox{
 							
 			if(playerNum > 3) {
 				//Call for the CreatePlayers method and give it the value for the players selected character
-				new CreatePlayers(gameState, playerChar);
+				new CreatePlayers(state, playerChar);
 				
-				gameState.getMainStage().setScene(new GameScene(gameState));
+				state.getMainStage().setScene(new GameScene(state));
 
-				displayTransition(gameState);
+				displayTransition(state);
 			}
 			characterList.getSelectionModel().selectFirst();
 			characterImg.setImage(characters.get(characterList.getSelectionModel().getSelectedIndex()).getImg());

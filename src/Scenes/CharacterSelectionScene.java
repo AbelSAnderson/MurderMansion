@@ -1,6 +1,6 @@
 package Scenes;
 
-import Objects.GameState;
+import Objects.State;
 import Panes.CharacterSelectionPane;
 import javafx.scene.Scene;
 
@@ -12,8 +12,8 @@ import javafx.scene.Scene;
  */
 
 public class CharacterSelectionScene extends Scene{
-	public CharacterSelectionScene(GameState gameState) {
-		super(new CharacterSelectionPane(gameState), gameState.getScreenWidth(), gameState.getScreenHeight());
+	public CharacterSelectionScene(State state) {
+		super(new CharacterSelectionPane(state), state.getScreenWidth(), state.getScreenHeight());
 		getStylesheets().add("CharacterSelectionStyle.css");
 	}
 }

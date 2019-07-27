@@ -2,7 +2,7 @@ package Panes;
 
 import Enums.BackgroundColors;
 import Enums.Fonts;
-import Objects.GameState;
+import Objects.State;
 import Scenes.MenuScene;
 import javafx.animation.*;
 import javafx.geometry.Insets;
@@ -56,7 +56,7 @@ public class IntroPane extends BorderPane {
 	private int indexCardRotationAngle = 0;
 	private boolean isSkipped = false;
 
-	public IntroPane(GameState gameState) {
+	public IntroPane(State state) {
 		final int IMAGE_BOX_HEIGHT = 300;
 
 		setBackground(BackgroundColors.BACKGROUND_DARK.getBackground());
@@ -119,7 +119,7 @@ public class IntroPane extends BorderPane {
 				letterFade2c.play();
 
 				if(!isSkipped) {
-					letterFade2c.setOnFinished(event3 -> gameState.getMainStage().setScene(new MenuScene(gameState)));
+					letterFade2c.setOnFinished(event3 -> state.getMainStage().setScene(new MenuScene(state)));
 				}
 
 			});
@@ -184,7 +184,7 @@ public class IntroPane extends BorderPane {
 				case 3: // Poison
 					cardTranslate.setFromX(-cardImagesViews[i].getFitWidth()*15);
 			}
-			if(i == 2) cardTranslate.setToX(gameState.getScreenWidth() + cardImagesViews[i-1].getFitWidth()*10); else cardTranslate.setToX(gameState.getScreenWidth() +  cardImagesViews[i].getFitWidth()*2);
+			if(i == 2) cardTranslate.setToX(state.getScreenWidth() + cardImagesViews[i-1].getFitWidth()*10); else cardTranslate.setToX(state.getScreenWidth() +  cardImagesViews[i].getFitWidth()*2);
 			cardTranslate.setCycleCount(1);
 			cardTranslate.setAutoReverse(false);
 			cardTranslate.play();
@@ -239,13 +239,13 @@ public class IntroPane extends BorderPane {
 		
 		setOnMouseClicked(event -> {
 			isSkipped = true;
-			gameState.getMainStage().setScene(new MenuScene(gameState));
+			state.getMainStage().setScene(new MenuScene(state));
 		});
 
 		// Play background theme music
-		gameState.setBackgroundMusic(new AudioClip(new File("src/Resources/Audio/theme.wav").toURI().toString()));
-		gameState.getBackgroundMusic().setCycleCount(1);
-		gameState.getBackgroundMusic().play();
+		state.setBackgroundMusic(new AudioClip(new File("src/Resources/Audio/theme.wav").toURI().toString()));
+		state.getBackgroundMusic().setCycleCount(1);
+		state.getBackgroundMusic().play();
 		
 		// Set up the Pane
 		setMargin(centerBox, new Insets(150));

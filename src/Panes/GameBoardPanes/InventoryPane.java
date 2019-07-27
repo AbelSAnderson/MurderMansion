@@ -1,6 +1,6 @@
 package Panes.GameBoardPanes;
 
-import Objects.GameState;
+import Objects.State;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
@@ -23,18 +23,18 @@ import javafx.scene.layout.VBox;
 
 public class InventoryPane extends VBox{
 	
-	public InventoryPane(GameState gameState, boolean isTransition) {
+	public InventoryPane(State state, boolean isTransition) {
 
 		ImageView cardImg;
 
 		for (int i = 0; i < 2; i++) {
 			HBox cardBox = new HBox(10);
 
-			for(int z = i * 3; z < gameState.currentPlayer().getCards().length; z++) {
+			for(int z = i * 3; z < state.currentPlayer().getCards().length; z++) {
 				if(isTransition) {
 					cardImg = new ImageView(new Image("/Resources/Images/CardBack.jpg"));
 				} else {
-					cardImg = new ImageView(gameState.currentPlayer().getCards()[z].getImg());
+					cardImg = new ImageView(state.currentPlayer().getCards()[z].getImg());
 				}
 				cardImg.setFitHeight(168 * 1.2);
 				cardImg.setFitWidth(120 * 1.2);

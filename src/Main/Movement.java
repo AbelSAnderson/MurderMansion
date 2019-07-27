@@ -1,6 +1,6 @@
 package Main;
 
-import Objects.GameState;
+import Objects.State;
 import Objects.Tile;
 import javafx.scene.layout.GridPane;
 import javafx.scene.media.MediaPlayer;
@@ -24,68 +24,68 @@ public class Movement {
 	static int blockedY;
 
 	/**Plays Sound Effects when a Player enters a Room.*/
-	private static void entryMusic(GameState gameState) {
-		MediaPlayer clipMusicPlayer1 = new MediaPlayer(gameState.currentPlayer().getRoom().getEntryDoorAudio()[0]);
+	private static void entryMusic(State state) {
+		MediaPlayer clipMusicPlayer1 = new MediaPlayer(state.currentPlayer().getRoom().getEntryDoorAudio()[0]);
 		clipMusicPlayer1.setVolume(0.1);
 		clipMusicPlayer1.play();
 
-		MediaPlayer clipMusicPlayer2 = new MediaPlayer(gameState.currentPlayer().getRoom().getEntryDoorAudio()[1]);
+		MediaPlayer clipMusicPlayer2 = new MediaPlayer(state.currentPlayer().getRoom().getEntryDoorAudio()[1]);
 		clipMusicPlayer2.play();
 
 		clipMusicPlayer1.setOnEndOfMedia(() -> {
-			MediaPlayer clipMusicPlayer3 = new MediaPlayer(gameState.currentPlayer().getRoom().getEntryAudio());
+			MediaPlayer clipMusicPlayer3 = new MediaPlayer(state.currentPlayer().getRoom().getEntryAudio());
 			clipMusicPlayer3.play();
 		});
 	}
 
 	/**Places Current Player into a Room.*/
-	public static void placeInRoom(GameState gameState) {
+	public static void placeInRoom(State state) {
 		disableGuessClicks(false);
 
-		gameState.currentLocation().setTraversable(true);
-		gameState.currentPlayer().setRoom(gameState.getRooms()[gameState.currentLocation().getRoomNum()-2]);
+		state.currentLocation().setTraversable(true);
+		state.currentPlayer().setRoom(state.getRooms()[state.currentLocation().getRoomNum()-2]);
 
-		dialogue.appendText(gameState.currentPlayer().getCharacter().getName() + " entered the " + gameState.currentPlayer().getRoom().getName() + "\n");
+		dialogue.appendText(state.currentPlayer().getCharacter().getName() + " entered the " + state.currentPlayer().getRoom().getName() + "\n");
 
-		int newX = gameState.currentLocation().getMoveCharacterX();
-		int newY = gameState.currentLocation().getMoveCharacterY();
+		int newX = state.currentLocation().getMoveCharacterX();
+		int newY = state.currentLocation().getMoveCharacterY();
 		
-		gameState.currentPlayer().setCurrentCoordX(newX);
-		gameState.currentPlayer().setCurrentCoordY(newY);
+		state.currentPlayer().setCurrentCoordX(newX);
+		state.currentPlayer().setCurrentCoordY(newY);
 		
-		while(gameState.currentLocation().hasPlayer()) {
+		while(state.currentLocation().hasPlayer()) {
 			newX++;
-			gameState.currentPlayer().setCurrentCoordX(newX);
-			gameState.currentPlayer().setCurrentCoordY(newY);
+			state.currentPlayer().setCurrentCoordX(newX);
+			state.currentPlayer().setCurrentCoordY(newY);
 		}
 
-		gameState.currentLocation().setHasPlayer(true);
+		state.currentLocation().setHasPlayer(true);
 		
-		GridPane.setColumnIndex(gameState.currentPlayer().getPiece(), gameState.playerX());
-		GridPane.setRowIndex(gameState.currentPlayer().getPiece(), gameState.playerY());
+		GridPane.setColumnIndex(state.currentPlayer().getPiece(), state.playerX());
+		GridPane.setRowIndex(state.currentPlayer().getPiece(), state.playerY());
 
-		entryMusic(gameState);
+		entryMusic(state);
 	}
 
 	/**Places the Current Player at the entrance of the Room they are in.*/
-	static void placeEntranceRoom(GameState gameState) {
-		Tile boardPosition = gameState.currentLocation();
+	static void placeEntranceRoom(State state) {
+		Tile boardPosition = state.currentLocation();
 		
-		if(!gameState.currentLocation().isTraversable()) {
-			MediaPlayer exitSound = new MediaPlayer(gameState.currentPlayer().getRoom().getExitAudio());
+		if(!state.currentLocation().isTraversable()) {
+			MediaPlayer exitSound = new MediaPlayer(state.currentPlayer().getRoom().getExitAudio());
 			exitSound.play();
 			
-			gameState.currentLocation().setHasPlayer(false);
-			gameState.currentPlayer().setCurrentCoordX(boardPosition.getMoveCharacterX());
-			gameState.currentPlayer().setCurrentCoordY(boardPosition.getMoveCharacterY());
+			state.currentLocation().setHasPlayer(false);
+			state.currentPlayer().setCurrentCoordX(boardPosition.getMoveCharacterX());
+			state.currentPlayer().setCurrentCoordY(boardPosition.getMoveCharacterY());
 			
-			gameState.currentLocation().setTraversable(false);
-			blockedX = gameState.playerX();
-			blockedY = gameState.playerY();
+			state.currentLocation().setTraversable(false);
+			blockedX = state.playerX();
+			blockedY = state.playerY();
 			
-			GridPane.setColumnIndex(gameState.currentPlayer().getPiece(), gameState.playerX());
-			GridPane.setRowIndex(gameState.currentPlayer().getPiece(), gameState.playerY());
-			setButtons(gameState);
+			GridPane.setColumnIndex(state.currentPlayer().getPiece(), state.playerX());
+			GridPane.setRowIndex(state.currentPlayer().getPiece(), state.playerY());
+			setButtons(state);
 		}
 	}
 }

@@ -3,7 +3,7 @@ package Panes;
 import Enums.BackgroundColors;
 import Objects.Card;
 import Enums.Fonts;
-import Objects.GameState;
+import Objects.State;
 import Scenes.HighScoreScene;
 import javafx.animation.FadeTransition;
 import javafx.animation.ParallelTransition;
@@ -26,17 +26,17 @@ public class EndGamePane extends BorderPane {
 	
 	public static TextField realNameInput;
 	
-	public EndGamePane(GameState gameState) {
+	public EndGamePane(State state) {
 		
 		VBox textsVBox = new VBox(20);
         HBox centerHBox = new HBox(50);
 		HBox winningCards = new HBox(20);
 				
-		Text playerName = new Text(gameState.currentPlayer().getCharacter().getName());
+		Text playerName = new Text(state.currentPlayer().getCharacter().getName());
 		playerName.setFont(Fonts.BLANK_FONT.FellCursive(getClass(), 65));
 		playerName.setFill(Color.WHITE);
 		
-		ImageView playerImg = new ImageView(gameState.currentPlayer().getCharacter().getImg());
+		ImageView playerImg = new ImageView(state.currentPlayer().getCharacter().getImg());
 		playerImg.setFitWidth(250);
 		playerImg.setFitHeight(350);
 		
@@ -44,7 +44,7 @@ public class EndGamePane extends BorderPane {
 		winningText.setFont(Fonts.BLANK_FONT.FellCursive(getClass(), 40));
 		winningText.setFill(Color.WHITE);
 		
-		if(gameState.getCaseFile()[0].getName().equals(gameState.currentPlayer().getCharacter().getName())) winningText.setText("You got away with it!");
+		if(state.getCaseFile()[0].getName().equals(state.currentPlayer().getCharacter().getName())) winningText.setText("You got away with it!");
 
 		realNameInput = new TextField("Please enter your name");
 		realNameInput.setAlignment(Pos.CENTER);
@@ -55,9 +55,9 @@ public class EndGamePane extends BorderPane {
 		submitButton.getStyleClass().add("selectButton");
 		
 		submitButton.setOnAction(e -> {
-			saveScore(gameState);
-			gameState.getMainStage().setScene(new HighScoreScene(gameState));
-			resetGame(gameState);
+			saveScore(state);
+			state.getMainStage().setScene(new HighScoreScene(state));
+			resetGame(state);
 		});
 		
 		setBackground(BackgroundColors.BACKGROUND_DARK.getBackground());
@@ -114,7 +114,7 @@ public class EndGamePane extends BorderPane {
             firstWordBox.getChildren().add(elementLetter);
         }
 
-        for (Card card : gameState.getCaseFile()) {
+        for (Card card : state.getCaseFile()) {
             ImageView fileCard = new ImageView(card.getImg());
 
             fileCard.setFitHeight(168 * 1.2);

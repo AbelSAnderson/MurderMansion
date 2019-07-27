@@ -42,18 +42,18 @@ import static Panes.MainGamePane.*;
 public class Constants {
 
     /**Resets all Game Variables after winning or returning to the main menu.*/
-    public static void resetGame(GameState gameState) {
+    public static void resetGame(State state) {
         leftContainer.getChildren().remove(guessSheet);
-        guessSheet = new GuessSheetPane(gameState, true);
+        guessSheet = new GuessSheetPane(state, true);
 
         leftContainer.getChildren().remove(inventory);
-        inventory = new InventoryPane(gameState, true);
+        inventory = new InventoryPane(state, true);
 
         leftContainer.getChildren().addAll(guessSheet,inventory);
 
-        gameState.getPlayers().clear();
+        state.getPlayers().clear();
         comboBoxes.clear();
-        gameState.getBackgroundMusic().stop();
+        state.getBackgroundMusic().stop();
         pauseStage.close();
     }
 }

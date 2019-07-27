@@ -1,6 +1,6 @@
 package Scenes;
 
-import Objects.GameState;
+import Objects.State;
 import Panes.MenuPane;
 import javafx.scene.Scene;
 
@@ -13,8 +13,8 @@ import javafx.scene.Scene;
 
 public class MenuScene extends Scene {
 
-    public MenuScene(GameState gameState) {
-        super(new MenuPane(gameState), gameState.getScreenWidth(), gameState.getScreenHeight());
+    public MenuScene(State state) {
+        super(new MenuPane(state), state.getScreenWidth(), state.getScreenHeight());
         getStylesheets().add("MenuStyle.css");
     }
 }

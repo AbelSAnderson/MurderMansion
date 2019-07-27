@@ -2,7 +2,7 @@ package Panes;
 
 import Enums.BackgroundColors;
 import Enums.Fonts;
-import Objects.GameState;
+import Objects.State;
 import Scenes.MenuScene;
 import javafx.animation.FadeTransition;
 import javafx.animation.ParallelTransition;
@@ -38,7 +38,7 @@ public class CreditsPane extends StackPane {
 
 	private boolean isSkipped = false;
 	
-	public CreditsPane(GameState gameState) {
+	public CreditsPane(State state) {
 
 		setBackground(BackgroundColors.BACKGROUND_DARK.getBackground());
 
@@ -89,7 +89,7 @@ public class CreditsPane extends StackPane {
 				letterFade2c.setCycleCount(1);
 				letterFade2c.play();
 
-				if(!isSkipped) letterFade2c.setOnFinished(event3 -> gameState.getMainStage().setScene(new MenuScene(gameState)));
+				if(!isSkipped) letterFade2c.setOnFinished(event3 -> state.getMainStage().setScene(new MenuScene(state)));
 			});
 		});
 
@@ -185,8 +185,8 @@ public class CreditsPane extends StackPane {
 			text.setFill(Color.GREY);
 
 			TranslateTransition creditsAnimation = new TranslateTransition(Duration.millis(25000), text);
-			creditsAnimation.setFromY(gameState.getScreenHeight() * 2 + 500);    // scroll up into the screen
-			creditsAnimation.setByY(-gameState.getScreenHeight() * 5 - 100);  // scroll up offscreen
+			creditsAnimation.setFromY(state.getScreenHeight() * 2 + 500);    // scroll up into the screen
+			creditsAnimation.setByY(-state.getScreenHeight() * 5 - 100);  // scroll up offscreen
 			creditsAnimation.setByZ(1);
 			creditsAnimation.setCycleCount(1);
 			creditsAnimation.setAutoReverse(false);
@@ -200,14 +200,14 @@ public class CreditsPane extends StackPane {
 	
 		setOnMouseClicked(event -> {
 			isSkipped = true;
-			gameState.getMainStage().setScene(new MenuScene(gameState));
+			state.getMainStage().setScene(new MenuScene(state));
 		});
 
 		// Play background theme music
-		if(gameState.getBackgroundMusic().isPlaying()) gameState.getBackgroundMusic().stop();
-		gameState.setBackgroundMusic(new AudioClip(new File("src/Resources/Audio/theme.wav").toURI().toString()));
-		gameState.getBackgroundMusic().setCycleCount(1);
-		gameState.getBackgroundMusic().play();
+		if(state.getBackgroundMusic().isPlaying()) state.getBackgroundMusic().stop();
+		state.setBackgroundMusic(new AudioClip(new File("src/Resources/Audio/theme.wav").toURI().toString()));
+		state.getBackgroundMusic().setCycleCount(1);
+		state.getBackgroundMusic().play();
 
 		// Set up the Pane
 		getChildren().addAll(secondWordBox, firstWordBox); // in StackPane last child has priority
