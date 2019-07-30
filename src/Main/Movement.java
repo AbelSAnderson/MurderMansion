@@ -39,8 +39,7 @@ public class Movement {
 	}
 
 	/**Places Current Player into a Room.*/
-	public static void placeInRoom(State state) {
-		GameState gameState = state.getCurrentGame();
+	public static void placeInRoom(GameState gameState) {
 		disableGuessClicks(false);
 
 		gameState.currentLocation().setTraversable(true);

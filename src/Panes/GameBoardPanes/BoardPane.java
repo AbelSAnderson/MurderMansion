@@ -78,10 +78,7 @@ public class BoardPane extends StackPane{
 	 * Moves the Player's token on the Gameboard.
 	 * @param direction The direction the token is moving.
 	 */
-	static void movement(State state, int direction) {
-
-		GameState gameState = state.getCurrentGame();
-
+	static void movement(GameState gameState, int direction) {
 		Tile newBoardPosition;
 		
 		if(gameState.currentPlayer().getRollsLeft() > 0) {
@@ -115,19 +112,16 @@ public class BoardPane extends StackPane{
 				break;
 			}
 
-			setMoves(state);
+			setMoves(gameState);
 		}
 	}
 
 	/**Sets the Current Player's Moves left.*/
-	private static void setMoves(State state) {
-
-		GameState gameState = state.getCurrentGame();
-
+	private static void setMoves(GameState gameState) {
 		gameState.currentPlayer().setRollsLeft(gameState.currentPlayer().getRollsLeft() - 1);
 
 		if(gameState.currentLocation().getRoomNum() != -1) {
-			placeInRoom(state);
+			placeInRoom(gameState);
 			MovementPane.rollsText.setText("0");
 		} else {
 			if(gameState.currentPlayer().getRollsLeft() > 0) {

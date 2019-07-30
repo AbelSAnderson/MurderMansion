@@ -33,10 +33,12 @@ public class PausePane extends VBox {
 		
 		yesButton.setOnAction(e -> {
 			state.getMainStage().setScene(new MenuScene(state));
-			//resetGame(state);
+			pauseStage.close();
 		});
 		
 		noButton.setOnAction(e -> pauseStage.close());
+
+		state.getMainStage().setOnCloseRequest(e -> pauseStage.close());
 		
 		answersHBox.getChildren().addAll(yesButton, noButton);
 		

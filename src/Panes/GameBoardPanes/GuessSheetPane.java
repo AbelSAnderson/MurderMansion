@@ -4,7 +4,6 @@ import Enums.Cards;
 import Enums.Fonts;
 import Objects.Card;
 import Objects.GameState;
-import Objects.State;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -36,9 +35,7 @@ public class GuessSheetPane extends HBox{
 	
 private int grid;
 
-	public GuessSheetPane(State state, boolean isTransition) {
-
-		GameState gameState = state.getCurrentGame();
+	public GuessSheetPane(GameState gameState, boolean isTransition) {
 		
 		// create array for type of category (same code as CreatePlayers)
 		List[] categoryArray = {new ArrayList<>(Arrays.asList(Cards.CHARACTERS.getCards())), new ArrayList<>(Arrays.asList(Cards.WEAPONS.getCards())), new ArrayList<>(Arrays.asList(Cards.ROOMS.getCards()))};
@@ -71,7 +68,7 @@ private int grid;
 
 				// add item images for the checkboxes
 				ImageView temp;
-				if(isTransition || state.getCurrentGame().currentPlayer().getGuessSheet().getCheckedBox()[indexList][indexItems] == 0) {
+				if(isTransition || gameState.currentPlayer().getGuessSheet().getCheckedBox()[indexList][indexItems] == 0) {
 					temp=new ImageView(new Image("/Resources/Images/checkUnmark.jpg"));
 				}
 				else {

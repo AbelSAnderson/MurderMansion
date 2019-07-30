@@ -100,13 +100,13 @@ public class MovementPane extends VBox{
 		moveLeft.setMinSize(80, 40);
 		moveRight.setMinSize(80, 40);
 		
-		moveUp.setOnAction(e -> movement(state, 0));
+		moveUp.setOnAction(e -> movement(gameState, 0));
 
-		moveDown.setOnAction(e -> movement(state, 1));
+		moveDown.setOnAction(e -> movement(gameState, 1));
 		
-		moveLeft.setOnAction(e -> movement(state, 2));
+		moveLeft.setOnAction(e -> movement(gameState, 2));
 		
-		moveRight.setOnAction(e -> movement(state, 3));
+		moveRight.setOnAction(e -> movement(gameState, 3));
 		
 		endTurn.setOnAction(e -> endTurn(state));
 		
