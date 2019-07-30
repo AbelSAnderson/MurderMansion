@@ -53,7 +53,7 @@ public class BoardPane extends StackPane{
 				gridpane.add(rect, columns, rows);	
 			}
 		}
-		placePlayerStart(state.getCurrentGame(), gridpane);
+		placePlayerStart(state, gridpane);
 		
 		//Start background music
 		if(state.getBackgroundMusic().isPlaying()) state.getBackgroundMusic().stop();
@@ -68,8 +68,8 @@ public class BoardPane extends StackPane{
 	 * Places each Player's token on the Gameboard.
 	 * @param gridPane The Gameboard where the Player's tokens are positioned.
 	 */
-	private void placePlayerStart(GameState gameState, GridPane gridPane) {
-		for ( Player player : gameState.getPlayers()) {
+	private void placePlayerStart(State state, GridPane gridPane) {
+		for (Player player : state.getCurrentGame().getPlayers()) {
 			gridPane.add(player.getPiece(), player.getCharacter().getStartX(), player.getCharacter().getStartY());
 		}
 	}
@@ -78,7 +78,10 @@ public class BoardPane extends StackPane{
 	 * Moves the Player's token on the Gameboard.
 	 * @param direction The direction the token is moving.
 	 */
-	static void movement(GameState gameState, int direction) {
+	static void movement(State state, int direction) {
+
+		GameState gameState = state.getCurrentGame();
+
 		Tile newBoardPosition;
 		
 		if(gameState.currentPlayer().getRollsLeft() > 0) {
@@ -112,12 +115,15 @@ public class BoardPane extends StackPane{
 				break;
 			}
 
-			setMoves(gameState);
+			setMoves(state);
 		}
 	}
 
 	/**Sets the Current Player's Moves left.*/
-	private static void setMoves(GameState gameState) {
+	private static void setMoves(State state) {
+
+		GameState gameState = state.getCurrentGame();
+
 		gameState.currentPlayer().setRollsLeft(gameState.currentPlayer().getRollsLeft() - 1);
 
 		if(gameState.currentLocation().getRoomNum() != -1) {

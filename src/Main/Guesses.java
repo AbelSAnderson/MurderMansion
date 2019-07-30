@@ -52,7 +52,9 @@ public class Guesses {
 	}
 
 	/**Checks whether players have any of the cards suggested.*/
-	public static void checkCards(GameState gameState) {
+	public static void checkCards(State state) {
+
+		GameState gameState = state.getCurrentGame();
 		
 		gameState.currentPlayer().setScore(gameState.currentPlayer().getScore() - 36);
 		scoreNumber.setText(gameState.currentPlayer().getScore() + "");

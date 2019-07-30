@@ -57,7 +57,7 @@ public class EndGamePane extends BorderPane {
 		submitButton.getStyleClass().add("selectButton");
 		
 		submitButton.setOnAction(e -> {
-			saveScore(gameState);
+			saveScore(state);
 			state.getMainStage().setScene(new HighScoreScene(state));
 		});
 		

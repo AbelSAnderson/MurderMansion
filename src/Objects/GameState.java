@@ -1,16 +1,20 @@
 package Objects;
 
+import Scenes.GameScene;
+
 public class GameState {
 
     //Properties
     private Tile[][] gameBoard;
+    private GameScene gameScene;
     private Player[] players;
     private Card[] caseFile;
     private int currentPlayer;
 
     //Constructor
-    public GameState(Tile[][] gameBoard, Player[] players, Card[] caseFile) {
+    public GameState(Tile[][] gameBoard, GameScene gameScene, Player[] players, Card[] caseFile) {
         this.gameBoard = gameBoard;
+        this.gameScene = gameScene;
         this.players = players;
         this.caseFile = caseFile;
         currentPlayer = 0;
@@ -37,6 +41,14 @@ public class GameState {
 
     public void setGameBoard(Tile[][] gameBoard) {
         this.gameBoard = gameBoard;
+    }
+
+    public GameScene getGameScene() {
+        return gameScene;
+    }
+
+    public void setGameScene(GameScene gameScene) {
+        this.gameScene = gameScene;
     }
 
     public Player[] getPlayers() {

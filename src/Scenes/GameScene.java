@@ -12,9 +12,16 @@ import javafx.scene.Scene;
  */
 
 public class GameScene extends Scene{
+
+	public MainGamePane gamePane;
 	
 	public GameScene(State state) {
 		super(new MainGamePane(state), state.getScreenWidth(), state.getScreenHeight());
+
+		//Reset the Root so the pane is accessible
+		gamePane = new MainGamePane(state);
+		setRoot(gamePane);
+
 		getStylesheets().add("MainGameStyle.css");
 	}
 }

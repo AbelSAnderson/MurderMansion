@@ -48,7 +48,7 @@ public class GuessesPane extends VBox{
 		
 		suggestion.setOnAction(e -> {
 			if(comboBoxes.get(2).getSelectionModel().getSelectedIndex() == state.getCurrentGame().currentLocation().getRoomNum() - 2) {
-				checkCards(state.getCurrentGame());
+				checkCards(state);
 				Turn.disableGuessClicks(true);
 			}
 			else {

@@ -21,7 +21,6 @@ public class State {
     private Tile[][] originalGameBoard; //DO NOT modify this gameboard.
 
     private GameState currentGame;
-    private GameScene currentGameScene;
 
     //Constructor
     public State(Stage mainStage) {
@@ -39,10 +38,9 @@ public class State {
 
         Player[] players = createPlayers(characters, masterList);
 
-        currentGame = new GameState(originalGameBoard.clone(), players, caseFile);
+        currentGame = new GameState(originalGameBoard.clone(), new GameScene(this), players, caseFile);
 
-        currentGameScene = new GameScene(this);
-        mainStage.setScene(currentGameScene);
+        mainStage.setScene(currentGame.getGameScene());
     }
 
     private Player[] createPlayers(Character[] playerSelection, ArrayList<Card> masterList) {
@@ -249,14 +247,6 @@ public class State {
 
     public void setCurrentGame(GameState currentGame) {
         this.currentGame = currentGame;
-    }
-
-    public GameScene getCurrentGameScene() {
-        return currentGameScene;
-    }
-
-    public void setCurrentGameScene(GameScene currentGameScene) {
-        this.currentGameScene = currentGameScene;
     }
 
     public Tile[][] getOriginalGameBoard() {

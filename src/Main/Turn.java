@@ -51,17 +51,17 @@ public class Turn {
 		scoreNumber.setText("" + gameState.currentPlayer().getScore());
 		rollsText.setText("0");
 
-		switchPlayerUI(gameState);
+		switchPlayerUI(state);
 		displayTransition(state);
 	}
 
 	/**Switches the Player's UI when Changing Players.*/
-	private static void switchPlayerUI(GameState gameState) {
+	private static void switchPlayerUI(State state) {
 		leftContainer.getChildren().remove(guessSheet);
-		guessSheet = new GuessSheetPane(gameState, true);
+		guessSheet = new GuessSheetPane(state, true);
 
 		leftContainer.getChildren().remove(inventory);
-		inventory = new InventoryPane(gameState, true);
+		inventory = new InventoryPane(state, true);
 
 		leftContainer.getChildren().addAll(guessSheet, inventory);
 	}
@@ -78,17 +78,19 @@ public class Turn {
 		transitionStage.show();
 
 		state.getMainStage().setOnCloseRequest(e -> transitionStage.close());
-		transitionStage.setOnCloseRequest(e -> startTurn(state.getCurrentGame()));
+		transitionStage.setOnCloseRequest(e -> startTurn(state));
 	}
 
 	/**Starts the Next Player's Turn.*/
-	public static void startTurn(GameState gameState) {
+	public static void startTurn(State state) {
+
+		GameState gameState = state.getCurrentGame();
 
 		leftContainer.getChildren().remove(guessSheet);
-		guessSheet = new GuessSheetPane(gameState, false);
+		guessSheet = new GuessSheetPane(state, false);
 
 		leftContainer.getChildren().remove(inventory);
-		inventory = new InventoryPane(gameState, false);
+		inventory = new InventoryPane(state, false);
 
 		leftContainer.getChildren().addAll(guessSheet,inventory);
 
