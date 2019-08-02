@@ -37,7 +37,6 @@ public class GuessSheetPane extends HBox{
 private int grid;
 
 	public GuessSheetPane(State state, boolean isTransition) {
-
 		GameState gameState = state.getCurrentGame();
 		
 		// create array for type of category (same code as CreatePlayers)

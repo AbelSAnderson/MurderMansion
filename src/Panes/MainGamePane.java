@@ -12,31 +12,45 @@ import javafx.scene.layout.*;
  * Description - This file is for the main game that gathers all the panes into a BorderPane
  */
 
-public class MainGamePane extends BorderPane{
-	
-	public static VBox leftContainer;
-	public static GuessSheetPane guessSheet;
-	public static InventoryPane inventory;
+public class MainGamePane extends BorderPane {
 
-	public MainGamePane(State state) {
-		guessSheet = new GuessSheetPane(state,true);
-		inventory = new InventoryPane(state, true);
+    public BoardPane boardPane;
+    public ScorePane scorePane;
+    public GuessSheetPane guessSheet;
+    public InventoryPane inventory;
+    public DialoguePane dialoguePane;
+    public GuessesPane guessesPane;
+    public MovementPane movementPane;
+    public VBox leftContainer;
 
-		HBox board = new HBox();
-		board.getChildren().add(new BoardPane(state));
-		board.setAlignment(Pos.CENTER);
-		
-		leftContainer = new VBox(60);
-		leftContainer.getChildren().addAll(new Score(), guessSheet, inventory);
-		leftContainer.setAlignment(Pos.CENTER);
-		
-		VBox rightContainer = new VBox(30);
-		rightContainer.getChildren().addAll(new DialoguePane(state), new GuessesPane(state), new MovementPane(state));
-		
-		setCenter(board);
-		setLeft(leftContainer);
-		setRight(rightContainer);
-		
-		setBackground(BackgroundColors.BACKGROUND_DARK.getBackground());
-	}
+    public MainGamePane(State state) {
+        boardPane = new BoardPane(state);
+
+        HBox board = new HBox();
+        board.getChildren().add(boardPane);
+        board.setAlignment(Pos.CENTER);
+
+        leftContainer = new VBox(60);
+
+        scorePane = new ScorePane();
+        guessSheet = new GuessSheetPane(state, true);
+        inventory = new InventoryPane(state, true);
+
+        leftContainer.getChildren().addAll(scorePane, guessSheet, inventory);
+        leftContainer.setAlignment(Pos.CENTER);
+
+        VBox rightContainer = new VBox(30);
+
+        dialoguePane = new DialoguePane(state);
+        guessesPane = new GuessesPane(state);
+        movementPane = new MovementPane(state);
+
+        rightContainer.getChildren().addAll(dialoguePane, guessesPane, movementPane);
+
+        setCenter(board);
+        setLeft(leftContainer);
+        setRight(rightContainer);
+
+        setBackground(BackgroundColors.BACKGROUND_DARK.getBackground());
+    }
 }

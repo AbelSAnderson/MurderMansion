@@ -14,41 +14,41 @@ import javafx.scene.layout.VBox;
  * Created - 12/03/2019
  * Note - This file has temporary items that will be removed
  * Description - This file is for the inventory (The 6 cards the player holds)
- * 
+ * <p>
  * Changed - 18/03/2019 - Hasan
  * Description - Added the 6 random cards that will appear on the screen as the inventory
- *
+ * <p>
  * Changed - 30/03/2019 - Abel
  * Description - Fixed sizing of cards and Removed Function
  */
 
-public class InventoryPane extends VBox{
-	
-	public InventoryPane(State state, boolean isTransition) {
+public class InventoryPane extends VBox {
 
-		GameState gameState = state.getCurrentGame();
+    public InventoryPane(State state, boolean isTransition) {
 
-		ImageView cardImg;
+        GameState gameState = state.getCurrentGame();
 
-		for (int i = 0; i < 2; i++) {
-			HBox cardBox = new HBox(10);
+        ImageView cardImg;
 
-			for(int z = i * 3; z < gameState.currentPlayer().getCards().length; z++) {
-				if(isTransition) {
-					cardImg = new ImageView(new Image("/Resources/Images/CardBack.jpg"));
-				} else {
-					cardImg = new ImageView(gameState.currentPlayer().getCards()[z].getImg());
-				}
-				cardImg.setFitHeight(168 * 1.2);
-				cardImg.setFitWidth(120 * 1.2);
-				cardBox.getChildren().addAll(cardImg);
-				if(z == 2) break;
-			}
-			getChildren().add(cardBox);
-		}
+        for (int i = 0; i < 2; i++) {
+            HBox cardBox = new HBox(10);
 
-		setMargin(this, new Insets(10, 10, 10, 75));
-		setSpacing(15);
-		setAlignment(Pos.CENTER);
-	}
+            for (int z = i * 3; z < gameState.currentPlayer().getCards().length; z++) {
+                if (isTransition) {
+                    cardImg = new ImageView(new Image("/Resources/Images/CardBack.jpg"));
+                } else {
+                    cardImg = new ImageView(gameState.currentPlayer().getCards()[z].getImg());
+                }
+                cardImg.setFitHeight(168 * 1.2);
+                cardImg.setFitWidth(120 * 1.2);
+                cardBox.getChildren().addAll(cardImg);
+                if (z == 2) break;
+            }
+            getChildren().add(cardBox);
+        }
+
+        setMargin(this, new Insets(10, 10, 10, 75));
+        setSpacing(15);
+        setAlignment(Pos.CENTER);
+    }
 }

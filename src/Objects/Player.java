@@ -24,8 +24,8 @@ import javafx.scene.shape.Circle;
 public class Player {
 	
 	//Properties
-	private int currentCoordX;
-	private int currentCoordY;
+	private int xPos;
+	private int yPos;
 	private Card[] cards;
 	private Character character;
 	private GuessSheet guessSheet;
@@ -65,20 +65,20 @@ public class Player {
 	}
 
 	//Getters and Setters
-	public int getCurrentCoordX() {
-		return currentCoordX;
+	public int getXPos() {
+		return xPos;
 	}
 
-	public void setCurrentCoordX(int currentCoordX) {
-		this.currentCoordX = currentCoordX;
+	public void setXPos(int xPos) {
+		this.xPos = xPos;
 	}
 
-	public int getCurrentCoordY() {
-		return currentCoordY;
+	public int getYPos() {
+		return yPos;
 	}
 
-	public void setCurrentCoordY(int currentCoordY) {
-		this.currentCoordY = currentCoordY;
+	public void setYPos(int yPos) {
+		this.yPos = yPos;
 	}
 
 	public Card[] getCards() {

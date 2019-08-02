@@ -19,7 +19,7 @@ import javafx.stage.StageStyle;
 
 public class DialoguePane extends VBox{
 	
-	public static TextArea dialogue;
+	public TextArea dialogue;
 	public static Stage pauseStage;
 	
 	public DialoguePane(State state) {

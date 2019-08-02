@@ -1,7 +1,6 @@
 package Panes.GameBoardPanes;
 
 import Enums.Fonts;
-import Objects.GameState;
 import Objects.State;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -21,11 +20,11 @@ import static Panes.EndGamePane.realNameInput;
  * Description - This file is for the user's score
  */
 
-public class Score extends HBox{
+public class ScorePane extends HBox{
 	
-	public static Text scoreNumber;
+	public Text scoreNumber;
 	
-	public Score() {
+	public ScorePane() {
 	
 		scoreNumber = new Text("1044");
 		scoreNumber.setFont(Fonts.NUMBER_FONT.getFont());

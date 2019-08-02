@@ -20,7 +20,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
-import static Panes.GameBoardPanes.Score.saveScore;
+import static Panes.GameBoardPanes.ScorePane.saveScore;
 
 public class EndGamePane extends BorderPane {
 	

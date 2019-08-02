@@ -33,14 +33,25 @@ public class State {
 
     //Methods
     public void createGameState(Character[] characters) {
-        ArrayList<Card> masterList = new ArrayList<>();
-        Card[] caseFile = createCaseFile(masterList);
 
+        //Instantiate MasterList for the Cards
+        ArrayList<Card> masterList = new ArrayList<>();
+
+        //Create CaseFile and Players
+        Card[] caseFile = createCaseFile(masterList);
         Player[] players = createPlayers(characters, masterList);
 
-        currentGame = new GameState(originalGameBoard.clone(), new GameScene(this), players, caseFile);
+        //Create the Game Instance
+        currentGame = new GameState(mainStage, originalGameBoard.clone(), players, caseFile);
 
-        mainStage.setScene(currentGame.getGameScene());
+        //Create the GameScene
+        GameScene gameScene = new GameScene(this);
+
+        //Add the GameScene to the Game Instance
+        currentGame.setGamePane(gameScene.gamePane);
+
+        //Set the Scene
+        mainStage.setScene(gameScene);
     }
 
     private Player[] createPlayers(Character[] playerSelection, ArrayList<Card> masterList) {
@@ -66,8 +77,8 @@ public class State {
         //Create and Set Players
         for (int i = 0; i < playerList.size(); i++) {
             players[i] = new Player(playerCards[i], (Character) playerList.get(i));
-            players[i].setCurrentCoordX(players[i].getCharacter().getStartX());
-            players[i].setCurrentCoordY(players[i].getCharacter().getStartY());
+            players[i].setXPos(players[i].getCharacter().getStartX());
+            players[i].setYPos(players[i].getCharacter().getStartY());
         }
 
         return players;
@@ -98,9 +109,9 @@ public class State {
     }
 
     /**
+     * @return 2-D array that holds three sets of six cards for each Player.
      * @author Hasan
      * @since 16/03/2019
-     * @return 2-D array that holds three sets of six cards for each Player.
      */
     private Card[][] createPlayerCards(ArrayList<Card> masterList, int playerNumber) {
 
@@ -116,8 +127,8 @@ public class State {
         //Give each player a different set of cards
         for (int i = 0; i < playersCards.length; i++) {
             playersCards[i] = new Card[cardAmount];
-            for(int j = 0; j < playersCards[i].length; j++) {
-                playersCards[i][j] = masterList.get(j + cardAmount*i);
+            for (int j = 0; j < playersCards[i].length; j++) {
+                playersCards[i][j] = masterList.get(j + cardAmount * i);
             }
         }
 
@@ -147,39 +158,39 @@ public class State {
         */
 
         final int[][] GAMEBOARD = {
-            {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-            {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-            {1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1},
-            {1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1},
-            {1,1,1,1,1,1,1,0,0,1,1,1,2,2,2,1,1,0,0,1,1,3,3,3,1,1},
-            {1,1,1,10,10,10,1,0,0,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1},
-            {1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,0,0,0,3,1,1,1,1,1},
-            {1,1,1,1,1,10,1,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1},
-            {1,1,0,0,0,0,0,0,0,1,1,1,2,1,1,1,1,0,0,0,0,0,0,0,1,1},
-            {1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1},
-            {1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1},
-            {1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,0,0,0,4,1,4,4,4,1,1},
-            {1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1},
-            {1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1},
-            {1,1,1,9,9,9,1,1,1,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1},
-            {1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1},
-            {1,1,1,1,1,1,1,9,1,0,0,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1},
-            {1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,5,1,1,5,5,5,1,1},
-            {1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1},
-            {1,1,0,0,0,0,0,0,0,0,1,1,1,7,1,1,0,0,0,1,1,1,1,1,1,1},
-            {1,1,1,1,1,1,1,8,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1},
-            {1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1},
-            {1,1,1,8,8,8,1,1,0,0,1,1,7,7,7,1,0,0,6,1,1,1,1,1,1,1},
-            {1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,0,0,1,1,1,6,6,6,1,1},
-            {1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1},
-            {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-            {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
+                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+                {1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1},
+                {1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1},
+                {1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 2, 2, 2, 1, 1, 0, 0, 1, 1, 3, 3, 3, 1, 1},
+                {1, 1, 1, 10, 10, 10, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1},
+                {1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 3, 1, 1, 1, 1, 1},
+                {1, 1, 1, 1, 1, 10, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1},
+                {1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 2, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1},
+                {1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1},
+                {1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1},
+                {1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 4, 1, 4, 4, 4, 1, 1},
+                {1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1},
+                {1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1},
+                {1, 1, 1, 9, 9, 9, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1},
+                {1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1},
+                {1, 1, 1, 1, 1, 1, 1, 9, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1},
+                {1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 5, 1, 1, 5, 5, 5, 1, 1},
+                {1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1},
+                {1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 7, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1},
+                {1, 1, 1, 1, 1, 1, 1, 8, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1},
+                {1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1},
+                {1, 1, 1, 8, 8, 8, 1, 1, 0, 0, 1, 1, 7, 7, 7, 1, 0, 0, 6, 1, 1, 1, 1, 1, 1, 1},
+                {1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 6, 6, 6, 1, 1},
+                {1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1},
+                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
         };
 
         Tile[][] tempGameBoard = new Tile[GAMEBOARD.length][GAMEBOARD[0].length];
 
-        int[][] entrances = {{},{},{12,8},{20,6},{19,11},{18,17},{18,22},{13,19},{7,20},{7,16},{5,7}};
-        int[][] roomPlacements = {{},{},{12,4},{21,4},{21,11},{21,17},{21,23},{12,22},{3,22},{3,14},{3,5}};
+        int[][] entrances = {{}, {}, {12, 8}, {20, 6}, {19, 11}, {18, 17}, {18, 22}, {13, 19}, {7, 20}, {7, 16}, {5, 7}};
+        int[][] roomPlacements = {{}, {}, {12, 4}, {21, 4}, {21, 11}, {21, 17}, {21, 23}, {12, 22}, {3, 22}, {3, 14}, {3, 5}};
 
         for (int y = 0; y < GAMEBOARD.length; y++) {
             for (int x = 0; x < GAMEBOARD[y].length; x++) {
@@ -187,7 +198,7 @@ public class State {
                 int tileNum = GAMEBOARD[y][x];
                 Tile newTile;
 
-                switch(tileNum) {
+                switch (tileNum) {
                     case 0:
                         newTile = new Tile(true);
                         break;
@@ -195,7 +206,7 @@ public class State {
                         newTile = new Tile(false);
                         break;
                     default:
-                        if(y == entrances[tileNum][1] && x == entrances[tileNum][0]) {
+                        if (y == entrances[tileNum][1] && x == entrances[tileNum][0]) {
                             newTile = new Tile(roomPlacements[tileNum][0], roomPlacements[tileNum][1], true, tileNum);
                         } else {
                             newTile = new Tile(entrances[tileNum][0], entrances[tileNum][1], false, tileNum);
