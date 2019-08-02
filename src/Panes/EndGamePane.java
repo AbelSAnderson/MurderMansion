@@ -20,8 +20,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
-import static Panes.GameBoardPanes.ScorePane.saveScore;
-
 public class EndGamePane extends BorderPane {
 	
 	public static TextField realNameInput;
@@ -57,7 +55,7 @@ public class EndGamePane extends BorderPane {
 		submitButton.getStyleClass().add("selectButton");
 		
 		submitButton.setOnAction(e -> {
-			saveScore(state);
+			gameState.getGamePane().scorePane.saveScore(state);
 			state.getMainStage().setScene(new HighScoreScene(state));
 		});
 		

@@ -27,12 +27,12 @@ import java.util.Random;
 
 public class MovementPane extends VBox{
 	
-	private static Button moveUp;
-	private static Button moveDown;
-	private static Button moveRight;
-	private static Button moveLeft;
-	private static Button endTurn;
-	private static Button rollDice;
+	private Button moveUp;
+	private Button moveDown;
+	private Button moveRight;
+	private Button moveLeft;
+	private Button endTurn;
+	private Button rollDice;
 	public Text rollsText;
 	
 	public MovementPane(State state) {

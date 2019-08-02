@@ -48,7 +48,7 @@ import java.io.File;
 
 public class IntroPane extends BorderPane {
 
-	private static Media introThunder;
+	private Media introThunder;
 
 	// Global variables for cardAnimate rotation
 	private ImageView[] cardImagesViews = {new ImageView(new Image("/Resources/Images/candlestick.gif")), new ImageView(new Image("/Resources/Images/Weapon-Arrow.jpg")), new ImageView(new Image("/Resources/Images/axe.png")), new ImageView(new Image("/Resources/Images/Weapon-Poison.jpg"))};

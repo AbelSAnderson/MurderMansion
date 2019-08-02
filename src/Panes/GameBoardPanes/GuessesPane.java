@@ -1,5 +1,7 @@
 package Panes.GameBoardPanes;
 
+import Enums.Cards;
+import Objects.Card;
 import Objects.GameState;
 import Objects.State;
 import javafx.geometry.Insets;
@@ -19,8 +21,8 @@ import java.util.ArrayList;
 
 public class GuessesPane extends VBox {
 
-    public Button suggestion;
-    public Button accusation;
+    private Button suggestion;
+    private Button accusation;
     public ArrayList<ComboBox<String>> comboBoxes = new ArrayList<>();
 
     public GuessesPane(State state) {
@@ -35,22 +37,22 @@ public class GuessesPane extends VBox {
             cardListBoxes.getChildren().add(comboBoxes.get(i));
         }
 
-        gameState.guessesBox();
+        guessesBox();
 
         suggestion = new Button("Suggest");
         accusation = new Button("Accuse");
 
-        gameState.disableGuessClicks(true);
+        disableGuessClicks(true);
 
         accusation.setOnAction(e -> {
             gameState.correctAccusation(state);
-            gameState.disableGuessClicks(true);
+            gameState.getGamePane().guessesPane.disableGuessClicks(true);
         });
 
         suggestion.setOnAction(e -> {
             if (comboBoxes.get(2).getSelectionModel().getSelectedIndex() == state.getCurrentGame().currentLocation().getRoomNum() - 2) {
                 gameState.checkCards();
-                gameState.disableGuessClicks(true);
+                gameState.getGamePane().guessesPane.disableGuessClicks(true);
             } else {
                 gameState.getGamePane().dialoguePane.dialogue.appendText("You must select the room you're in when suggesting\n");
             }
@@ -67,4 +69,26 @@ public class GuessesPane extends VBox {
         setAlignment(Pos.CENTER);
         getChildren().addAll(buttonsHBox, cardListBoxes);
     }
+
+    private void guessesBox() {
+        Card[][] cardLists = {Cards.CHARACTERS.getCards(), Cards.WEAPONS.getCards(), Cards.ROOMS.getCards()};
+        String[] text = {"Select a character", "Select a weapon", "Select a room"};
+
+        for (int i = 0; i < cardLists.length; i++) {
+            for (Card card : cardLists[i]) {
+                comboBoxes.get(i).getItems().add(card.getName());
+            }
+            comboBoxes.get(i).setPromptText(text[i]);
+        }
+    }
+
+    public void disableGuessClicks(Boolean isDisabled) {
+        accusation.setDisable(isDisabled);
+        suggestion.setDisable(isDisabled);
+
+        for (ComboBox comboBox : comboBoxes) {
+            comboBox.setDisable(isDisabled);
+        }
+    }
+
 }

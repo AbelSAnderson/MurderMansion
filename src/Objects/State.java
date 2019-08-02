@@ -47,7 +47,7 @@ public class State {
         //Create the GameScene
         GameScene gameScene = new GameScene(this);
 
-        //Add the GameScene to the Game Instance
+        //Add the GameScene to the Game Instance and Create the rest of the Panes
         currentGame.setGamePane(gameScene.gamePane);
 
         //Set the Scene

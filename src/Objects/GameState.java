@@ -6,7 +6,6 @@ import Panes.GameBoardPanes.InventoryPane;
 import Panes.MainGamePane;
 import Scenes.EndGameScene;
 import Scenes.TransitionScene;
-import javafx.scene.control.ComboBox;
 import javafx.scene.layout.GridPane;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
@@ -27,7 +26,7 @@ public class GameState {
     private int blockedY;
 
     //Constructor
-    public GameState(Stage mainStage, Tile[][] gameBoard, Player[] players, Card[] caseFile) {
+    GameState(Stage mainStage, Tile[][] gameBoard, Player[] players, Card[] caseFile) {
         this.mainStage = mainStage;
         this.gameBoard = gameBoard;
         this.players = players;
@@ -65,15 +64,6 @@ public class GameState {
         return getGameBoard()[playerY()][playerX()];
     }
 
-    public void disableGuessClicks(Boolean isDisabled) {
-        gamePane.guessesPane.accusation.setDisable(isDisabled);
-        gamePane.guessesPane.suggestion.setDisable(isDisabled);
-
-        for (ComboBox comboBox : gamePane.guessesPane.comboBoxes) {
-            comboBox.setDisable(isDisabled);
-        }
-    }
-
     public void endTurn(State state) {
         GameState gameState = state.getCurrentGame();
 
@@ -86,7 +76,7 @@ public class GameState {
         gameState.setCurrentPlayer(gameState.getCurrentPlayer() + 1);
         if (gameState.getPlayers().length == gameState.getCurrentPlayer()) gameState.setCurrentPlayer(0);
 
-        disableGuessClicks(true);
+        gamePane.guessesPane.disableGuessClicks(true);
 
         gamePane.scorePane.scoreNumber.setText("" + gameState.currentPlayer().getScore());
         gamePane.movementPane.rollsText.setText("0");
@@ -164,7 +154,7 @@ public class GameState {
      * Places Current Player into a Room.
      */
     public void placeInRoom() {
-        disableGuessClicks(false);
+        gamePane.guessesPane.disableGuessClicks(false);
 
         currentLocation().setTraversable(true);
         currentPlayer().setRoom((Room) Cards.ROOMS.getCards()[currentLocation().getRoomNum() - 2]);
@@ -221,18 +211,6 @@ public class GameState {
             GridPane.setColumnIndex(currentPlayer().getPiece(), playerX());
             GridPane.setRowIndex(currentPlayer().getPiece(), playerY());
             gamePane.movementPane.setButtons(this);
-        }
-    }
-
-    public void guessesBox() {
-        Card[][] cardLists = {Cards.CHARACTERS.getCards(), Cards.WEAPONS.getCards(), Cards.ROOMS.getCards()};
-        String[] text = {"Select a character", "Select a weapon", "Select a room"};
-
-        for (int i = 0; i < cardLists.length; i++) {
-            for (Card card : cardLists[i]) {
-                gamePane.guessesPane.comboBoxes.get(i).getItems().add(card.getName());
-            }
-            gamePane.guessesPane.comboBoxes.get(i).setPromptText(text[i]);
         }
     }
 

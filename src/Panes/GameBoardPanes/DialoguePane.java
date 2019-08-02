@@ -20,7 +20,7 @@ import javafx.stage.StageStyle;
 public class DialoguePane extends VBox{
 	
 	public TextArea dialogue;
-	public static Stage pauseStage;
+	public Stage pauseStage;
 	
 	public DialoguePane(State state) {
 		Button pauseButton = new Button("Exit To Main Menu");
