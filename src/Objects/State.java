@@ -14,12 +14,12 @@ import java.util.List;
 public class State {
 
     //Properties
-    private Stage mainStage;
-    private AudioClip backgroundMusic;
-    private double screenWidth;
-    private double screenHeight;
-    private Tile[][] originalGameBoard; //DO NOT modify this gameboard.
+    private final Stage mainStage;
+    private final double screenWidth;
+    private final double screenHeight;
+    private final Tile[][] originalGameBoard;
 
+    private AudioClip backgroundMusic;
     private GameState currentGame;
 
     //Constructor
@@ -42,16 +42,16 @@ public class State {
         Player[] players = createPlayers(characters, masterList);
 
         //Create the Game Instance
-        currentGame = new GameState(mainStage, originalGameBoard.clone(), players, caseFile);
+        setCurrentGame(new GameState(getOriginalGameBoard().clone(), players, caseFile));
 
         //Create the GameScene
         GameScene gameScene = new GameScene(this);
 
         //Add the GameScene to the Game Instance and Create the rest of the Panes
-        currentGame.setGamePane(gameScene.gamePane);
+        getCurrentGame().setGamePane(gameScene.gamePane);
 
         //Set the Scene
-        mainStage.setScene(gameScene);
+        getMainStage().setScene(gameScene);
     }
 
     private Player[] createPlayers(Character[] playerSelection, ArrayList<Card> masterList) {
@@ -224,10 +224,6 @@ public class State {
         return mainStage;
     }
 
-    public void setMainStage(Stage mainStage) {
-        this.mainStage = mainStage;
-    }
-
     public AudioClip getBackgroundMusic() {
         return backgroundMusic;
     }
@@ -240,31 +236,19 @@ public class State {
         return screenWidth;
     }
 
-    public void setScreenWidth(double screenWidth) {
-        this.screenWidth = screenWidth;
-    }
-
     public double getScreenHeight() {
         return screenHeight;
-    }
-
-    public void setScreenHeight(double screenHeight) {
-        this.screenHeight = screenHeight;
     }
 
     public GameState getCurrentGame() {
         return currentGame;
     }
 
-    public void setCurrentGame(GameState currentGame) {
+    private void setCurrentGame(GameState currentGame) {
         this.currentGame = currentGame;
     }
 
-    public Tile[][] getOriginalGameBoard() {
+    private Tile[][] getOriginalGameBoard() {
         return originalGameBoard;
-    }
-
-    public void setOriginalGameBoard(Tile[][] originalGameBoard) {
-        this.originalGameBoard = originalGameBoard;
     }
 }

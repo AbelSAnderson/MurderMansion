@@ -5,7 +5,6 @@ import Enums.Cards;
 import Objects.Card;
 import Objects.Character;
 import Objects.State;
-import Scenes.GameScene;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
@@ -75,9 +74,6 @@ public class CharacterSelectionPane extends HBox {
 
             if (playerNum > 3) {
                 state.createGameState(playerChar);
-
-                state.getMainStage().setScene(new GameScene(state));
-
                 state.getCurrentGame().displayTransition(state);
             }
 

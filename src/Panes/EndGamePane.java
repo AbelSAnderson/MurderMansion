@@ -21,47 +21,47 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 public class EndGamePane extends BorderPane {
-	
-	public static TextField realNameInput;
-	
-	public EndGamePane(State state) {
 
+    public static TextField realNameInput;
+
+    public EndGamePane(State state) {
         GameState gameState = state.getCurrentGame();
-		
-		VBox textsVBox = new VBox(20);
+
+        VBox textsVBox = new VBox(20);
         HBox centerHBox = new HBox(50);
-		HBox winningCards = new HBox(20);
-				
-		Text playerName = new Text(gameState.currentPlayer().getCharacter().getName());
-		playerName.setFont(Fonts.BLANK_FONT.FellCursive(getClass(), 65));
-		playerName.setFill(Color.WHITE);
-		
-		ImageView playerImg = new ImageView(gameState.currentPlayer().getCharacter().getImg());
-		playerImg.setFitWidth(250);
-		playerImg.setFitHeight(350);
-		
-		Text winningText = new Text("You're a rookie detective!");
-		winningText.setFont(Fonts.BLANK_FONT.FellCursive(getClass(), 40));
-		winningText.setFill(Color.WHITE);
-		
-		if(gameState.getCaseFile()[0].getName().equals(gameState.currentPlayer().getCharacter().getName())) winningText.setText("You got away with it!");
+        HBox winningCards = new HBox(20);
 
-		realNameInput = new TextField("Please enter your name");
-		realNameInput.setAlignment(Pos.CENTER);
-		realNameInput.setPrefSize(300, 65);
-		realNameInput.setFont(Fonts.BLANK_FONT.FellRegular(getClass(), 24));
-		
-		Button submitButton = new Button("Submit");
-		submitButton.getStyleClass().add("selectButton");
-		
-		submitButton.setOnAction(e -> {
-			gameState.getGamePane().scorePane.saveScore(state);
-			state.getMainStage().setScene(new HighScoreScene(state));
-		});
-		
-		setBackground(BackgroundColors.BACKGROUND_DARK.getBackground());
+        Text playerName = new Text(gameState.currentPlayer().getCharacter().getName());
+        playerName.setFont(Fonts.BLANK_FONT.FellCursive(getClass(), 65));
+        playerName.setFill(Color.WHITE);
 
-		//Create title: Congratulations
+        ImageView playerImg = new ImageView(gameState.currentPlayer().getCharacter().getImg());
+        playerImg.setFitWidth(250);
+        playerImg.setFitHeight(350);
+
+        Text winningText = new Text("You're a rookie detective!");
+        winningText.setFont(Fonts.BLANK_FONT.FellCursive(getClass(), 40));
+        winningText.setFill(Color.WHITE);
+
+        if (gameState.getCaseFile()[0].getName().equals(gameState.currentPlayer().getCharacter().getName()))
+            winningText.setText("You got away with it!");
+
+        realNameInput = new TextField("Please enter your name");
+        realNameInput.setAlignment(Pos.CENTER);
+        realNameInput.setPrefSize(300, 65);
+        realNameInput.setFont(Fonts.BLANK_FONT.FellRegular(getClass(), 24));
+
+        Button submitButton = new Button("Submit");
+        submitButton.getStyleClass().add("selectButton");
+
+        submitButton.setOnAction(e -> {
+            gameState.getGamePane().scorePane.saveScore(state);
+            state.getMainStage().setScene(new HighScoreScene(state));
+        });
+
+        setBackground(BackgroundColors.BACKGROUND_DARK.getBackground());
+
+        //Create title: Congratulations
         HBox firstWordBox = new HBox(8);
         firstWordBox.setAlignment(Pos.CENTER);
 
@@ -74,14 +74,14 @@ public class EndGamePane extends BorderPane {
 
         //Create the transitions on each letter
         for (int i = 0; i < letters.length; i++) {
-                FadeTransition letterFade = new FadeTransition(Duration.millis(durations[i]), letters[i]);
-                letterFade.setFromValue(1);
-                letterFade.setToValue(.4);
-                letterFade.setCycleCount(2);
-                letterFade.setAutoReverse(true);
-                wordFade.getChildren().add(letterFade);
+            FadeTransition letterFade = new FadeTransition(Duration.millis(durations[i]), letters[i]);
+            letterFade.setFromValue(1);
+            letterFade.setToValue(.4);
+            letterFade.setCycleCount(2);
+            letterFade.setAutoReverse(true);
+            wordFade.getChildren().add(letterFade);
         }
-        
+
         wordFade.play();
 
         // Create transition for the 'U' in CONGRATULATIONS
@@ -107,7 +107,7 @@ public class EndGamePane extends BorderPane {
         });
 
         // Add letters to the HBox
-        for(Text elementLetter : letters) {
+        for (Text elementLetter : letters) {
             elementLetter.setFont(Fonts.TITLE_FONT.getFont());
             elementLetter.setFill(Color.WHITE);
             firstWordBox.getChildren().add(elementLetter);
@@ -120,15 +120,15 @@ public class EndGamePane extends BorderPane {
             fileCard.setFitWidth(120 * 1.2);
             winningCards.getChildren().add(fileCard);
         }
-        		
+
         textsVBox.setAlignment(Pos.CENTER);
         winningCards.setAlignment(Pos.CENTER);
         centerHBox.setAlignment(Pos.CENTER);
 
-		textsVBox.getChildren().addAll(playerName, winningCards, winningText, realNameInput, submitButton);
-		centerHBox.getChildren().addAll(playerImg, textsVBox);
-		
-		setTop(firstWordBox);
-		setCenter(centerHBox);
+        textsVBox.getChildren().addAll(playerName, winningCards, winningText, realNameInput, submitButton);
+        centerHBox.getChildren().addAll(playerImg, textsVBox);
+
+        setTop(firstWordBox);
+        setCenter(centerHBox);
     }
 }

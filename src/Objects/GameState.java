@@ -2,7 +2,6 @@ package Objects;
 
 import Enums.Cards;
 import Panes.GameBoardPanes.GuessSheetPane;
-import Panes.GameBoardPanes.InventoryPane;
 import Panes.MainGamePane;
 import Scenes.EndGameScene;
 import Scenes.TransitionScene;
@@ -14,72 +13,64 @@ import javafx.stage.StageStyle;
 public class GameState {
 
     //Properties
-    private Stage mainStage;
+    private final Tile[][] gameBoard;
+    private final Player[] players;
+    private final Card[] caseFile;
+
     private Stage pauseStage;
-    private Tile[][] gameBoard;
     private MainGamePane gamePane;
-    private Player[] players;
-    private Card[] caseFile;
-    private int currentPlayer;
+    private int currentPlayerNumber;
 
     private int blockedX;
     private int blockedY;
 
     //Constructor
-    GameState(Stage mainStage, Tile[][] gameBoard, Player[] players, Card[] caseFile) {
-        this.mainStage = mainStage;
+    GameState(Tile[][] gameBoard, Player[] players, Card[] caseFile) {
         this.gameBoard = gameBoard;
         this.players = players;
         this.caseFile = caseFile;
-        currentPlayer = 0;
+        currentPlayerNumber = 0;
     }
 
     //Methods
 
-    /**
-     * @return The Current Player.
-     */
+    //Methods for referencing the current Player
     public Player currentPlayer() {
-        return players[currentPlayer];
+        return getPlayers()[getCurrentPlayerNumber()];
     }
-
-    /**
-     * @return Current Player's X Position.
-     */
     public int playerX() {
         return currentPlayer().getXPos();
     }
-
-    /**
-     * @return Current Player's Y Position.
-     */
     public int playerY() {
         return currentPlayer().getYPos();
     }
-
-    /**
-     * @return Tile that the Current Player is on.
-     */
     public Tile currentLocation() {
         return getGameBoard()[playerY()][playerX()];
     }
 
+    //Methods for printing Dialogue
+    private void printDialogue() {
+        getGamePane().dialoguePane.dialogue.clear();
+    }
+    private void printDialogue(String text) {
+        getGamePane().dialoguePane.dialogue.appendText(text);
+    }
+
+    //Main game Methods
     public void endTurn(State state) {
-        GameState gameState = state.getCurrentGame();
+        currentPlayer().setScore(currentPlayer().getScore() - 18);
 
-        gameState.currentPlayer().setScore(gameState.currentPlayer().getScore() - 18);
+        getGameBoard()[getBlockedX()][getBlockedY()].setTraversable(true);
 
-        gameState.getGameBoard()[blockedY][blockedX].setTraversable(true);
+        currentPlayer().setRollsLeft(0);
 
-        gameState.currentPlayer().setRollsLeft(0);
+        setCurrentPlayerNumber(getCurrentPlayerNumber() + 1);
+        if (getPlayers().length == getCurrentPlayerNumber()) setCurrentPlayerNumber(0);
 
-        gameState.setCurrentPlayer(gameState.getCurrentPlayer() + 1);
-        if (gameState.getPlayers().length == gameState.getCurrentPlayer()) gameState.setCurrentPlayer(0);
+        getGamePane().guessesPane.disableGuessClicks(true);
 
-        gamePane.guessesPane.disableGuessClicks(true);
-
-        gamePane.scorePane.scoreNumber.setText("" + gameState.currentPlayer().getScore());
-        gamePane.movementPane.rollsText.setText("0");
+        getGamePane().scorePane.scoreNumber.setText("" + currentPlayer().getScore());
+        getGamePane().movementPane.rollsText.setText("0");
 
         switchPlayerUI(state);
         displayTransition(state);
@@ -89,13 +80,12 @@ public class GameState {
      * Switches the Player's UI when Changing Players.
      */
     private void switchPlayerUI(State state) {
-        gamePane.leftContainer.getChildren().remove(gamePane.guessSheet);
-        gamePane.guessSheet = new GuessSheetPane(state, true);
+        getGamePane().leftContainer.getChildren().remove(getGamePane().guessSheet);
+        getGamePane().guessSheet = new GuessSheetPane(state, true);
 
-        gamePane.leftContainer.getChildren().remove(gamePane.inventory);
-        gamePane.inventory = new InventoryPane(state, true);
+        getGamePane().inventory.createInventory(currentPlayer().getCards(), true);
 
-        gamePane.leftContainer.getChildren().addAll(gamePane.guessSheet, gamePane.inventory);
+        getGamePane().leftContainer.getChildren().add(1, getGamePane().guessSheet);
     }
 
     /**
@@ -103,37 +93,34 @@ public class GameState {
      */
     public void displayTransition(State state) {
         printDialogue();
-        gamePane.movementPane.disableButtons(true);
+        getGamePane().movementPane.disableButtons(true);
 
-        pauseStage = new Stage();
-        pauseStage.initStyle(StageStyle.TRANSPARENT);
-        pauseStage.setAlwaysOnTop(true);
-        pauseStage.setScene(new TransitionScene(state));
-        pauseStage.show();
+        setPauseStage(new Stage());
+        getPauseStage().initStyle(StageStyle.TRANSPARENT);
+        getPauseStage().setAlwaysOnTop(true);
+        getPauseStage().setScene(new TransitionScene(state));
+        getPauseStage().show();
 
-        state.getMainStage().setOnCloseRequest(e -> pauseStage.close());
-        pauseStage.setOnCloseRequest(e -> startTurn(state));
+        state.getMainStage().setOnCloseRequest(e -> getPauseStage().close());
+        getPauseStage().setOnCloseRequest(e -> startTurn(state));
     }
 
     public void startTurn(State state) {
-        GameState gameState = state.getCurrentGame();
+        getGamePane().leftContainer.getChildren().remove(getGamePane().guessSheet);
+        getGamePane().guessSheet = new GuessSheetPane(state, false);
 
-        gamePane.leftContainer.getChildren().remove(gamePane.guessSheet);
-        gamePane.guessSheet = new GuessSheetPane(state, false);
+        getGamePane().inventory.createInventory(currentPlayer().getCards(), false);
 
-        gamePane.leftContainer.getChildren().remove(gamePane.inventory);
-        gamePane.inventory = new InventoryPane(state, false);
-
-        gamePane.leftContainer.getChildren().addAll(gamePane.guessSheet, gamePane.inventory);
+        getGamePane().leftContainer.getChildren().add(1, getGamePane().guessSheet);
 
         //Place the piece at the room entrance if the players current moveX and moveY's room number is not -1 (anything not -1 is a room)
-        if (gameState.getGameBoard()[gameState.currentLocation().getMoveCharacterY()][gameState.currentLocation().getMoveCharacterX()].getRoomNum() != -1) {
+        if (getGameBoard()[currentLocation().getMoveCharacterY()][currentLocation().getMoveCharacterX()].getRoomNum() != -1) {
             placeEntranceRoom();
         }
 
-        pauseStage.close();
-        gamePane.movementPane.disableButtons(false);
-        gamePane.movementPane.setButtons(gameState);
+        getPauseStage().close();
+        getGamePane().movementPane.disableButtons(false);
+        getGamePane().movementPane.setButtons(this);
     }
 
     private void entryMusic() {
@@ -154,7 +141,7 @@ public class GameState {
      * Places Current Player into a Room.
      */
     public void placeInRoom() {
-        gamePane.guessesPane.disableGuessClicks(false);
+        getGamePane().guessesPane.disableGuessClicks(false);
 
         currentLocation().setTraversable(true);
         currentPlayer().setRoom((Room) Cards.ROOMS.getCards()[currentLocation().getRoomNum() - 2]);
@@ -181,19 +168,10 @@ public class GameState {
         entryMusic();
     }
 
-    public void printDialogue() {
-        gamePane.dialoguePane.dialogue.clear();
-    }
-
-    public void printDialogue(String text) {
-        gamePane.dialoguePane.dialogue.appendText(text);
-    }
-
-
     /**
      * Places the Current Player at the entrance of the Room they are in.
      */
-    public void placeEntranceRoom() {
+    private void placeEntranceRoom() {
         Tile boardPosition = currentLocation();
 
         if (!currentLocation().isTraversable()) {
@@ -205,12 +183,12 @@ public class GameState {
             currentPlayer().setYPos(boardPosition.getMoveCharacterY());
 
             currentLocation().setTraversable(false);
-            blockedX = playerX();
-            blockedY = playerY();
+            setBlockedX(playerX());
+            setBlockedY(playerY());
 
             GridPane.setColumnIndex(currentPlayer().getPiece(), playerX());
             GridPane.setRowIndex(currentPlayer().getPiece(), playerY());
-            gamePane.movementPane.setButtons(this);
+            getGamePane().movementPane.setButtons(this);
         }
     }
 
@@ -220,13 +198,13 @@ public class GameState {
     public void correctAccusation(State state) {
         boolean correct = false;
 
-        for (int i = 0; i < gamePane.guessesPane.comboBoxes.size(); i++) {
-            if (gamePane.guessesPane.comboBoxes.get(i).getSelectionModel().getSelectedItem().equals(getCaseFile()[i].getName())) {
+        for (int i = 0; i < getGamePane().guessesPane.comboBoxes.size(); i++) {
+            if (getGamePane().guessesPane.comboBoxes.get(i).getSelectionModel().getSelectedItem().equals(getCaseFile()[i].getName())) {
                 correct = true;
             } else {
                 correct = false;
                 currentPlayer().setScore(currentPlayer().getScore() - 144);
-                gamePane.scorePane.scoreNumber.setText(currentPlayer().getScore() + "");
+                getGamePane().scorePane.scoreNumber.setText(currentPlayer().getScore() + "");
                 printDialogue("Your accusation was incorrect. Shame on you!\n");
                 break;
             }
@@ -241,12 +219,12 @@ public class GameState {
      */
     public void checkCards() {
         currentPlayer().setScore(currentPlayer().getScore() - 36);
-        gamePane.scorePane.scoreNumber.setText(currentPlayer().getScore() + "");
+        getGamePane().scorePane.scoreNumber.setText(currentPlayer().getScore() + "");
 
         String[] cardsSelected = new String[3];
 
         for (int i = 0; i < cardsSelected.length; i++) {
-            cardsSelected[i] = gamePane.guessesPane.comboBoxes.get(i).getSelectionModel().getSelectedItem();
+            cardsSelected[i] = getGamePane().guessesPane.comboBoxes.get(i).getSelectionModel().getSelectedItem();
         }
 
         int z = 1;
@@ -269,20 +247,8 @@ public class GameState {
     }
 
     //Getters and Setters
-    public Stage getMainStage() {
-        return mainStage;
-    }
-
-    public void setMainStage(Stage mainStage) {
-        this.mainStage = mainStage;
-    }
-
     public Tile[][] getGameBoard() {
         return gameBoard;
-    }
-
-    public void setGameBoard(Tile[][] gameBoard) {
-        this.gameBoard = gameBoard;
     }
 
     public MainGamePane getGamePane() {
@@ -297,23 +263,39 @@ public class GameState {
         return players;
     }
 
-    public void setPlayers(Player[] players) {
-        this.players = players;
-    }
-
     public Card[] getCaseFile() {
         return caseFile;
     }
 
-    public void setCaseFile(Card[] caseFile) {
-        this.caseFile = caseFile;
+    public int getCurrentPlayerNumber() {
+        return currentPlayerNumber;
     }
 
-    public int getCurrentPlayer() {
-        return currentPlayer;
+    public void setCurrentPlayerNumber(int currentPlayerNumber) {
+        this.currentPlayerNumber = currentPlayerNumber;
     }
 
-    public void setCurrentPlayer(int currentPlayer) {
-        this.currentPlayer = currentPlayer;
+    public Stage getPauseStage() {
+        return pauseStage;
+    }
+
+    public void setPauseStage(Stage pauseStage) {
+        this.pauseStage = pauseStage;
+    }
+
+    public int getBlockedX() {
+        return blockedX;
+    }
+
+    public void setBlockedX(int blockedX) {
+        this.blockedX = blockedX;
+    }
+
+    public int getBlockedY() {
+        return blockedY;
+    }
+
+    public void setBlockedY(int blockedY) {
+        this.blockedY = blockedY;
     }
 }

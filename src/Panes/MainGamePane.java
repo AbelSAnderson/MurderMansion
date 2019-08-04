@@ -34,7 +34,7 @@ public class MainGamePane extends BorderPane {
 
         scorePane = new ScorePane();
         guessSheet = new GuessSheetPane(state, true);
-        inventory = new InventoryPane(state, true);
+        inventory = new InventoryPane(state);
 
         leftContainer.getChildren().addAll(scorePane, guessSheet, inventory);
         leftContainer.setAlignment(Pos.CENTER);

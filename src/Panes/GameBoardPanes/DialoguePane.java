@@ -17,39 +17,39 @@ import javafx.stage.StageStyle;
  * Description - This file is for the dialogue box that will give live game-play updates
  */
 
-public class DialoguePane extends VBox{
-	
-	public TextArea dialogue;
-	public Stage pauseStage;
-	
-	public DialoguePane(State state) {
-		Button pauseButton = new Button("Exit To Main Menu");
-		
-		pauseButton.setTranslateX(130);
-		
-		pauseButton.setOnAction(e -> {
-			pauseStage = new Stage();
-			pauseStage.initStyle(StageStyle.TRANSPARENT);
-			pauseStage.isAlwaysOnTop();
-			pauseStage.setScene(new PauseScene(state));
-			pauseStage.show();
-		});
-				
-		dialogue = new TextArea();
-		
-		dialogue.setFont(Fonts.BLANK_FONT.FellRegular(getClass(), 16));
-		
-		dialogue.setEditable(false);
-		
-		dialogue.setMaxWidth(480);
-		dialogue.setMinHeight(250);
-		dialogue.setMaxHeight(250);
-		
-		setSpacing(30);
-		setAlignment(Pos.CENTER);
-		VBox.setMargin(dialogue, new Insets(0, 25, 0, 25));
-		VBox.setMargin(pauseButton, new Insets(30, 0, 20, 0));
-		
-		getChildren().addAll(pauseButton, dialogue);
-	}
+public class DialoguePane extends VBox {
+
+    public TextArea dialogue;
+    public Stage pauseStage;
+
+    public DialoguePane(State state) {
+        Button pauseButton = new Button("Exit To Main Menu");
+
+        pauseButton.setTranslateX(130);
+
+        pauseButton.setOnAction(e -> {
+            pauseStage = new Stage();
+            pauseStage.initStyle(StageStyle.TRANSPARENT);
+            pauseStage.isAlwaysOnTop();
+            pauseStage.setScene(new PauseScene(state));
+            pauseStage.show();
+        });
+
+        dialogue = new TextArea();
+
+        dialogue.setFont(Fonts.BLANK_FONT.FellRegular(getClass(), 16));
+
+        dialogue.setEditable(false);
+
+        dialogue.setMaxWidth(480);
+        dialogue.setMinHeight(250);
+        dialogue.setMaxHeight(250);
+
+        setSpacing(30);
+        setAlignment(Pos.CENTER);
+        VBox.setMargin(dialogue, new Insets(0, 25, 0, 25));
+        VBox.setMargin(pauseButton, new Insets(30, 0, 20, 0));
+
+        getChildren().addAll(pauseButton, dialogue);
+    }
 }

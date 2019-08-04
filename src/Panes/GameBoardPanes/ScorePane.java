@@ -25,7 +25,6 @@ public class ScorePane extends HBox {
     public Text scoreNumber;
 
     public ScorePane() {
-
         scoreNumber = new Text("1044");
         scoreNumber.setFont(Fonts.NUMBER_FONT.getFont());
         scoreNumber.setFill(Color.WHITE);

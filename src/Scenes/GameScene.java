@@ -19,8 +19,7 @@ public class GameScene extends Scene {
         super(new MainGamePane(state), state.getScreenWidth(), state.getScreenHeight());
 
         //Reset the Root so the pane is accessible
-        gamePane = new MainGamePane(state);
-        setRoot(gamePane);
+        gamePane = (MainGamePane) this.getRoot();
 
         getStylesheets().add("MainGameStyle.css");
     }
