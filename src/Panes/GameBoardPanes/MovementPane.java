@@ -1,6 +1,7 @@
 package Panes.GameBoardPanes;
 
 import Enums.Fonts;
+import Enums.Direction;
 import Objects.GameState;
 import Objects.State;
 import javafx.geometry.Pos;
@@ -96,13 +97,13 @@ public class MovementPane extends VBox {
         moveLeft.setMinSize(80, 40);
         moveRight.setMinSize(80, 40);
 
-        moveUp.setOnAction(e -> gameState.getGamePane().boardPane.movement(state, 0));
+        moveUp.setOnAction(e -> gameState.getGamePane().boardPane.movement(state, Direction.UP));
 
-        moveDown.setOnAction(e -> gameState.getGamePane().boardPane.movement(state, 1));
+        moveDown.setOnAction(e -> gameState.getGamePane().boardPane.movement(state, Direction.DOWN));
 
-        moveLeft.setOnAction(e -> gameState.getGamePane().boardPane.movement(state, 2));
+        moveLeft.setOnAction(e -> gameState.getGamePane().boardPane.movement(state, Direction.LEFT));
 
-        moveRight.setOnAction(e -> gameState.getGamePane().boardPane.movement(state, 3));
+        moveRight.setOnAction(e -> gameState.getGamePane().boardPane.movement(state, Direction.RIGHT));
 
         endTurn.setOnAction(e -> gameState.endTurn(state));
 
