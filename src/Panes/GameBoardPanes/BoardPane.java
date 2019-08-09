@@ -31,14 +31,14 @@ import java.io.File;
 public class BoardPane extends StackPane {
 
     public BoardPane(State state) {
-        GridPane gridpane = new GridPane();
-        gridpane.setAlignment(Pos.CENTER);
+        GridPane gridPane = new GridPane();
+        gridPane.setAlignment(Pos.CENTER);
 
         ImageView boardImg = new ImageView(new Image("/Resources/Images/Gameboard.jpg"));
         boardImg.setFitWidth(780);
         boardImg.setFitHeight(810);
 
-        getChildren().addAll(boardImg, gridpane);
+        getChildren().addAll(boardImg, gridPane);
 
         for (int rows = 0; rows < 27; rows++) {
             for (int columns = 0; columns < 26; columns++) {
@@ -46,13 +46,13 @@ public class BoardPane extends StackPane {
                 Rectangle rect = new Rectangle(30, 30);
                 rect.setFill(Color.TRANSPARENT);
 
-                gridpane.add(rect, columns, rows);
+                gridPane.add(rect, columns, rows);
             }
         }
 
         //Set the Player's tokens ton the gameboard
         for (Player player : state.getCurrentGame().getPlayers()) {
-            gridpane.add(player.getPiece(), player.getCharacter().getStartX(), player.getCharacter().getStartY());
+            gridPane.add(player.getPiece(), player.getCharacter().getStartX(), player.getCharacter().getStartY());
         }
 
         //Start background music

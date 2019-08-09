@@ -32,7 +32,7 @@ public class State {
     }
 
     //Methods
-    public void createGameState(Character[] characters) {
+    public void createGameState(ArrayList<Card> characters) {
 
         //Instantiate MasterList for the Cards
         ArrayList<Card> masterList = new ArrayList<>();
@@ -54,20 +54,9 @@ public class State {
         getMainStage().setScene(gameScene);
     }
 
-    private Player[] createPlayers(Character[] playerSelection, ArrayList<Card> masterList) {
+    private Player[] createPlayers(ArrayList<Card> playerSelection, ArrayList<Card> masterList) {
 
         int playerNumber = 3; //Change this to the desired number of players
-
-        //ArrayList for all the characters
-        ArrayList<Card> characterList = new ArrayList<>(Arrays.asList(Cards.CHARACTERS.getCards()));
-
-        for (Character character : playerSelection) {
-            characterList.remove(character);
-        }
-
-        //Create New List with only the Selections
-        ArrayList<Card> playerList = new ArrayList<>(Arrays.asList(Cards.CHARACTERS.getCards()));
-        playerList.removeAll(characterList);
 
         //Get Random Cards for Players
         Card[][] playerCards = createPlayerCards(masterList, playerNumber);
@@ -75,8 +64,8 @@ public class State {
         Player[] players = new Player[playerNumber];
 
         //Create and Set Players
-        for (int i = 0; i < playerList.size(); i++) {
-            players[i] = new Player(playerCards[i], (Character) playerList.get(i));
+        for (int i = 0; i < playerSelection.size(); i++) {
+            players[i] = new Player(playerCards[i], (Character) playerSelection.get(i));
             players[i].setXPos(players[i].getCharacter().getStartX());
             players[i].setYPos(players[i].getCharacter().getStartY());
         }

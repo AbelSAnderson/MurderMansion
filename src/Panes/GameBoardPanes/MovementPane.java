@@ -39,7 +39,7 @@ public class MovementPane extends VBox {
     public MovementPane(State state) {
         GameState gameState = state.getCurrentGame();
 
-        GridPane gridpane = new GridPane();
+        GridPane gridPane = new GridPane();
 
         HBox rollsHBox = new HBox(20);
 
@@ -64,16 +64,16 @@ public class MovementPane extends VBox {
         endTurn = new Button("End Turn");
 
         rollsHBox.setAlignment(Pos.BOTTOM_CENTER);
-        rollsHBox.getChildren().addAll(rollDice, gridpane);
+        rollsHBox.getChildren().addAll(rollDice, gridPane);
 
         setAlignment(Pos.CENTER);
         setSpacing(20);
         getChildren().addAll(rollsLeftHBox, rollsHBox, endTurn);
 
-        gridpane.add(moveUp, 1, 0);
-        gridpane.add(moveDown, 1, 1);
-        gridpane.add(moveRight, 2, 1);
-        gridpane.add(moveLeft, 0, 1);
+        gridPane.add(moveUp, 1, 0);
+        gridPane.add(moveDown, 1, 1);
+        gridPane.add(moveRight, 2, 1);
+        gridPane.add(moveLeft, 0, 1);
 
 
         rollDice.setOnAction(e -> {
@@ -107,8 +107,8 @@ public class MovementPane extends VBox {
 
         endTurn.setOnAction(e -> gameState.endTurn(state));
 
-        gridpane.setVgap(7);
-        gridpane.setHgap(7);
+        gridPane.setVgap(7);
+        gridPane.setHgap(7);
     }
 
     /**
