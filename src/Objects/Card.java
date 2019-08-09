@@ -28,15 +28,7 @@ public abstract class Card {
         return img;
     }
 
-    public void setImg(Image img) {
-        this.img = img;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 }

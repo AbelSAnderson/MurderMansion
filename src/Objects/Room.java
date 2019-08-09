@@ -1,7 +1,6 @@
 package Objects;
 
-import java.io.File;
-
+import Enums.SoundEffects;
 import javafx.scene.image.Image;
 import javafx.scene.media.Media;
 
@@ -23,33 +22,20 @@ public class Room extends Card {
 	public Room(String name, Image img, Media entryAudio) {
 		super(name, img);
 		
-		this.entryDoorAudio = new Media[] {new Media (new File("src/Resources/Audio/doorcreak.mp3").toURI().toString()), new Media (new File("src/Resources/Audio/thunder.mp3").toURI().toString())};
+		this.entryDoorAudio = new Media[] {SoundEffects.DOOR_CREAK.getSound(), SoundEffects.THUNDER.getSound()};
 		this.entryAudio = entryAudio;
-		this.exitAudio = new Media (new File("src/Resources/Audio/doorclose.wav").toURI().toString());
+		this.exitAudio = SoundEffects.DOOR_CLOSE.getSound();
 	}
 
 	public Media[] getEntryDoorAudio() {
 		return entryDoorAudio;
 	}
 
-	public void setEntryDoorAudio(Media[] entryDoorAudio) {
-		this.entryDoorAudio = entryDoorAudio;
-	}
-	
 	public Media getEntryAudio() {
 		return entryAudio;
-	}
-
-	public void setEntryAudio(Media entryAudio) {
-		this.entryAudio = entryAudio;
 	}
 
 	public Media getExitAudio() {
 		return exitAudio;
 	}
-
-	public void setExitAudio(Media exitAudio) {
-		this.exitAudio = exitAudio;
-	}
-
 }

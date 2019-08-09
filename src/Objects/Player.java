@@ -1,8 +1,5 @@
 package Objects;
 
-import java.io.File;
-
-import javafx.scene.media.Media;
 import javafx.scene.shape.Circle;
 
 /**
@@ -31,7 +28,6 @@ public class Player {
 	private GuessSheet guessSheet;
 	private Circle piece;
 	private int rollsLeft;
-	private Media tokenSound;
 	private Room room;
 	private int score;
 
@@ -44,18 +40,9 @@ public class Player {
 		this.piece = new Circle(10, this.getCharacter().getColor());
 		this.getPiece().setTranslateX(4);
 		this.rollsLeft = 0;
-		this.tokenSound = new Media (new File("src/Resources/Audio/token.mp3").toURI().toString());
 	}
 
 	//Getters and Setters
-	public Media getTokenSound() {
-		return tokenSound;
-	}
-
-	public void setTokenSound(Media tokenSound) {
-		this.tokenSound = tokenSound;
-	}
-
 	public int getRollsLeft() {
 		return rollsLeft;
 	}
@@ -64,7 +51,6 @@ public class Player {
 		this.rollsLeft = rollsLeft;
 	}
 
-	//Getters and Setters
 	public int getXPos() {
 		return xPos;
 	}
@@ -101,16 +87,8 @@ public class Player {
 		return guessSheet;
 	}
 
-	public void setGuessSheet(GuessSheet guessSheet) {
-		this.guessSheet = guessSheet;
-	}
-
 	public Circle getPiece() {
 		return piece;
-	}
-
-	public void setPiece(Circle piece) {
-		this.piece = piece;
 	}
 
     public Room getRoom() {

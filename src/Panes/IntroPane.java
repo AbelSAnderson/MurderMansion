@@ -1,7 +1,9 @@
 package Panes;
 
 import Enums.BackgroundColors;
+import Enums.BackgroundMusic;
 import Enums.Fonts;
+import Enums.SoundEffects;
 import Objects.State;
 import Scenes.MenuScene;
 import javafx.animation.*;
@@ -13,15 +15,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
-
-import java.io.File;
 
 /**
  * Author - Cordelle
@@ -77,11 +76,15 @@ public class IntroPane extends BorderPane {
         ParallelTransition wordFade = new ParallelTransition();
 
         //Arrays for text and duration values
-        Text[] letters = {new Text("M"), new Text("U"), new Text("R"), new Text("D"), new Text("E"), new Text("R"), new Text(" "), new Text("M"), new Text("A"), new Text("N"), new Text("S"), new Text("I"), new Text("O"), new Text("N")};
+        char[] titleChars = "MURDER MANSION".toCharArray();
+        Text[] letters = new Text[titleChars.length];
         int[] durations = {1500, 2700, 2500, 1000, 1750, 1250, 0, 1550, 2500, 1800, 1000, 2250, 1600, 1500};
 
         //Create the transitions on each letter
         for (int i = 0; i < letters.length; i++) {
+
+            letters[i] = new Text(titleChars[i] + "");
+
             if (i != 6) {
                 FadeTransition letterFade = new FadeTransition(Duration.millis(durations[i]), letters[i]);
                 letterFade.setFromValue(1);
@@ -101,8 +104,8 @@ public class IntroPane extends BorderPane {
             letterFade2b.setCycleCount(1);
             letterFade2b.play();
 
-            // audio set to the fade of U from white to red
-            introThunder = new Media(new File("src/Resources/Audio/thunder.mp3").toURI().toString());
+            // Audio set to the fade of U from white to red
+            introThunder = SoundEffects.THUNDER.getSound();
             MediaPlayer introPlayer = new MediaPlayer(introThunder);
             introPlayer.play();
 
@@ -243,7 +246,7 @@ public class IntroPane extends BorderPane {
         });
 
         // Play background theme music
-        state.setBackgroundMusic(new AudioClip(new File("src/Resources/Audio/theme.wav").toURI().toString()));
+        state.setBackgroundMusic(BackgroundMusic.THEME.getMusic());
         state.getBackgroundMusic().setCycleCount(1);
         state.getBackgroundMusic().play();
 

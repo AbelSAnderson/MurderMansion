@@ -1,5 +1,6 @@
 package Panes.GameBoardPanes;
 
+import Enums.BackgroundMusic;
 import Enums.Direction;
 import Objects.GameState;
 import Objects.State;
@@ -12,8 +13,6 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-
-import java.io.File;
 
 /**
  * Author - Hasan
@@ -57,7 +56,7 @@ public class BoardPane extends StackPane {
 
         //Start background music
         if (state.getBackgroundMusic().isPlaying()) state.getBackgroundMusic().stop();
-        state.setBackgroundMusic(new AudioClip(new File("src/Resources/Audio/background.wav").toURI().toString()));
+        state.setBackgroundMusic(BackgroundMusic.BACKGROUND_MUSIC.getMusic());
         state.getBackgroundMusic().setCycleCount(AudioClip.INDEFINITE);
         state.getBackgroundMusic().setVolume(0.1);
         state.getBackgroundMusic().play();
