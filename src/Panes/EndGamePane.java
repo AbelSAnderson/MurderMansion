@@ -142,9 +142,7 @@ public class EndGamePane extends BorderPane {
         try {
             FileWriter fileWriter = new FileWriter(file, true);
 
-            fileWriter.append(realNameInput.getText()).append(" ");
-            fileWriter.append(String.valueOf(state.getCurrentGame().currentPlayer().getScore())).append(" ");
-
+            fileWriter.append(" ").append(realNameInput.getText()).append(" ").append(String.valueOf(state.getCurrentGame().currentPlayer().getScore()));
             fileWriter.close();
 
         } catch (IOException e) {
