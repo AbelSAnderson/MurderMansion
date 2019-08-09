@@ -70,11 +70,10 @@ public class GuessSheetPane extends HBox {
                 ImageView temp;
 
                 if (isTransition || gameState.currentPlayer().getGuessSheet().getCheckedBox()[indexList][indexItems] == 0) {
-                    temp = new ImageView(new Image("/Resources/Images/checkUnmark.jpg"));
+                    temp = new ImageView(new Image("/Resources/Images/checkBox.jpg"));
                 } else {
                     temp = new ImageView(new Image("/Resources/Images/checkMark.jpg"));
                 }
-
                 guessGridPane[indexList].add(temp, 1, indexItems + 1);
             }
 
@@ -90,10 +89,16 @@ public class GuessSheetPane extends HBox {
 
                 if (!(node instanceof ImageView)) continue;
 
-                //Set Grid
-                grid = i;
+                node.setOnMousePressed(e -> {
 
-                (node).setOnMousePressed(e -> {
+                    //Determine GridPane
+                    if (node.getParent() == guessGridPane[0]) {
+                        grid = 0;
+                    } else if (node.getParent() == guessGridPane[1]) {
+                        grid = 1;
+                    } else if (node.getParent() == guessGridPane[2]) {
+                        grid = 2;
+                    }
 
                     //Check if Transition
                     if (!isTransition) {
@@ -103,7 +108,7 @@ public class GuessSheetPane extends HBox {
                         //Determine what Picture to switch it to
                         if (gameState.currentPlayer().getGuessSheet().getCheckedBox()[grid][GridPane.getRowIndex(node) - 1] == 1) {
                             temp[grid][GridPane.getRowIndex(node) - 1] = 0;
-                            ((ImageView) node).setImage(new Image("/Resources/Images/checkUnmark.jpg"));
+                            ((ImageView) node).setImage(new Image("/Resources/Images/checkBox.jpg"));
                         } else {
                             temp[grid][GridPane.getRowIndex(node) - 1] = 1;
                             ((ImageView) node).setImage(new Image("/Resources/Images/checkMark.jpg"));
@@ -123,18 +128,16 @@ public class GuessSheetPane extends HBox {
         this.isTransition = isTransition;
 
         for (int i = 0; i < getChildren().size(); i++) {
-        	int cardPosition = 0;
+            int cardPosition = 0;
 
-            for (Node node: ((GridPane) getChildren().get(i)).getChildren()) {
+            for (Node node : ((GridPane) getChildren().get(i)).getChildren()) {
+                if (node instanceof ImageView) {
+                    if (isTransition || gameState.currentPlayer().getGuessSheet().getCheckedBox()[i][cardPosition] == 0)
+                        ((ImageView) node).setImage(new Image("/Resources/Images/checkBox.jpg"));
+                    else ((ImageView) node).setImage(new Image("/Resources/Images/checkMark.jpg"));
 
-				System.out.print(i + " " + node.getClass() + ", ");
-
-				if(node instanceof ImageView) {
-					if(isTransition || gameState.currentPlayer().getGuessSheet().getCheckedBox()[i][cardPosition] == 0) ((ImageView) node).setImage(new Image("/Resources/Images/checkUnmark.jpg"));
-					else ((ImageView) node).setImage(new Image("/Resources/Images/checkMark.jpg"));
-
-					cardPosition++;
-				}
+                    cardPosition++;
+                }
             }
         }
     }
