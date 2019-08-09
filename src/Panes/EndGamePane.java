@@ -20,9 +20,13 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class EndGamePane extends BorderPane {
 
-    public static TextField realNameInput;
+    private TextField realNameInput;
 
     public EndGamePane(State state) {
         GameState gameState = state.getCurrentGame();
@@ -55,7 +59,7 @@ public class EndGamePane extends BorderPane {
         submitButton.getStyleClass().add("selectButton");
 
         submitButton.setOnAction(e -> {
-            gameState.getGamePane().scorePane.saveScore(state);
+            saveScore(state);
             state.getMainStage().setScene(new HighScoreScene(state));
         });
 
@@ -130,5 +134,21 @@ public class EndGamePane extends BorderPane {
 
         setTop(firstWordBox);
         setCenter(centerHBox);
+    }
+
+    private void saveScore(State state) {
+        File file = new File("highScores.txt");
+
+        try {
+            FileWriter fileWriter = new FileWriter(file, true);
+
+            fileWriter.append(realNameInput.getText()).append(" ");
+            fileWriter.append(String.valueOf(state.getCurrentGame().currentPlayer().getScore())).append(" ");
+
+            fileWriter.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

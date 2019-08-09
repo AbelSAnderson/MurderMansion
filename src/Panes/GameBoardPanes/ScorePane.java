@@ -1,18 +1,11 @@
 package Panes.GameBoardPanes;
 
 import Enums.Fonts;
-import Objects.State;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-
-import static Panes.EndGamePane.realNameInput;
 
 /**
  * Author - Hasan
@@ -39,24 +32,5 @@ public class ScorePane extends HBox {
 
         setAlignment(Pos.BASELINE_LEFT);
         getChildren().addAll(scoreText, scoreNumber);
-    }
-
-    /**
-     * Saves score to the text file
-     */
-    public void saveScore(State state) {
-        File file = new File("highScores.txt");
-
-        try {
-            FileWriter fileWriter = new FileWriter(file, true);
-
-            fileWriter.append(realNameInput.getText()).append(" ");
-            fileWriter.append(String.valueOf(state.getCurrentGame().currentPlayer().getScore())).append(" ");
-
-            fileWriter.close();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }

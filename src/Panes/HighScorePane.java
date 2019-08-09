@@ -115,7 +115,7 @@ public class HighScorePane extends VBox {
 	 * @param hashScore HashMap with the unsorted Scores.
 	 * @return HashMap with the sorted High Scores.
 	 */
-	private static HashMap<String, Integer> sortScores(HashMap<String, Integer> hashScore) {
+	private HashMap<String, Integer> sortScores(HashMap<String, Integer> hashScore) {
         //Create the hash map from the list
         List<Map.Entry<String, Integer> > list = new LinkedList<>(hashScore.entrySet());
   
