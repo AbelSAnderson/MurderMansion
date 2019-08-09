@@ -1,7 +1,6 @@
 package Objects;
 
 import Enums.Cards;
-import Panes.GameBoardPanes.GuessSheetPane;
 import Panes.MainGamePane;
 import Scenes.EndGameScene;
 import Scenes.TransitionScene;
@@ -72,16 +71,16 @@ public class GameState {
         getGamePane().scorePane.scoreNumber.setText("" + currentPlayer().getScore());
         getGamePane().movementPane.rollsText.setText("0");
 
-        switchPlayerUI(state);
+        switchPlayerUI();
         displayTransition(state);
     }
 
     /**
      * Switches the Player's UI when Changing Players.
      */
-    private void switchPlayerUI(State state) {
+    private void switchPlayerUI() {
         getGamePane().leftContainer.getChildren().remove(getGamePane().guessSheet);
-        getGamePane().guessSheet = new GuessSheetPane(state, true);
+        getGamePane().guessSheet.setGuessSheet(this, true);
 
         getGamePane().inventory.createInventory(currentPlayer().getCards(), true);
 
@@ -102,12 +101,12 @@ public class GameState {
         getPauseStage().show();
 
         state.getMainStage().setOnCloseRequest(e -> getPauseStage().close());
-        getPauseStage().setOnCloseRequest(e -> startTurn(state));
+        getPauseStage().setOnCloseRequest(e -> startTurn());
     }
 
-    public void startTurn(State state) {
+    public void startTurn() {
         getGamePane().leftContainer.getChildren().remove(getGamePane().guessSheet);
-        getGamePane().guessSheet = new GuessSheetPane(state, false);
+        getGamePane().guessSheet.setGuessSheet(this, false);
 
         getGamePane().inventory.createInventory(currentPlayer().getCards(), false);
 

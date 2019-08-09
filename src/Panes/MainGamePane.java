@@ -33,7 +33,7 @@ public class MainGamePane extends BorderPane {
         leftContainer = new VBox(60);
 
         scorePane = new ScorePane();
-        guessSheet = new GuessSheetPane(state, true);
+        guessSheet = new GuessSheetPane(state);
         inventory = new InventoryPane(state);
 
         leftContainer.getChildren().addAll(scorePane, guessSheet, inventory);

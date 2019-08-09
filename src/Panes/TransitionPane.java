@@ -31,7 +31,7 @@ public class TransitionPane extends HBox {
         transitionMessage.setFont(Fonts.BLANK_FONT.FellRegular(getClass(), 35));
         transitionButton.setFont(Fonts.BUTTON_FONT.getFont());
 
-        transitionButton.setOnMouseClicked(e -> gameState.startTurn(state));
+        transitionButton.setOnMouseClicked(e -> gameState.startTurn());
 
         vbox.getChildren().addAll(transitionMessage, transitionButton);
         vbox.setAlignment(Pos.CENTER);
