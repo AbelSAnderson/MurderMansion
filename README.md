@@ -5,7 +5,7 @@
 
 ### Introduction & Title
 
-On startup of the program, a introduction animation will play, with Cards and other objects flying across the screen towards the right side. Afterwards, the main menu will automatically show up with various options. Sound effects are also played during the introduction and the music will continue into the Main menu and througout the rest of the game.
+On startup of the program, a introduction animation will play, with Cards and other objects flying across the screen towards the right side. Afterwards, the main menu will automatically show up with various options. Sound effects are also played during the introduction and the music will continue into the Main menu and throughout the rest of the game.
 
 <img width="1486" alt="Introduction Screen" src="https://user-images.githubusercontent.com/52411731/116434490-732de080-a818-11eb-96c0-628b43a7d7d9.png">
 
@@ -13,7 +13,7 @@ On startup of the program, a introduction animation will play, with Cards and ot
 
 ### Instructions
 
-Clicking on the Instuctions button will take you to the instructions screen where you can read a detailed description of the instructions to play Murdre Mansion. 
+Clicking on the Instuctions button will take you to the instructions screen where you can read a detailed description of the instructions to play Murder Mansion. 
 
 <img width="1468" alt="Instructions Screen" src="https://user-images.githubusercontent.com/52411731/116434476-71641d00-a818-11eb-8b91-2149ba4bb6c0.png">
 
@@ -31,7 +31,7 @@ Once you've selected your characters, you can begin the main game. In the middle
 
 ### Winning
 
-After playing through the game and correctly gussing the murderer, you can enter your name to be put in the high scores list. You score starts at 2044 and points are deducted each time you perform an action, end your turn, or incorrectly accuse a suspect
+After playing through the game and correctly gussing the murderer, you can enter your name to be put in the high scores list. You score starts at 2044 and points are deducted each time you perform an action, end your turn, or incorrectly accuse a suspect.
 
 <img width="1487" alt="Winning Screen" src="https://user-images.githubusercontent.com/52411731/116434514-77f29480-a818-11eb-9e3f-85a14075f619.png">
 
