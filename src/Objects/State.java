@@ -28,6 +28,9 @@ public class State {
 
         screenWidth = Toolkit.getDefaultToolkit().getScreenSize().getWidth();
         screenHeight = Toolkit.getDefaultToolkit().getScreenSize().getHeight() - 65;
+
+//        screenWidth = 2000;
+//        screenHeight = 1200;
         originalGameBoard = createGameBoard();
     }
 
